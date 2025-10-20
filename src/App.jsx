@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-
 export default function HeroSection() {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
     const timer1 = setTimeout(() => setStep(1), 2000); // image comes in
-    const timer2 = setTimeout(() => setStep(2), 5000); // image enlarge
-    const timer3 = setTimeout(() => setStep(3), 7500); // show final text after 1s delay
+    const timer2 = setTimeout(() => setStep(2), 5000); // enlarge to full
+    const timer3 = setTimeout(() => setStep(3), 7500); // show text overlay
 
     return () => {
       clearTimeout(timer1);
@@ -52,42 +51,55 @@ export default function HeroSection() {
         {(step === 1 || step === 2 || step === 3) && (
           <motion.div
             key="centerImage"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{
-              opacity: 1,
-              scale: step === 2 || step === 3 ? 2.5 : 1, // enlarge the image prominently
-            }}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={
+              step >= 2
+                ? {
+                    opacity: 1,
+                    scale: 1,
+                    width: "100vw",
+                    height: "100vh",
+                    borderRadius: 0,
+                  }
+                : {
+                    opacity: 1,
+                    scale: 1,
+                    width: "70vw",
+                    height: "40vh",
+                    borderRadius: "1rem",
+                  }
+            }
             transition={{
-              duration: step === 2 ? 2 : 1,
+              duration: 2,
               ease: "easeInOut",
             }}
-            className="absolute top-1/2 -translate-y-1/2"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden z-0"
           >
-            <img
+            <motion.img
               src="https://sunnybonnell.com/wp-content/uploads/2025/04/sunny_full_image-scaled-1-1920x0-c-default.webp"
-              alt="Dummy"
-              className="w-56 h-56 md:w-72 md:h-72 object-cover"
+              alt="Sunny Bonnell"
+              className="w-full h-full object-cover"
             />
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Final Text After Enlargement */}
+      {/* Final Text Overlay (stays on image) */}
       <AnimatePresence>
         {step === 3 && (
           <motion.div
             key="finalText"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 text-white"
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 text-white z-10"
           >
-            <div className="relative z-10 text-center px-4">
+            <div className="text-center px-4">
               <motion.h1
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
-                className="text-6xl md:text-8xl font-extrabold uppercase leading-tight"
+                className="text-5xl md:text-8xl font-extrabold uppercase leading-tight"
               >
                 Visionary <br /> Thinker and Author
               </motion.h1>
@@ -106,4 +118,3 @@ export default function HeroSection() {
     </section>
   );
 }
-
