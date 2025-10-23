@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import drimg from "./assets/imgDr.png";
 
 export default function HeroSection() {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    const timer1 = setTimeout(() => setStep(1), 2000); // image comes in
-    const timer2 = setTimeout(() => setStep(2), 5000); // enlarge to full
-    const timer3 = setTimeout(() => setStep(3), 7500); // show text overlay
+    const timer1 = setTimeout(() => setStep(1), 2000);
+    const timer2 = setTimeout(() => setStep(2), 5000);
+    const timer3 = setTimeout(() => setStep(3), 7500);
 
     return () => {
       clearTimeout(timer1);
@@ -19,18 +20,48 @@ export default function HeroSection() {
   return (
     <section className="relative h-screen w-full bg-white overflow-hidden flex flex-col items-center justify-center text-center">
       {/* Top Text */}
-      <motion.h1
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{
           opacity: 1,
           y: step >= 1 ? -150 : 0,
         }}
         transition={{ duration: 1, ease: "easeInOut" }}
-        className="text-5xl md:text-7xl font-extrabold tracking-tight absolute"
-        style={{ top: "40%", transform: "translateY(-100%)" }}
+        className="absolute flex flex-col items-start text-left"
+        style={{
+          top: "25%",
+          transform: "translateY(-100%)",
+          fontFamily: "'Neue Montreal', sans-serif",
+        }}
       >
-        SUNNY BONNELL
-      </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="text-2xl md:text-4xl font-normal leading-none"
+          style={{ marginBottom: "0.25rem" }}
+        >
+          Dr.
+        </motion.p>
+        <motion.h1
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="text-5xl md:text-7xl font-light leading-tight tracking-tight"
+          style={{ lineHeight: "1" }}
+        >
+          GUNEET
+        </motion.h1>
+        <motion.h1
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="text-5xl md:text-7xl font-black leading-tight tracking-tight"
+          style={{ lineHeight: "1" }}
+        >
+          SINGH
+        </motion.h1>
+      </motion.div>
 
       {/* Bottom Text */}
       <motion.p
@@ -40,8 +71,11 @@ export default function HeroSection() {
           y: step >= 1 ? 150 : 0,
         }}
         transition={{ duration: 1, ease: "easeInOut", delay: 0.2 }}
-        className="text-3xl md:text-5xl font-extrabold absolute"
-        style={{ top: "50%" }}
+        className="text-2xl md:text-4xl font-extrabold absolute"
+        style={{
+          top: "55%",
+          fontFamily: "'Neue Montreal', sans-serif",
+        }}
       >
         ©2025
       </motion.p>
@@ -64,7 +98,7 @@ export default function HeroSection() {
                 : {
                     opacity: 1,
                     scale: 1,
-                    width: "70vw",
+                    width: "40vw",
                     height: "40vh",
                     borderRadius: "1rem",
                   }
@@ -76,43 +110,51 @@ export default function HeroSection() {
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden z-0"
           >
             <motion.img
-              src="https://sunnybonnell.com/wp-content/uploads/2025/04/sunny_full_image-scaled-1-1920x0-c-default.webp"
-              alt="Sunny Bonnell"
+              src={drimg}
+              alt="Dr. Guneet Singh"
               className="w-full h-full object-cover"
             />
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Final Text Overlay (stays on image) */}
+      {/* Final Overlay Navbar */}
       <AnimatePresence>
         {step === 3 && (
-          <motion.div
-            key="finalText"
+          <motion.nav
+            key="navbar"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 text-white z-10"
+            className="absolute top-0 left-0 w-full flex justify-between items-center p-6 text-white z-10 bg-black/20"
+            style={{ fontFamily: "'Neue Montreal', sans-serif" }}
           >
-            <div className="text-center px-4">
-              <motion.h1
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
-                className="text-5xl md:text-8xl font-extrabold uppercase leading-tight"
-              >
-                Visionary <br /> Thinker and Author
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="mt-4 text-lg uppercase tracking-widest"
-              >
-                Global Brand Innovator
-              </motion.p>
+            {/* Left Logo Text */}
+            <div className="text-left cursor-pointer">
+              <p className="text-sm font-medium leading-none">Dr.</p>
+              <h1 className="text-lg font-bold leading-tight">
+                GUNEET <br /> SINGH GABA
+              </h1>
             </div>
-          </motion.div>
+
+            {/* Center Links */}
+            <div className="hidden md:flex space-x-8 text-sm uppercase font-medium">
+              <button className="hover:opacity-80 transition cursor-pointer">
+                Treatment
+              </button>
+              <button className="hover:opacity-80 transition cursor-pointer">
+                About
+              </button>
+              <button className="hover:opacity-80 transition cursor-pointer">
+                Blogs
+              </button>
+            </div>
+
+            {/* Right Contact */}
+            <button className="text-sm font-semibold uppercase hover:opacity-80 transition cursor-pointer">
+              Contact Now
+            </button>
+          </motion.nav>
         )}
       </AnimatePresence>
     </section>
