@@ -65,7 +65,7 @@ export default function HeroSection() {
           initial={isFirstVisit ? { opacity: 0 } : { opacity: 1 }}
           animate={{ opacity: 1 }}
           transition={isFirstVisit ? { duration: 1, delay: 0.2 } : { duration: 0 }}
-          className="text-5xl md:text-7xl font-light leading-tight tracking-tight"
+          className="heading-font text-5xl md:text-7xl font-light leading-tight tracking-tight"
           style={{ lineHeight: "1" }}
         >
           GUNEET
@@ -74,7 +74,7 @@ export default function HeroSection() {
           initial={isFirstVisit ? { opacity: 0 } : { opacity: 1 }}
           animate={{ opacity: 1 }}
           transition={isFirstVisit ? { duration: 1, delay: 0.4 } : { duration: 0 }}
-          className="text-5xl md:text-7xl font-black leading-tight tracking-tight"
+          className="heading-font text-5xl md:text-7xl font-black leading-tight tracking-tight"
           style={{ lineHeight: "1" }}
         >
           SINGH

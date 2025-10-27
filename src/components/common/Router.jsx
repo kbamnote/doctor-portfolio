@@ -52,7 +52,7 @@ const TreatmentPage = () => {
       <div className="px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="heading-font text-5xl md:text-6xl font-bold text-gray-900 mb-6">
               Treatment Approach
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">

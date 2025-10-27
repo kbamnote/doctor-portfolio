@@ -12,7 +12,7 @@ const HealingSection = () => {
       {/* Left Side */}
       <div className="flex-1 max-w-xl">
         <h1
-          className="text-4xl md:text-6xl font-extrabold leading-tight"
+          className="heading-font text-4xl md:text-6xl font-extrabold leading-tight"
           style={{ color: theme.text.primary }}
         >
           HEALING BEGINS <br />

@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { BookOpen } from "lucide-react";
+import { theme } from "../../theme/colors";
 
 const OurStory = () => {
   return (
@@ -28,8 +29,8 @@ const OurStory = () => {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         >
           <div className="flex items-center gap-2">
-            <BookOpen className="text-green-600 w-6 h-6" />
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-800">
+            <BookOpen className="w-6 h-6" style={{ color: theme.primary[600] }} />
+            <h2 className="heading-font text-3xl md:text-4xl font-semibold text-gray-800">
               Our Story
             </h2>
           </div>

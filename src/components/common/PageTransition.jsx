@@ -98,10 +98,10 @@ const PageTransition = ({ children, isTransitioning, onTransitionComplete }) => 
                 lineHeight: "1.1",
               }}
             >
-              <h1 className="text-6xl md:text-7xl lg:text-8xl mb-2 tracking-tight">
+              <h1 className="heading-font text-6xl md:text-7xl lg:text-8xl mb-2 tracking-tight">
                 DR GUNEET
               </h1>
-              <h1 className="text-6xl md:text-7xl lg:text-8xl mb-6 tracking-tight">
+              <h1 className="heading-font text-6xl md:text-7xl lg:text-8xl mb-6 tracking-tight">
                 SINGH
               </h1>
               <p className="text-5xl font-extrabold tracking-tight">©2025</p>

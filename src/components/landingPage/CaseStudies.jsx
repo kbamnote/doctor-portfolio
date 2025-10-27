@@ -30,7 +30,7 @@ const CaseStudies = () => {
     >
       <div>
         <h2
-          className="text-3xl md:text-4xl font-semibold text-center mb-4"
+          className="heading-font text-3xl md:text-4xl font-semibold text-center mb-4"
           style={{ color: theme.text.primary }}
         >
           Success Stories

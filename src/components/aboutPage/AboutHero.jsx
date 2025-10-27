@@ -21,7 +21,7 @@ const AboutHero = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl md:text-5xl font-semibold leading-tight mb-6">
+        <h2 className="heading-font text-3xl md:text-5xl font-semibold leading-tight mb-6">
           Our Mission: Healing Through{" "}
           <span style={{ color: theme.primary[400] }}>Trust and Nature</span>
         </h2>

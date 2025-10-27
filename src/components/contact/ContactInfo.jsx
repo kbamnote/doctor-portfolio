@@ -1,5 +1,6 @@
 import React from "react";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { theme } from "../../theme/colors";
 
 const ContactInfo = () => {
   return (
@@ -7,7 +8,7 @@ const ContactInfo = () => {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
         {/* Appointment Form */}
         <div className="bg-white rounded-2xl shadow-lg p-8">
-          <h2 className="text-2xl md:text-3xl font-semibold text-blue-900 mb-8">
+          <h2 className="heading-font text-2xl md:text-3xl font-semibold text-blue-900 mb-8">
             Schedule Your Appointment
           </h2>
 
@@ -17,7 +18,10 @@ const ContactInfo = () => {
               <input
                 type="text"
                 placeholder="John Doe"
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2"
+                style={{ '--tw-ring-color': theme.primary[400] }}
+                onFocus={(e) => e.target.style.boxShadow = `0 0 0 2px ${theme.primary[400]}`}
+                onBlur={(e) => e.target.style.boxShadow = 'none'}
               />
             </div>
 
@@ -29,7 +33,10 @@ const ContactInfo = () => {
                 <input
                   type="email"
                   placeholder="john@example.com"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2"
+                  style={{ '--tw-ring-color': theme.primary[400] }}
+                  onFocus={(e) => e.target.style.boxShadow = `0 0 0 2px ${theme.primary[400]}`}
+                  onBlur={(e) => e.target.style.boxShadow = 'none'}
                 />
               </div>
               <div>
@@ -39,7 +46,10 @@ const ContactInfo = () => {
                 <input
                   type="tel"
                   placeholder="+1 (555) 123-4567"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2"
+                  style={{ '--tw-ring-color': theme.primary[400] }}
+                  onFocus={(e) => e.target.style.boxShadow = `0 0 0 2px ${theme.primary[400]}`}
+                  onBlur={(e) => e.target.style.boxShadow = 'none'}
                 />
               </div>
             </div>
@@ -48,7 +58,12 @@ const ContactInfo = () => {
               <label className="block text-gray-700 mb-2">
                 Health Condition *
               </label>
-              <select className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400">
+              <select 
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2"
+                style={{ '--tw-ring-color': theme.primary[400] }}
+                onFocus={(e) => e.target.style.boxShadow = `0 0 0 2px ${theme.primary[400]}`}
+                onBlur={(e) => e.target.style.boxShadow = 'none'}
+              >
                 <option>Select a condition</option>
                 <option>Allergies</option>
                 <option>Digestive Issues</option>
@@ -65,13 +80,19 @@ const ContactInfo = () => {
               <textarea
                 rows="4"
                 placeholder="Please describe your symptoms and health concerns..."
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2"
+                style={{ '--tw-ring-color': theme.primary[400] }}
+                onFocus={(e) => e.target.style.boxShadow = `0 0 0 2px ${theme.primary[400]}`}
+                onBlur={(e) => e.target.style.boxShadow = 'none'}
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 rounded-lg flex items-center justify-center gap-2 transition-all"
+              className="w-full text-white font-medium py-3 rounded-lg flex items-center justify-center gap-2 transition-all"
+              style={{ backgroundColor: theme.primary[500] }}
+              onMouseEnter={(e) => e.target.style.backgroundColor = theme.primary[600]}
+              onMouseLeave={(e) => e.target.style.backgroundColor = theme.primary[500]}
             >
               <Send size={18} />
               Submit Appointment Request
@@ -80,11 +101,16 @@ const ContactInfo = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="bg-gradient-to-b from-green-400 to-green-300 rounded-2xl shadow-lg p-8 text-white">
-          <h2 className="text-2xl md:text-3xl font-semibold mb-6">
+        <div 
+          className="rounded-2xl shadow-lg p-8 text-white"
+          style={{ 
+            background: `linear-gradient(to bottom, ${theme.primary[400]}, ${theme.primary[300]})` 
+          }}
+        >
+          <h2 className="heading-font text-2xl md:text-3xl font-semibold mb-6">
             Get In Touch
           </h2>
-          <p className="mb-10 text-green-50">
+          <p className="mb-10" style={{ color: theme.primary[50] }}>
             Have questions? We’re here to help. Reach out to us through any of
             the following channels.
           </p>

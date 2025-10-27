@@ -11,7 +11,7 @@ const CallToAction = () => {
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-white text-4xl md:text-5xl font-semibold mb-6">
+        <h2 className="heading-font text-white text-4xl md:text-5xl font-semibold mb-6">
           Ready to Start Your Treatment?
         </h2>
         <p className="text-white text-lg md:text-xl mb-10 leading-relaxed">

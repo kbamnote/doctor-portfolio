@@ -4,7 +4,7 @@ const StoryCta = () => {
   return (
     <section className="bg-gradient-to-b from-green-500 to-green-300 py-24 text-center text-white">
       <div className="max-w-3xl mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-semibold mb-6">
+        <h2 className="heading-font text-4xl md:text-5xl font-semibold mb-6">
           Your Story Could Be Next
         </h2>
         <p className="text-lg md:text-xl mb-10 text-white/90 leading-relaxed">

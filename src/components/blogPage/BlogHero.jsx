@@ -1,14 +1,15 @@
 import React from "react";
 import { Search } from "lucide-react";
+import { theme } from "../../theme/colors";
 
 const BlogHero = () => {
   return (
-    <section className="bg-gradient-to-b from-blue-800 to-blue-700 py-24 text-center text-white">
+    <section className="bg-[#173E8F] py-24 text-center text-white">
       <div className="max-w-3xl mx-auto px-4">
         {/* Heading */}
-        <h1 className="text-4xl md:text-5xl font-semibold mb-6">
+        <h1 className="heading-font text-4xl md:text-5xl font-semibold mb-6">
           Insights on{" "}
-          <span className="text-green-300">Healing & Health</span>
+          <span style={{ color: theme.primary[300] }}>Healing & Health</span>
         </h1>
 
         {/* Subtext */}

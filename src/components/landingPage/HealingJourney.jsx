@@ -32,7 +32,7 @@ const HealingJourney = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2
-            className="text-3xl md:text-4xl font-semibold mb-4"
+            className="heading-font text-3xl md:text-4xl font-semibold mb-4"
             style={{ color: theme.text.primary }}
           >
             Your Healing Journey

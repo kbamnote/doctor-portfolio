@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Heart, Target, Shield } from "lucide-react";
+import { theme } from "../../theme/colors";
 
 const CoreValues = () => {
   const values = [
@@ -61,7 +62,12 @@ const CoreValues = () => {
               whileHover={{ scale: 1.03 }}
             >
               <div className="flex items-center gap-4 mb-4">
-                <div className="bg-gradient-to-br from-green-400 to-green-600 w-14 h-14 flex items-center justify-center rounded-full shadow-md">
+                <div 
+                  className="w-14 h-14 flex items-center justify-center rounded-full shadow-md"
+                  style={{ 
+                    background: `linear-gradient(to bottom right, ${theme.primary[400]}, ${theme.primary[600]})` 
+                  }}
+                >
                   {value.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800">

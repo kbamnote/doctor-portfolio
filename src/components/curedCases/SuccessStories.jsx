@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Calendar, User } from "lucide-react";
+import { theme } from "../../theme/colors";
 
 const stories = [
   {
@@ -107,11 +108,21 @@ const SuccessStories = () => {
           <button
             key={filter}
             onClick={() => setActiveFilter(filter)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-              activeFilter === filter
-                ? "bg-green-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-green-100"
-            }`}
+            className="px-4 py-2 rounded-full text-sm font-medium transition"
+            style={{
+              backgroundColor: activeFilter === filter ? theme.primary[600] : '#e5e7eb',
+              color: activeFilter === filter ? 'white' : '#374151'
+            }}
+            onMouseEnter={(e) => {
+              if (activeFilter !== filter) {
+                e.target.style.backgroundColor = theme.primary[100];
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (activeFilter !== filter) {
+                e.target.style.backgroundColor = '#e5e7eb';
+              }
+            }}
           >
             {filter}
           </button>
@@ -143,7 +154,10 @@ const SuccessStories = () => {
                   alt="after"
                   className="h-48 w-full object-cover"
                 />
-                <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                <span 
+                  className="absolute top-2 right-2 text-white text-xs font-semibold px-2 py-1 rounded-full"
+                  style={{ backgroundColor: theme.primary[500] }}
+                >
                   After
                 </span>
               </div>
@@ -151,7 +165,10 @@ const SuccessStories = () => {
 
             {/* Card Content */}
             <div className="p-5">
-              <span className="text-green-600 text-xs font-semibold uppercase">
+              <span 
+                className="text-xs font-semibold uppercase"
+                style={{ color: theme.primary[600] }}
+              >
                 {story.category}
               </span>
               <h3 className="text-lg font-semibold mt-1 mb-2 text-gray-800">
@@ -171,7 +188,10 @@ const SuccessStories = () => {
                 {story.description}
               </p>
 
-              <button className="text-green-600 text-sm font-medium hover:underline">
+              <button 
+                className="text-sm font-medium hover:underline"
+                style={{ color: theme.primary[600] }}
+              >
                 Read full story →
               </button>
             </div>

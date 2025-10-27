@@ -4,3 +4,9 @@
 * {
   font-family: 'Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
+
+/* Heading font styles using Helvetica Now */
+h1, h2, h3, h4, h5, h6,
+.heading-font {
+  font-family: 'Helvetica Now', 'Helvetica Neue', 'Helvetica', -apple-system, BlinkMacSystemFont, sans-serif;
+}
