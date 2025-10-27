@@ -102,7 +102,8 @@ const Footer = () => {
   return (
     <motion.footer 
       ref={ref}
-      className="text-white overflow-hidden"
+      className="text-white overflow-hidden "
+     
       style={{
         background: `linear-gradient(135deg, ${theme.primary[900]} 0%, ${theme.primary[800]} 50%, ${theme.primary[900]} 100%)`
       }}

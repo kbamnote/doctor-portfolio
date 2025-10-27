@@ -1,34 +1,161 @@
-import React from "react";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { theme } from "../../theme/colors";
 
 const HealingJourneyCTA = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, threshold: 0.3 });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 60,
+      scale: 0.9
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const buttonVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 40,
+      scale: 0.8
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+        type: "spring",
+        stiffness: 200
+      }
+    }
+  };
+
   return (
-    <section 
-      className="py-24 px-6 md:px-12 lg:px-20"
-      style={{ 
-        background: `linear-gradient(to bottom right, ${theme.primary[400]}, ${theme.primary[500]})` 
-      }}
+    <motion.section 
+      ref={ref}
+      className="py-24 px-6 md:px-12 lg:px-20 bg-[#35AB72] relative overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+      transition={{ duration: 1 }}
     >
-      <div className="max-w-4xl mx-auto text-center">
+      {/* Background decorative elements */}
+      <motion.div
+        className="absolute top-10 right-10 w-20 h-20 rounded-full bg-white/10"
+        animate={{
+          y: [0, -20, 0],
+          scale: [1, 1.1, 1],
+          opacity: [0.1, 0.3, 0.1]
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      
+      <motion.div
+        className="absolute bottom-20 left-10 w-16 h-16 rounded-full bg-white/5"
+        animate={{
+          x: [0, 15, 0],
+          rotate: [0, 180, 360],
+          opacity: [0.05, 0.2, 0.05]
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2
+        }}
+      />
+
+      <motion.div 
+        className="max-w-4xl mx-auto text-center relative z-10"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
         {/* Heading */}
-        <h2 className="heading-font text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        <motion.h2 
+          className="heading-font text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
+          variants={itemVariants}
+          whileHover={{ 
+            scale: 1.02,
+            textShadow: "0 0 20px rgba(255,255,255,0.3)"
+          }}
+          transition={{ duration: 0.3 }}
+        >
           Let's Begin Your Healing Journey
-        </h2>
+        </motion.h2>
 
         {/* Subheading */}
-        <p className="text-white text-lg md:text-xl lg:text-2xl leading-relaxed mb-10 max-w-3xl mx-auto">
+        <motion.p 
+          className="text-white text-lg md:text-xl lg:text-2xl leading-relaxed mb-10 max-w-3xl mx-auto"
+          variants={itemVariants}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
           Take the first step towards natural, lasting wellness. Your body knows how to heal—we help it remember.
-        </p>
+        </motion.p>
 
         {/* CTA Button */}
-        <button 
-          className="bg-white font-semibold text-lg px-10 py-4 rounded-xl shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300 transform hover:scale-105"
+        <motion.button 
+          className="bg-white font-semibold text-lg px-10 py-4 rounded-xl shadow-lg relative overflow-hidden"
           style={{ color: theme.primary[600] }}
+          variants={buttonVariants}
+          whileHover={{ 
+            scale: 1.05,
+            boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
+            y: -2
+          }}
+          whileTap={{ 
+            scale: 0.98,
+            y: 0
+          }}
+          transition={{ duration: 0.3 }}
         >
-          Book an Appointment
-        </button>
-      </div>
-    </section>
+          <motion.span
+            className="relative z-10"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            Book an Appointment
+          </motion.span>
+          
+          {/* Button background animation */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+            initial={{ x: "-100%" }}
+            whileHover={{ x: "100%" }}
+            transition={{ duration: 0.6 }}
+          />
+        </motion.button>
+      </motion.div>
+    </motion.section>
   );
 };
 

@@ -4,7 +4,7 @@ import { theme } from "../../theme/colors";
 
 const BlogHero = () => {
   return (
-    <section className="bg-[#173E8F] py-24 text-center text-white">
+    <section className="bg-[#3570AB] py-24 text-center text-white">
       <div className="max-w-3xl mx-auto px-4">
         {/* Heading */}
         <h1 className="heading-font text-4xl md:text-5xl font-semibold mb-6">

@@ -61,14 +61,14 @@ const BlogFilter = () => {
       : posts.filter((post) => post.category === selectedCategory);
 
   return (
-    <div className="bg-gray-50 py-10 px-4 md:px-10 lg:px-20">
+    <div className="bg-gray-50 py-8 sm:py-10 px-4 sm:px-6 md:px-10 lg:px-20">
       {/* Category Filter */}
-      <div className="flex flex-wrap justify-center gap-3 mb-10">
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`px-4 py-2 rounded-full text-sm font-medium border transition ${
+            className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium border transition ${
               selectedCategory === cat
                 ? "text-white"
                 : "bg-white text-gray-700 border-gray-200"
@@ -93,47 +93,54 @@ const BlogFilter = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         {/* Blog Posts Section */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-4 sm:space-y-6">
           {filteredPosts.map((post) => (
             <div
               key={post.id}
-              className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row"
+              className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col sm:flex-row"
             >
               <img
                 src={post.img}
                 alt={post.title}
-                className="w-full md:w-1/3 h-56 object-cover"
+                className="w-full sm:w-1/3 h-48 sm:h-56 object-cover"
               />
-              <div className="p-5 flex flex-col justify-between">
+              <div className="p-4 sm:p-5 flex flex-col justify-between flex-1">
                 <div>
                   <span 
-                    className="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-2"
+                    className="inline-block text-xs font-semibold px-2 sm:px-3 py-1 rounded-full mb-2"
                     style={{ backgroundColor: theme.primary[100], color: theme.primary[700] }}
                   >
                     {post.category}
                   </span>
-                  <h3 className="text-lg font-semibold mb-2 text-gray-900">
+                  <h3 className="text-base sm:text-lg font-semibold mb-2 text-gray-900 line-clamp-2">
                     {post.title}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-3">{post.excerpt}</p>
+                  <p className="text-gray-600 text-sm mb-3 line-clamp-2 sm:line-clamp-3">{post.excerpt}</p>
                 </div>
-                <div className="flex items-center justify-between text-gray-500 text-xs">
-                  <div className="flex items-center gap-2">
-                    <User size={14} />
-                    <span>{post.author}</span>
-                    <Calendar size={14} className="ml-2" />
-                    <span>{post.date}</span>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 text-gray-500 text-xs">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <div className="flex items-center gap-1">
+                      <User size={12} />
+                      <span className="truncate max-w-[120px]">{post.author}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Calendar size={12} />
+                      <span className="hidden sm:inline">{post.date}</span>
+                      <span className="sm:hidden">{post.date.split(' ').slice(0, 2).join(' ')}</span>
+                    </div>
                   </div>
                   <a 
                     href="#" 
-                    className="flex items-center font-medium transition-colors"
+                    className="flex items-center font-medium transition-colors self-start sm:self-auto"
                     style={{ color: theme.primary[600] }}
                     onMouseEnter={(e) => e.target.style.color = theme.primary[700]}
                     onMouseLeave={(e) => e.target.style.color = theme.primary[600]}
                   >
-                    Read more <ArrowRight size={14} className="ml-1" />
+                    <span className="hidden sm:inline">Read more</span>
+                    <span className="sm:hidden">Read</span>
+                    <ArrowRight size={12} className="ml-1" />
                   </a>
                 </div>
               </div>
@@ -142,19 +149,19 @@ const BlogFilter = () => {
         </div>
 
         {/* Sidebar */}
-        <aside className="space-y-6">
+        <aside className="space-y-4 sm:space-y-6">
           {/* Popular Posts */}
-          <div className="bg-white shadow-md rounded-xl p-5">
-            <h4 className="font-semibold text-gray-900 mb-4">Popular Posts</h4>
+          <div className="bg-white shadow-md rounded-xl p-4 sm:p-5">
+            <h4 className="font-semibold text-gray-900 mb-3 sm:mb-4 text-sm sm:text-base">Popular Posts</h4>
             {posts.slice(0, 3).map((p) => (
-              <div key={p.id} className="flex items-center gap-3 mb-3">
+              <div key={p.id} className="flex items-center gap-3 mb-3 last:mb-0">
                 <img
                   src={p.img}
                   alt={p.title}
-                  className="w-14 h-14 object-cover rounded-md"
+                  className="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded-md flex-shrink-0"
                 />
-                <div>
-                  <p className="text-sm font-medium text-gray-800">{p.title}</p>
+                <div className="min-w-0 flex-1">
+                  <p className="text-xs sm:text-sm font-medium text-gray-800 line-clamp-2">{p.title}</p>
                   <span className="text-xs text-gray-500">
                     {p.category}
                   </span>
@@ -164,13 +171,13 @@ const BlogFilter = () => {
           </div>
 
           {/* Categories */}
-          <div className="bg-green-500 text-white rounded-xl p-5">
-            <h4 className="font-semibold mb-4">Categories</h4>
+          <div className="bg-[#35AB9A] text-white rounded-xl p-4 sm:p-5">
+            <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Categories</h4>
             <ul className="space-y-2">
               {categories.slice(1).map((c) => (
                 <li
                   key={c}
-                  className="flex justify-between items-center bg-white/10 rounded-md px-3 py-2 text-sm"
+                  className="flex justify-between items-center bg-white/10 rounded-md px-3 py-2 text-xs sm:text-sm"
                 >
                   <span>{c}</span>
                   <span>+</span>
@@ -180,17 +187,17 @@ const BlogFilter = () => {
           </div>
 
           {/* Stay Updated */}
-          <div className="bg-white shadow-md rounded-xl p-5">
-            <h4 className="font-semibold text-gray-900 mb-3">Stay Updated</h4>
-            <p className="text-sm text-gray-600 mb-4">
+          <div className="bg-white shadow-md rounded-xl p-4 sm:p-5">
+            <h4 className="font-semibold text-gray-900 mb-3 text-sm sm:text-base">Stay Updated</h4>
+            <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
               Subscribe to our newsletter for the latest health insights and wellness tips.
             </p>
             <input
               type="email"
               placeholder="Your email"
-              className="w-full border rounded-md px-3 py-2 mb-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full border rounded-md px-3 py-2 mb-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-green-400"
             />
-            <button className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition">
+            <button className="w-full bg-[#35AB9A] text-white py-2 rounded-md hover:bg-green-600 transition text-xs sm:text-sm">
               Subscribe
             </button>
           </div>

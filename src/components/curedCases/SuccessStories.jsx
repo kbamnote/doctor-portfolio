@@ -12,9 +12,9 @@ const stories = [
     description:
       "Patient suffered from severe eczema for 8 years with constant itching and irritation.",
     imgBefore:
-      "https://images.unsplash.com/photo-1588774069160-635b7b84c2a3?w=800&q=80",
+      "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170",
     imgAfter:
-      "https://images.unsplash.com/photo-1611078489935-0cb964de46b3?w=800&q=80",
+      "https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1228",
   },
   {
     id: 2,
@@ -25,9 +25,9 @@ const stories = [
     description:
       "Debilitating migraines 3–4 times per week for years. After treatment, symptoms disappeared.",
     imgBefore:
-      "https://images.unsplash.com/photo-1576765607924-3f7b88a58f09?w=800&q=80",
+      "https://images.unsplash.com/photo-1633219664572-473fd988a44f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1172",
     imgAfter:
-      "https://images.unsplash.com/photo-1603398749941-35fc4e84e6e7?w=800&q=80",
+      "https://media.istockphoto.com/id/1394763799/photo/doctor-with-nurse-examining-patient-lying-on-hospital-bed.jpg?s=2048x2048&w=is&k=20&c=GyvsZSqh6cNjy52iQqS3ICqC6713sEI6HxmylQGza6w=",
   },
   {
     id: 3,
@@ -40,7 +40,7 @@ const stories = [
     imgBefore:
       "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80",
     imgAfter:
-      "https://images.unsplash.com/photo-1606788075761-04846e1b5e6e?w=800&q=80",
+      "https://media.istockphoto.com/id/1169596698/photo/asian-woman-professional-doctor-with-notepad-smiling-visiting-talking-and-diagnosing-the-old.jpg?s=2048x2048&w=is&k=20&c=m_-CvPHj6Thf4EKM6xrl8A9MN3Zq9uvXD4CiGSs_WHA=",
   },
   {
     id: 4,
@@ -51,9 +51,9 @@ const stories = [
     description:
       "Progressive hair thinning stopped and new hair growth observed after 10 months.",
     imgBefore:
-      "https://images.unsplash.com/photo-1599351430140-7396a84bdb2b?w=800&q=80",
+      "https://media.istockphoto.com/id/1394762060/photo/doctor-consoling-disabled-man-on-wheelchair-with-daughter-by-his-side-at-the-hospital.webp?a=1&b=1&s=612x612&w=0&k=20&c=gAue6TiKWKV3vPKQ9uo-8sfgR1NzruZOV0n6odIqRvA=",
     imgAfter:
-      "https://images.unsplash.com/photo-1617339860278-3c0b66c3adab?w=800&q=80",
+      "https://media.istockphoto.com/id/1418999467/photo/doctors-comforting-disabled-elderly-patient.webp?a=1&b=1&s=612x612&w=0&k=20&c=GCZTGW7y3_zsw1rL9III676QppSAv-9BQwtxuHg522c=",
   },
   {
     id: 5,
@@ -64,9 +64,9 @@ const stories = [
     description:
       "Severe anxiety with frequent panic attacks affecting daily life improved remarkably.",
     imgBefore:
-      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800&q=80",
+      "https://images.unsplash.com/photo-1550831106-f8d5b6f1abe9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fGhvc3BpdGFsfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
     imgAfter:
-      "https://images.unsplash.com/photo-1556906781-9a412961c28b?w=800&q=80",
+      "https://plus.unsplash.com/premium_photo-1681995301746-49a915e4d325?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTd8fGhvc3BpdGFsfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
   },
   {
     id: 6,
@@ -77,9 +77,9 @@ const stories = [
     description:
       "Chronic spring allergies resolved with natural remedies, no longer needs medication.",
     imgBefore:
-      "https://images.unsplash.com/photo-1522336572468-97b06e8ef143?w=800&q=80",
+      "https://images.unsplash.com/photo-1517120026326-d87759a7b63b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGhvc3BpdGFsfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
     imgAfter:
-      "https://images.unsplash.com/photo-1522336572468-97b06e8ef143?w=800&q=80",
+      "https://plus.unsplash.com/premium_photo-1681995206380-babb9b6debc6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDV8fGhvc3BpdGFsfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
   },
 ];
 
@@ -101,14 +101,14 @@ const SuccessStories = () => {
       : stories.filter((story) => story.category === activeFilter);
 
   return (
-    <section className="bg-gray-50 py-16 px-6">
+    <section className="bg-gray-50 py-12 sm:py-16 px-4 sm:px-6">
       {/* Filter Buttons */}
-      <div className="flex flex-wrap justify-center gap-3 mb-10">
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
         {filters.map((filter) => (
           <button
             key={filter}
             onClick={() => setActiveFilter(filter)}
-            className="px-4 py-2 rounded-full text-sm font-medium transition"
+            className="px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition"
             style={{
               backgroundColor: activeFilter === filter ? theme.primary[600] : '#e5e7eb',
               color: activeFilter === filter ? 'white' : '#374151'
@@ -130,7 +130,7 @@ const SuccessStories = () => {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
         {filteredStories.map((story) => (
           <div
             key={story.id}
@@ -142,9 +142,9 @@ const SuccessStories = () => {
                 <img
                   src={story.imgBefore}
                   alt="before"
-                  className="h-48 w-full object-cover"
+                  className="h-40 sm:h-48 w-full object-cover"
                 />
-                <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                <span className="absolute top-1 sm:top-2 left-1 sm:left-2 bg-red-500 text-white text-xs font-semibold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full">
                   Before
                 </span>
               </div>
@@ -152,10 +152,10 @@ const SuccessStories = () => {
                 <img
                   src={story.imgAfter}
                   alt="after"
-                  className="h-48 w-full object-cover"
+                  className="h-40 sm:h-48 w-full object-cover"
                 />
                 <span 
-                  className="absolute top-2 right-2 text-white text-xs font-semibold px-2 py-1 rounded-full"
+                  className="absolute top-1 sm:top-2 right-1 sm:right-2 text-white text-xs font-semibold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full"
                   style={{ backgroundColor: theme.primary[500] }}
                 >
                   After
@@ -164,35 +164,38 @@ const SuccessStories = () => {
             </div>
 
             {/* Card Content */}
-            <div className="p-5">
+            <div className="p-4 sm:p-5">
               <span 
                 className="text-xs font-semibold uppercase"
                 style={{ color: theme.primary[600] }}
               >
                 {story.category}
               </span>
-              <h3 className="text-lg font-semibold mt-1 mb-2 text-gray-800">
+              <h3 className="text-base sm:text-lg font-semibold mt-1 mb-2 text-gray-800 line-clamp-2">
                 {story.title}
               </h3>
 
-              <div className="flex items-center gap-4 text-gray-500 text-sm mb-2">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-gray-500 text-xs sm:text-sm mb-2">
                 <div className="flex items-center gap-1">
-                  <Calendar className="w-4 h-4" /> {story.duration}
+                  <Calendar className="w-3 h-3 sm:w-4 sm:h-4" /> 
+                  <span>{story.duration}</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <User className="w-4 h-4" /> {story.age}
+                  <User className="w-3 h-3 sm:w-4 sm:h-4" /> 
+                  <span>{story.age}</span>
                 </div>
               </div>
 
-              <p className="text-sm text-gray-600 line-clamp-3 mb-3">
+              <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 sm:line-clamp-3 mb-3">
                 {story.description}
               </p>
 
               <button 
-                className="text-sm font-medium hover:underline"
+                className="text-xs sm:text-sm font-medium hover:underline"
                 style={{ color: theme.primary[600] }}
               >
-                Read full story →
+                <span className="hidden sm:inline">Read full story →</span>
+                <span className="sm:hidden">Read more →</span>
               </button>
             </div>
           </div>

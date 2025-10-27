@@ -35,51 +35,92 @@ export default function HeroSection() {
     }
   }, []);
 
+  // Block scrolling during animation sequence
+  useEffect(() => {
+    if (isFirstVisit && step < 3) {
+      // Disable scrolling
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      
+      // Prevent scroll events
+      const preventScroll = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      };
+
+      // Add event listeners to prevent scrolling
+      document.addEventListener('wheel', preventScroll, { passive: false });
+      document.addEventListener('touchmove', preventScroll, { passive: false });
+      document.addEventListener('keydown', (e) => {
+        // Prevent arrow keys, page up/down, space, home, end
+        if ([32, 33, 34, 35, 36, 37, 38, 39, 40].includes(e.keyCode)) {
+          e.preventDefault();
+        }
+      });
+
+      return () => {
+        // Re-enable scrolling when component unmounts or step changes
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        document.removeEventListener('wheel', preventScroll);
+        document.removeEventListener('touchmove', preventScroll);
+      };
+    } else {
+      // Ensure scrolling is enabled when animation completes
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+  }, [step, isFirstVisit]);
+
   return (
     <section className="relative h-screen w-full bg-white overflow-hidden flex flex-col items-center justify-center text-center">
       {/* Top Text */}
-      <motion.div
-        initial={isFirstVisit ? { opacity: 0 } : { opacity: 1, y: -150 }}
-        animate={{
-          opacity: 1,
-          y: step >= 1 ? -150 : 0,
-        }}
-        transition={isFirstVisit ? { duration: 1, ease: "easeInOut" } : { duration: 0 }}
-        className="absolute flex flex-col items-start text-left"
-        style={{
-          top: "25%",
-          transform: "translateY(-100%)",
-          fontFamily: "'Neue Montreal', sans-serif",
-        }}
-      >
-        <motion.p
-          initial={isFirstVisit ? { opacity: 0 } : { opacity: 1 }}
-          animate={{ opacity: 1 }}
-          transition={isFirstVisit ? { duration: 0.8 } : { duration: 0 }}
-          className="text-2xl md:text-4xl font-normal leading-none"
-          style={{ marginBottom: "0.25rem" }}
-        >
-          Dr.
-        </motion.p>
-        <motion.h1
-          initial={isFirstVisit ? { opacity: 0 } : { opacity: 1 }}
-          animate={{ opacity: 1 }}
-          transition={isFirstVisit ? { duration: 1, delay: 0.2 } : { duration: 0 }}
-          className="heading-font text-5xl md:text-7xl font-light leading-tight tracking-tight"
-          style={{ lineHeight: "1" }}
-        >
-          GUNEET
-        </motion.h1>
-        <motion.h1
-          initial={isFirstVisit ? { opacity: 0 } : { opacity: 1 }}
-          animate={{ opacity: 1 }}
-          transition={isFirstVisit ? { duration: 1, delay: 0.4 } : { duration: 0 }}
-          className="heading-font text-5xl md:text-7xl font-black leading-tight tracking-tight"
-          style={{ lineHeight: "1" }}
-        >
-          SINGH
-        </motion.h1>
-      </motion.div>
+     <motion.div
+  initial={isFirstVisit ? { opacity: 0 } : { opacity: 1, y: -150 }}
+  animate={{
+    opacity: 1,
+    y: step >= 1 ? -150 : 0,
+  }}
+  transition={isFirstVisit ? { duration: 1, ease: "easeInOut" } : { duration: 0 }}
+  className="absolute flex flex-col items-start text-left"
+  style={{
+    top: "25%",
+    transform: "translateY(-100%)",
+    fontFamily: "'Neue Montreal', sans-serif",
+  }}
+>
+  <motion.p
+    initial={isFirstVisit ? { opacity: 0 } : { opacity: 1 }}
+    animate={{ opacity: 1 }}
+    transition={isFirstVisit ? { duration: 0.8 } : { duration: 0 }}
+    className="text-4xl md:text-4xl font-semibold leading-none mb-1"
+  >
+    Dr.
+  </motion.p>
+
+  <motion.h1
+    initial={isFirstVisit ? { opacity: 0 } : { opacity: 1 }}
+    animate={{ opacity: 1 }}
+    transition={isFirstVisit ? { duration: 1, delay: 0.2 } : { duration: 0 }}
+    className="heading-font text-5xl md:text-7xl font-extrabold leading-tight tracking-tight"
+    style={{ lineHeight: "1" }}
+  >
+    GUNEET
+  </motion.h1>
+
+  {/* Center SINGH only */}
+  <motion.h1
+    initial={isFirstVisit ? { opacity: 0 } : { opacity: 1 }}
+    animate={{ opacity: 1 }}
+    transition={isFirstVisit ? { duration: 1, delay: 0.4 } : { duration: 0 }}
+    className="heading-font text-5xl md:text-7xl font-black leading-tight tracking-tight text-center self-center"
+    style={{ lineHeight: "1", width: "100%" }}
+  >
+    SINGH
+  </motion.h1>
+</motion.div>
+
 
       {/* Bottom Text */}
       <motion.p
@@ -89,7 +130,7 @@ export default function HeroSection() {
           y: step >= 1 ? 150 : 0,
         }}
         transition={isFirstVisit ? { duration: 1, ease: "easeInOut", delay: 0.2 } : { duration: 0 }}
-        className="text-2xl md:text-4xl font-extrabold absolute"
+        className="text-2xl md:text-8xl font-extrabold absolute"
         style={{
           top: "55%",
           fontFamily: "'Neue Montreal', sans-serif",
@@ -126,15 +167,15 @@ export default function HeroSection() {
                 : {
                     opacity: 1,
                     scale: 1,
-                    width: "40vw",
-                    height: "40vh",
+                    width: "30vw",
+                    height: "30vh",
                     borderRadius: "1rem",
                   }
             }
             transition={
               isFirstVisit 
                 ? {
-                    duration: 2,
+                    duration: 1,
                     ease: "easeInOut",
                   }
                 : { duration: 0 }

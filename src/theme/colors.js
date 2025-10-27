@@ -10,7 +10,7 @@ export const theme = {
     300: '#5eead4',
     400: '#2dd4bf',
     500: '#36ACA0',
-    600: '#0d9488',
+    600: '#3696AC',
     700: '#0f766e',
     800: '#115e59',
     900: '#134e4a',
@@ -32,8 +32,8 @@ export const theme = {
   
   // Accent Colors
   accent: {
-    primary: '#36ACA0',
-    teal: '#0d9488',
+    primary: '#3696AC',
+    teal: '#3696AC',
     blue: '#0ea5e9',
     purple: '#8b5cf6',
     orange: '#f59e0b',
@@ -60,7 +60,7 @@ export const theme = {
     secondary: '#f0fdfa',
     dark: '#0f172a',
     gradient: {
-      primary: 'linear-gradient(135deg, #36ACA0 0%, #0d9488 100%)',
+      primary: 'linear-gradient(135deg, #36ACA0 0%, #3696AC 100%)',
       secondary: 'linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%)',
       accent: 'linear-gradient(135deg, #2dd4bf 0%, #0f766e 100%)',
     }
@@ -72,7 +72,7 @@ export const theme = {
     secondary: '#4b5563',
     light: '#9ca3af',
     white: '#ffffff',
-    accent: '#0d9488',
+    accent: '#3696AC',
   },
   
   // Animation Durations

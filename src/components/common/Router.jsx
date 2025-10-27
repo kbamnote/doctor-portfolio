@@ -26,7 +26,7 @@ const TransitionWrapper = ({ children }) => {
     // Start transition when location changes (but not on first load)
     setIsTransitioning(true);
     // Scroll to top when navigating to a new page
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, [location.pathname]);
 
   const handleTransitionComplete = () => {

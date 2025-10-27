@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const CallToAction = () => {
   return (
-    <section className="bg-gradient-to-b from-green-500 to-green-300 py-24 px-6 text-center">
+    <section className="bg-[#35AB72] py-24 px-6 text-center">
       <motion.div
         className="max-w-3xl mx-auto"
         initial={{ opacity: 0, y: 40 }}

@@ -5,57 +5,41 @@ import { theme } from "../../theme/colors";
 
 const OurStory = () => {
   return (
-    <section className="w-full bg-gradient-to-b from-white to-gray-50 py-20 px-6 md:px-16 lg:px-24">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-        {/* Left Image */}
+    <section className="py-12 sm:py-16 px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          className="md:w-1/2 w-full"
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row items-center gap-8 sm:gap-12"
         >
-          <img
-            src="https://images.unsplash.com/photo-1532009877282-3340270e0529?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
-            alt="Our Story"
-            className="rounded-3xl shadow-xl w-full object-cover"
-          />
-        </motion.div>
-
-        {/* Right Text */}
-        <motion.div
-          className="md:w-1/2 w-full space-y-6"
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-        >
-          <div className="flex items-center gap-2">
-            <BookOpen className="w-6 h-6" style={{ color: theme.primary[600] }} />
-            <h2 className="heading-font text-3xl md:text-4xl font-semibold text-gray-800">
-              Our Story
-            </h2>
+          {/* Image */}
+          <div className="w-full md:w-1/2">
+            <img
+              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+              alt="Dr. Sarah Johnson"
+              className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-2xl shadow-lg"
+            />
           </div>
 
-          <p className="text-gray-600 leading-relaxed text-lg">
-            HomeoHeal was born from a simple yet powerful belief: that the
-            human body possesses an innate ability to heal itself when given the
-            right support. Founded in 2010 by Dr. Anjali Mehta, our clinic has
-            grown from a small practice into a trusted haven for those seeking
-            natural, holistic healthcare.
-          </p>
-
-          <p className="text-gray-600 leading-relaxed text-lg">
-            Over the past 15 years, we’ve witnessed countless transformations —
-            people who had lost hope finding relief, chronic conditions
-            resolving naturally, and families discovering a gentler path to
-            wellness. Each success story reinforces our commitment to this
-            profound healing art.
-          </p>
-
-          <p className="text-gray-600 leading-relaxed text-lg">
-            Today, we continue to blend classical homeopathic principles with
-            contemporary understanding, ensuring every patient receives care
-            that is both time-honored and forward-thinking.
-          </p>
+          {/* Content */}
+          <div className="w-full md:w-1/2">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">
+              Our Story
+            </h2>
+            <div className="space-y-3 sm:space-y-4 text-gray-600">
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed">
+                Dr. Sarah Johnson's journey into homeopathy began over 15 years ago when she witnessed the profound healing power of natural medicine in her own family.
+              </p>
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed">
+                After completing her medical degree and specializing in homeopathic medicine, she founded this practice with a simple mission: to provide personalized, natural healthcare that treats the whole person, not just the symptoms.
+              </p>
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed">
+                Today, our clinic has helped over 2,000 patients achieve lasting health and wellness through individualized treatment plans and compassionate care.
+              </p>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
