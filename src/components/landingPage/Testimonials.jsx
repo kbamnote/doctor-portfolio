@@ -1,6 +1,6 @@
 import React from "react";
-import { motion, useInView } from "framer-motion";
-import { theme, animationVariants } from "../../theme/colors";
+import { Star, Quote } from "lucide-react";
+import { theme } from "../../theme/colors";
 
 const testimonials = [
   {
@@ -24,300 +24,147 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
-  const ref = React.useRef(null);
-  const titleRef = React.useRef(null);
-  const cardsRef = React.useRef(null);
-  
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
-  const titleInView = useInView(titleRef, { once: true, threshold: 0.6 });
-  const cardsInView = useInView(cardsRef, { once: true, threshold: 0.2 });
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.4
-      }
-    }
-  };
-
-  const titleContainerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 80, 
-      scale: 0.8,
-      rotateY: -15
-    },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      scale: 1,
-      rotateY: 0,
-      transition: { 
-        duration: 0.9, 
-        ease: theme.easing.easeOut,
-        type: "spring",
-        stiffness: 90,
-        damping: 15
-      }
-    }
-  };
-
-  const titleVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: -50, 
-      scale: 0.8,
-      rotateX: -15
-    },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      scale: 1,
-      rotateX: 0,
-      transition: { 
-        duration: 1, 
-        ease: theme.easing.easeOut,
-        type: "spring",
-        stiffness: 80,
-        damping: 20
-      }
-    }
-  };
-
-  const subtitleVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 30,
-      scale: 0.95
-    },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      scale: 1,
-      transition: { 
-        duration: 0.8, 
-        ease: theme.easing.easeOut,
-        delay: 0.3
-      }
-    }
-  };
-
   return (
     <section 
-      ref={ref}
-      className="py-20 px-6 md:px-12 lg:px-20 overflow-hidden"
-      style={{ backgroundColor: theme.neutral[50] }}
+      className="py-16 px-6 md:px-12 lg:px-20"
+      style={{ backgroundColor: theme.background.secondary }}
     >
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <motion.div 
-          ref={titleRef}
-          className="text-center mb-16"
-          variants={titleContainerVariants}
-          initial="hidden"
-          animate={titleInView ? "visible" : "hidden"}
-        >
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: theme.secondary[800] }}
-            variants={titleVariants}
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h2
+            className="text-3xl md:text-4xl font-semibold mb-4"
+            style={{ color: theme.text.primary }}
           >
-            Voices of Healing
-          </motion.h2>
-          <motion.p 
-            className="text-lg md:text-xl"
+            What Our Patients Say
+          </h2>
+          <p
+            className="text-lg max-w-2xl mx-auto"
             style={{ color: theme.text.secondary }}
-            variants={subtitleVariants}
           >
-            Stories from those who found their path to wellness.
-          </motion.p>
-        </motion.div>
+            Real experiences from patients who found healing through homeopathy.
+          </p>
+        </div>
 
-        {/* Testimonial Cards */}
-        <motion.div 
-          ref={cardsRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          animate={cardsInView ? "visible" : "hidden"}
-        >
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              className="relative rounded-2xl shadow-md p-8 transition-all duration-500"
-              style={{ backgroundColor: theme.background.primary }}
-              variants={cardVariants}
-              whileHover={{ 
-                y: -15,
-                scale: 1.05,
-                rotateY: 5,
-                boxShadow: "0 25px 50px rgba(0,0,0,0.15)",
-                transition: { duration: 0.4, ease: theme.easing.easeOut }
-              }}
-              whileTap={{ scale: 0.95 }}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Testimonial cards without animations */}
+          <div 
+            className="p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl"
+            style={{ backgroundColor: theme.background.primary }}
+          >
+            <div className="flex items-center mb-4">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star 
+                    key={i} 
+                    className="w-5 h-5 fill-current" 
+                    style={{ color: theme.accent.primary }} 
+                  />
+                ))}
+              </div>
+            </div>
+            <Quote 
+              className="w-8 h-8 mb-4 opacity-20" 
+              style={{ color: theme.primary[600] }} 
+            />
+            <p 
+              className="text-base mb-6 leading-relaxed"
+              style={{ color: theme.text.secondary }}
             >
-              {/* Profile Section */}
-              <motion.div 
-                className="flex items-center gap-4 mb-6"
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 + index * 0.15, duration: 0.7 }}
-              >
-                <motion.div className="relative">
-                  <motion.img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-16 h-16 rounded-full object-cover"
-                    whileHover={{ 
-                      scale: 1.15,
-                      transition: { duration: 0.4 }
-                    }}
-                    animate={{
-                      boxShadow: [
-                        "0 0 0 0 rgba(34, 197, 94, 0)",
-                        "0 0 0 10px rgba(34, 197, 94, 0.1)",
-                        "0 0 0 0 rgba(34, 197, 94, 0)"
-                      ]
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: index * 0.7
-                    }}
+              "Dr. Singh's homeopathic treatment completely transformed my health. 
+              After years of conventional medicine, I finally found lasting relief."
+            </p>
+            <div className="flex items-center">
+              <div className="w-12 h-12 rounded-full bg-gray-300 mr-4"></div>
+              <div>
+                <h4 className="font-semibold" style={{ color: theme.text.primary }}>
+                  Sarah Johnson
+                </h4>
+                <p className="text-sm" style={{ color: theme.text.secondary }}>
+                  Chronic Pain Patient
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Additional testimonial cards... */}
+          <div 
+            className="p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl"
+            style={{ backgroundColor: theme.background.primary }}
+          >
+            <div className="flex items-center mb-4">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star 
+                    key={i} 
+                    className="w-5 h-5 fill-current" 
+                    style={{ color: theme.accent.primary }} 
                   />
-                  {/* Floating ring around profile */}
-                  <motion.div
-                    className="absolute inset-0 rounded-full border-2 opacity-30"
-                    style={{ borderColor: theme.primary[400] }}
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.3, 0.6, 0.3],
-                      rotate: [0, 180, 360]
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "linear",
-                      delay: index * 0.5
-                    }}
+                ))}
+              </div>
+            </div>
+            <Quote 
+              className="w-8 h-8 mb-4 opacity-20" 
+              style={{ color: theme.primary[600] }} 
+            />
+            <p 
+              className="text-base mb-6 leading-relaxed"
+              style={{ color: theme.text.secondary }}
+            >
+              "The personalized approach and gentle remedies helped me overcome 
+              anxiety without any side effects. Highly recommended!"
+            </p>
+            <div className="flex items-center">
+              <div className="w-12 h-12 rounded-full bg-gray-300 mr-4"></div>
+              <div>
+                <h4 className="font-semibold" style={{ color: theme.text.primary }}>
+                  Michael Chen
+                </h4>
+                <p className="text-sm" style={{ color: theme.text.secondary }}>
+                  Anxiety Recovery
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div 
+            className="p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl"
+            style={{ backgroundColor: theme.background.primary }}
+          >
+            <div className="flex items-center mb-4">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star 
+                    key={i} 
+                    className="w-5 h-5 fill-current" 
+                    style={{ color: theme.accent.primary }} 
                   />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 + index * 0.15, duration: 0.6 }}
-                >
-                  <motion.h3 
-                    className="text-lg font-semibold"
-                    style={{ color: theme.text.primary }}
-                    whileHover={{ 
-                      color: theme.primary[600],
-                      scale: 1.05,
-                      transition: { duration: 0.3 }
-                    }}
-                  >
-                    {testimonial.name}
-                  </motion.h3>
-                  <motion.p 
-                    className="text-sm font-medium"
-                    style={{ color: theme.primary[600] }}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 + index * 0.15, duration: 0.6 }}
-                  >
-                    {testimonial.condition}
-                  </motion.p>
-                </motion.div>
-              </motion.div>
-
-              {/* Quote */}
-              <motion.div
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 + index * 0.15, duration: 0.8 }}
-              >
-                <motion.span
-                  className="text-5xl font-bold opacity-20 block leading-none"
-                  style={{ color: theme.primary[300] }}
-                  initial={{ scale: 0, rotate: -45 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ delay: 0.7 + index * 0.15, duration: 0.5, type: "spring" }}
-                >
-                  "
-                </motion.span>
-                <motion.p 
-                  className="leading-relaxed text-base -mt-2"
-                  style={{ color: theme.text.secondary }}
-                  whileHover={{ 
-                    color: theme.text.primary,
-                    scale: 1.02,
-                    transition: { duration: 0.3 }
-                  }}
-                >
-                  {testimonial.quote}
-                </motion.p>
-              </motion.div>
-
-              {/* Decorative elements */}
-              <motion.div
-                className="absolute top-4 right-4 w-3 h-3 rounded-full opacity-40"
-                style={{ backgroundColor: theme.primary[400] }}
-                animate={{
-                  scale: [1, 1.5, 1],
-                  opacity: [0.4, 0.8, 0.4],
-                }}
-                transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: index * 0.4
-                }}
-              />
-
-              {/* Additional floating element */}
-              <motion.div
-                className="absolute bottom-4 left-4 w-2 h-2 rounded-full opacity-30"
-                style={{ backgroundColor: theme.accent[400] }}
-                animate={{
-                  y: [-3, 3, -3],
-                  x: [-2, 2, -2],
-                  scale: [0.8, 1.3, 0.8],
-                }}
-                transition={{
-                  duration: 3.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: index * 0.6
-                }}
-              />
-
-              {/* Gradient overlay on hover */}
-              <motion.div
-                className="absolute inset-0 rounded-2xl opacity-0 pointer-events-none"
-                style={{
-                  background: `linear-gradient(135deg, ${theme.primary[50]} 0%, transparent 50%)`
-                }}
-                whileHover={{
-                  opacity: 0.1,
-                  transition: { duration: 0.3 }
-                }}
-              />
-            </motion.div>
-          ))}
-        </motion.div>
+                ))}
+              </div>
+            </div>
+            <Quote 
+              className="w-8 h-8 mb-4 opacity-20" 
+              style={{ color: theme.primary[600] }} 
+            />
+            <p 
+              className="text-base mb-6 leading-relaxed"
+              style={{ color: theme.text.secondary }}
+            >
+              "Amazing results for my digestive issues. Dr. Singh's holistic 
+              approach addressed the root cause, not just symptoms."
+            </p>
+            <div className="flex items-center">
+              <div className="w-12 h-12 rounded-full bg-gray-300 mr-4"></div>
+              <div>
+                <h4 className="font-semibold" style={{ color: theme.text.primary }}>
+                  Emma Wilson
+                </h4>
+                <p className="text-sm" style={{ color: theme.text.secondary }}>
+                  Digestive Health
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
