@@ -137,7 +137,7 @@ const HealingJourney = () => {
             <motion.div
               key={index}
               ref={stepRef}
-              className={`relative flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-10 pl-16 md:pl-0 ${
+              className={`relative flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-16 pl-16 md:pl-0 ${
                 index % 2 === 0 ? "md:flex-row-reverse" : ""
               }`}
               initial={{ opacity: 0, y: 60 }}
@@ -150,7 +150,7 @@ const HealingJourney = () => {
             >
               {/* Step Number Badge */}
               <motion.div
-                className="absolute left-0 md:left-1/2 md:transform md:-translate-x-1/2 w-10 h-10 rounded-2xl border-4 z-10 flex items-center justify-center font-bold text-xl"
+                className="absolute left-[-24px] md:left-1/2 md:transform md:-translate-x-1/2 w-10 h-10 rounded-4xl border-4 z-10 flex items-center justify-center font-bold text-xl"
                 style={{
                   backgroundColor: theme.background.secondary,
                   borderColor: theme.primary[500],

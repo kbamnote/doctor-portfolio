@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { Leaf, Heart, Activity } from "lucide-react";
 import { theme } from "../../theme/colors";
 import about from '../../assets/aboutDr.png'
+import { Link } from "react-router-dom";
 
 const HealingSection = () => {
   const ref = useRef(null);
@@ -54,6 +55,7 @@ const HealingSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
         >
+          <Link to='/contact'>
           <motion.button 
             className="font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-300 hover:scale-105"
             style={{ 
@@ -65,6 +67,8 @@ const HealingSection = () => {
           >
             Book Your Consultation
           </motion.button>
+          </Link>
+          <Link to='/cured-cases'>
           <motion.button 
             className="font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105"
             style={{ 
@@ -77,6 +81,7 @@ const HealingSection = () => {
           >
             View Success Stories
           </motion.button>
+          </Link>
         </motion.div>
 
         <motion.div

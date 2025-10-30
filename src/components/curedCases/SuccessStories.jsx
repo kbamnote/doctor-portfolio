@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Calendar, User } from "lucide-react";
 import { theme } from "../../theme/colors";
+import StoryModal from "./StoryModal";
 
 const stories = [
   {
@@ -15,6 +16,9 @@ const stories = [
       "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170",
     imgAfter:
       "https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1228",
+    patientJourney: "Chronic eczema affecting daily life for 8 years. After homeopathic treatment, skin condition improved dramatically with reduced inflammation and itching.",
+    initialSymptoms: ["Severe itching", "Red inflamed patches", "Dry cracked skin", "Sleep disturbance"],
+    afterTreatment: ["Clear smooth skin", "No itching", "Improved sleep quality", "Restored confidence"]
   },
   {
     id: 2,
@@ -28,6 +32,9 @@ const stories = [
       "https://images.unsplash.com/photo-1633219664572-473fd988a44f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1172",
     imgAfter:
       "https://media.istockphoto.com/id/1394763799/photo/doctor-with-nurse-examining-patient-lying-on-hospital-bed.jpg?s=2048x2048&w=is&k=20&c=GyvsZSqh6cNjy52iQqS3ICqC6713sEI6HxmylQGza6w=",
+    patientJourney: "Debilitating migraines 3-4 times per week for 5 years. After homeopathic treatment, migraines reduced to occasional mild headaches, and quality of life dramatically improved.",
+    initialSymptoms: ["Severe headaches", "Nausea", "Light sensitivity", "Work absenteeism"],
+    afterTreatment: ["Nausea", "Occasional mild headaches", "Normal work routine", "Improved quality of life"]
   },
   {
     id: 3,
@@ -41,6 +48,9 @@ const stories = [
       "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80",
     imgAfter:
       "https://media.istockphoto.com/id/1169596698/photo/asian-woman-professional-doctor-with-notepad-smiling-visiting-talking-and-diagnosing-the-old.jpg?s=2048x2048&w=is&k=20&c=m_-CvPHj6Thf4EKM6xrl8A9MN3Zq9uvXD4CiGSs_WHA=",
+    patientJourney: "Chronic IBS symptoms for 7 years affecting work and social life. After homeopathic treatment, digestive health normalized with regular bowel movements and no bloating.",
+    initialSymptoms: ["Chronic bloating", "Irregular bowel movements", "Abdominal pain", "Food sensitivities"],
+    afterTreatment: ["Normal digestion", "Regular bowel movements", "No bloating", "Improved energy levels"]
   },
   {
     id: 4,
@@ -54,6 +64,9 @@ const stories = [
       "https://media.istockphoto.com/id/1394762060/photo/doctor-consoling-disabled-man-on-wheelchair-with-daughter-by-his-side-at-the-hospital.webp?a=1&b=1&s=612x612&w=0&k=20&c=gAue6TiKWKV3vPKQ9uo-8sfgR1NzruZOV0n6odIqRvA=",
     imgAfter:
       "https://media.istockphoto.com/id/1418999467/photo/doctors-comforting-disabled-elderly-patient.webp?a=1&b=1&s=612x612&w=0&k=20&c=GCZTGW7y3_zsw1rL9III676QppSAv-9BQwtxuHg522c=",
+    patientJourney: "Progressive hair thinning for 3 years causing emotional distress. After homeopathic treatment, hair loss stopped and new growth appeared with improved hair density.",
+    initialSymptoms: ["Excessive hair fall", "Thinning crown", "Receding hairline", "Low confidence"],
+    afterTreatment: ["Reduced hair fall", "New hair growth", "Thicker hair", "Restored confidence"]
   },
   {
     id: 5,
@@ -67,6 +80,9 @@ const stories = [
       "https://images.unsplash.com/photo-1550831106-f8d5b6f1abe9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fGhvc3BpdGFsfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
     imgAfter:
       "https://plus.unsplash.com/premium_photo-1681995301746-49a915e4d325?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTd8fGhvc3BpdGFsfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
+    patientJourney: "Severe anxiety and panic attacks for 4 years affecting work and relationships. After homeopathic treatment, anxiety levels reduced significantly with rare panic episodes.",
+    initialSymptoms: ["Daily anxiety", "Panic attacks", "Sleep issues", "Social withdrawal"],
+    afterTreatment: ["Calm mindset", "Rare anxiety episodes", "Better sleep", "Social confidence"]
   },
   {
     id: 6,
@@ -80,6 +96,9 @@ const stories = [
       "https://images.unsplash.com/photo-1517120026326-d87759a7b63b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGhvc3BpdGFsfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
     imgAfter:
       "https://plus.unsplash.com/premium_photo-1681995206380-babb9b6debc6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDV8fGhvc3BpdGFsfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
+    patientJourney: "Chronic seasonal allergies for 10 years requiring daily medication. After homeopathic treatment, allergy symptoms disappeared and no longer needs any medication.",
+    initialSymptoms: ["Sneezing fits", "Watery eyes", "Nasal congestion", "Daily medication"],
+    afterTreatment: ["No sneezing", "Clear eyes", "Normal breathing", "Medication-free"]
   },
 ];
 
@@ -94,6 +113,18 @@ const filters = [
 
 const SuccessStories = () => {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [selectedStory, setSelectedStory] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = (story) => {
+    setSelectedStory(story);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedStory(null);
+  };
 
   const filteredStories =
     activeFilter === "All"
@@ -191,6 +222,7 @@ const SuccessStories = () => {
               </p>
 
               <button 
+                onClick={() => openModal(story)}
                 className="text-xs sm:text-sm font-medium hover:underline"
                 style={{ color: theme.primary[600] }}
               >
@@ -201,6 +233,13 @@ const SuccessStories = () => {
           </div>
         ))}
       </div>
+
+      {/* Story Modal */}
+      <StoryModal 
+        story={selectedStory}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </section>
   );
 };

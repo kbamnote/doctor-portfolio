@@ -105,7 +105,7 @@ const Footer = () => {
       className="text-white overflow-hidden "
      
       style={{
-        background: `linear-gradient(135deg, ${theme.primary[900]} 0%, ${theme.primary[800]} 50%, ${theme.primary[900]} 100%)`
+        background: theme.background.gradient.primary
       }}
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
@@ -126,7 +126,7 @@ const Footer = () => {
               className="text-2xl font-bold mb-4"
               style={{ color: theme.text.white }}
               whileHover={{ 
-                color: theme.accent.primary,
+              
                 scale: 1.08,
                 rotateY: 5,
                 transition: { duration: 0.3, type: "spring" }
@@ -165,7 +165,7 @@ const Footer = () => {
                   style={{ backgroundColor: theme.primary[700] }}
                   variants={socialIconVariants}
                   whileHover={{ 
-                    backgroundColor: theme.accent.primary,
+                    
                     scale: 1.3,
                     rotate: 10,
                     y: -5,
@@ -197,7 +197,7 @@ const Footer = () => {
               className="text-xl font-semibold mb-6"
               style={{ color: theme.text.white }}
               whileHover={{ 
-                color: theme.accent.primary,
+                
                 scale: 1.05,
                 transition: { duration: 0.3 }
               }}
@@ -248,7 +248,7 @@ const Footer = () => {
               className="text-xl font-semibold mb-6"
               style={{ color: theme.text.white }}
               whileHover={{ 
-                color: theme.accent.primary,
+                
                 scale: 1.05,
                 transition: { duration: 0.3 }
               }}
@@ -305,7 +305,7 @@ const Footer = () => {
               className="text-xl font-semibold mb-6"
               style={{ color: theme.text.white }}
               whileHover={{ 
-                color: theme.accent.primary,
+               
                 scale: 1.05,
                 transition: { duration: 0.3 }
               }}
@@ -340,7 +340,7 @@ const Footer = () => {
                 >
                   <MapPin 
                     className="w-5 h-5 flex-shrink-0 mt-1" 
-                    style={{ color: theme.accent.primary }}
+                    style={{ color: theme.text.white }}
                   />
                 </motion.div>
                 <motion.span 
@@ -376,8 +376,8 @@ const Footer = () => {
                 >
                   <Phone 
                     className="w-5 h-5 flex-shrink-0" 
-                    style={{ color: theme.accent.primary }}
-                  />
+                    style={{ color: theme.text.white }}
+                  /> 
                 </motion.div>
                 <motion.a 
                   href="tel:+15551234567" 
@@ -413,7 +413,7 @@ const Footer = () => {
                 >
                   <Mail 
                     className="w-5 h-5 flex-shrink-0" 
-                    style={{ color: theme.accent.primary }}
+                    style={{ color:theme.text.white }}
                   />
                 </motion.div>
                 <motion.a 

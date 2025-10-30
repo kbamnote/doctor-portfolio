@@ -4,12 +4,23 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Preconnect to critical third-party origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload critical font -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Neue+Montreal:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Neue+Montreal:wght@300;400;500;600;700;800;900&display=swap"></noscript>
 
     <title>Dr. Guneet Singh - Homeopathic Doctor</title>
   </head>
   <body>
     <div id="root"></div>
-    <!-- Exclude main app boot from Cloudflare Rocket Loader -->
-    <script data-cfasync="false" type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

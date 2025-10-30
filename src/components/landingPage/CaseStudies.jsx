@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { theme } from "../../theme/colors";
+import { Link } from "react-router-dom";
 
 const caseStudies = [
   {
@@ -120,8 +121,9 @@ const CaseStudies = () => {
               >
                 {study.title}
               </motion.h3>
-              <motion.a
-                href={study.link}
+              <Link to='/cured-cases'>
+              <motion.div
+                
                 className="inline-flex items-center gap-2 font-medium transition-colors duration-300 hover:underline"
                 style={{ color: theme.primary[600] }}
                 initial={{ opacity: 0, x: -20 }}
@@ -135,7 +137,8 @@ const CaseStudies = () => {
               >
                 Read More
                 <ArrowRight className="w-4 h-4" />
-              </motion.a>
+              </motion.div>
+              </Link>
             </motion.div>
           </motion.div>
         ))}
@@ -147,6 +150,7 @@ const CaseStudies = () => {
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
         transition={{ duration: 0.8, delay: 1.6, ease: "easeOut" }}
       >
+        <Link to="/cured-cases">
         <motion.button
           className="inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-lg transition-all duration-300"
           style={{
@@ -167,6 +171,7 @@ const CaseStudies = () => {
             <ArrowRight className="w-5 h-5" />
           </motion.div>
         </motion.button>
+        </Link>
       </motion.div>
     </section>
   );

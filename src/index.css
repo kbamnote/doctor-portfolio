@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Neue+Montreal:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
 
 /* Smooth scrolling for the entire website */
 html {

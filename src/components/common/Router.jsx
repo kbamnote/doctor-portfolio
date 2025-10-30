@@ -1,13 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import PageTransition from './PageTransition';
 import Layout from './Layout';
-import LocomotiveScrollWrapper from './LocomotiveScrollWrapper';
+import LenisScrollWrapper from '../LenisScrollWrapper';
 import LandingPage from '../landingPage/LandingPage';
-import AboutPage from '../aboutPage/AboutPage';
-import BlogPage from '../blogPage/BlogPage';
-import ContactPage from '../contact/ContactPage';
-import CuredCases from '../curedCases/CuredCases';
+import ScrollDemo from '../ScrollDemo';
+
+// Lazy load non-critical components
+const AboutPage = lazy(() => import('../aboutPage/AboutPage'));
+const BlogPage = lazy(() => import('../blogPage/BlogPage'));
+const ContactPage = lazy(() => import('../contact/ContactPage'));
+const CuredCases = lazy(() => import('../curedCases/CuredCases'));
+
+// Loading component for lazy-loaded routes
+const PageLoader = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600"></div>
+  </div>
+);
 
 // Create a wrapper component to handle transitions
 const TransitionWrapper = ({ children }) => {
@@ -97,40 +107,55 @@ const TreatmentPage = () => {
 const AppRouter = () => {
   return (
     <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={
-            <TransitionWrapper>
-              <LandingPage />
-            </TransitionWrapper>
-          } />
-          <Route path="/about" element={
-            <TransitionWrapper>
-             <AboutPage/>
-            </TransitionWrapper>
-          } />
-          <Route path="/treatment" element={
-            <TransitionWrapper>
-              <TreatmentPage />
-            </TransitionWrapper>
-          } />
-          <Route path="/cured-cases" element={
-            <TransitionWrapper>
-              <CuredCases/>
-            </TransitionWrapper>
-          } />
-          <Route path="/blogs" element={
-            <TransitionWrapper>
-              <BlogPage />
-            </TransitionWrapper>
-          } />
-          <Route path="/contact" element={
-            <TransitionWrapper>
-              <ContactPage />
-            </TransitionWrapper>
-          } />
-        </Routes>
-      </Layout>
+      <LenisScrollWrapper>
+        <Layout>
+          <Routes>
+            <Route path="/" element={
+              <TransitionWrapper>
+                <LandingPage />
+              </TransitionWrapper>
+            } />
+            <Route path="/about" element={
+              <TransitionWrapper>
+                <Suspense fallback={<PageLoader />}>
+                  <AboutPage/>
+                </Suspense>
+              </TransitionWrapper>
+            } />
+            <Route path="/treatment" element={
+              <TransitionWrapper>
+                <TreatmentPage />
+              </TransitionWrapper>
+            } />
+            <Route path="/cured-cases" element={
+              <TransitionWrapper>
+                <Suspense fallback={<PageLoader />}>
+                  <CuredCases/>
+                </Suspense>
+              </TransitionWrapper>
+            } />
+            <Route path="/blogs" element={
+              <TransitionWrapper>
+                <Suspense fallback={<PageLoader />}>
+                  <BlogPage />
+                </Suspense>
+              </TransitionWrapper>
+            } />
+            <Route path="/contact" element={
+              <TransitionWrapper>
+                <Suspense fallback={<PageLoader />}>
+                  <ContactPage />
+                </Suspense>
+              </TransitionWrapper>
+            } />
+            <Route path="/scroll-demo" element={
+              <TransitionWrapper>
+                <ScrollDemo />
+              </TransitionWrapper>
+            } />
+          </Routes>
+        </Layout>
+      </LenisScrollWrapper>
     </BrowserRouter>
   );
 };
