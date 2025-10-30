@@ -75,6 +75,7 @@ const Testimonials = () => {
       ref={ref}
       className="py-16 px-6 md:px-12 lg:px-20"
       style={{ backgroundColor: theme.background.secondary }}
+      data-scroll-section
     >
       <div className="max-w-6xl mx-auto">
         <motion.div 

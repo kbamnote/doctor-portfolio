@@ -71,10 +71,11 @@ const HealingJourney = () => {
   };
 
   return (
-    <section
+    <section 
       ref={ref}
       className="relative py-24 px-6 md:px-12 lg:px-20 overflow-hidden"
-      style={{ backgroundColor: theme.background.secondary }}
+      style={{ backgroundColor: theme.background.primary }}
+      data-scroll-section
     >
       {/* Heading */}
       <motion.div 

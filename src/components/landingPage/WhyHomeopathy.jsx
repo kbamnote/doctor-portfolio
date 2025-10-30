@@ -33,6 +33,7 @@ const WhyHomeopathy = () => {
       ref={ref}
       className="py-16 px-6 md:px-12 lg:px-20 text-center overflow-hidden"
       style={{ background: `linear-gradient(to bottom, ${theme.neutral[50]}, ${theme.background.primary})` }}
+      data-scroll-section
     >
       <motion.div
         initial={{ opacity: 0, y: 30 }}

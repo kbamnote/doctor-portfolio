@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import PageTransition from './PageTransition';
 import Layout from './Layout';
+import LocomotiveScrollWrapper from './LocomotiveScrollWrapper';
 import LandingPage from '../landingPage/LandingPage';
 import AboutPage from '../aboutPage/AboutPage';
 import BlogPage from '../blogPage/BlogPage';

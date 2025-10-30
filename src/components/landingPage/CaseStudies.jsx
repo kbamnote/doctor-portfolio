@@ -29,10 +29,11 @@ const CaseStudies = () => {
   const isInView = useInView(ref, { once: true, threshold: 0.2 });
 
   return (
-    <section
+    <section 
       ref={ref}
       className="py-16 px-6 md:px-12 lg:px-20 overflow-hidden"
       style={{ backgroundColor: theme.background.secondary }}
+      data-scroll-section
     >
       <motion.div
         initial={{ opacity: 0, y: 30 }}

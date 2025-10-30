@@ -13,6 +13,7 @@ const HealingSection = () => {
       ref={ref}
       className=" min-h-screen flex flex-col lg:flex-row items-center justify-between px-6 md:px-16 py-10 overflow-hidden"
       style={{ backgroundColor: theme.background.secondary }}
+      data-scroll-section
     >
       {/* Left Side */}
       <motion.div 
@@ -20,6 +21,8 @@ const HealingSection = () => {
         initial={{ opacity: 0, x: -50 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
+        data-scroll
+        data-scroll-speed="0.5"
       >
         <motion.h1
           className="heading-font text-4xl md:text-6xl font-extrabold leading-tight"

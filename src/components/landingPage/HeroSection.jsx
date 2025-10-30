@@ -38,11 +38,7 @@ export default function HeroSection() {
   // Block scrolling during animation sequence
   useEffect(() => {
     if (isFirstVisit && step < 3) {
-      // Disable scrolling
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
-      
-      // Prevent scroll events
+      // Disable scrolling by preventing events
       const preventScroll = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -61,20 +57,16 @@ export default function HeroSection() {
 
       return () => {
         // Re-enable scrolling when component unmounts or step changes
-        document.body.style.overflow = '';
-        document.documentElement.style.overflow = '';
         document.removeEventListener('wheel', preventScroll);
         document.removeEventListener('touchmove', preventScroll);
       };
-    } else {
-      // Ensure scrolling is enabled when animation completes
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
     }
   }, [step, isFirstVisit]);
 
   return (
-    <section className="relative h-screen w-full bg-white overflow-hidden flex flex-col items-center justify-center text-center">
+    <section 
+      className="relative h-screen w-full bg-white overflow-hidden flex flex-col items-center justify-center text-center"
+    >
       {/* Top Text */}
      <motion.div
   initial={isFirstVisit ? { opacity: 0 } : { opacity: 1, y: -150 }}
