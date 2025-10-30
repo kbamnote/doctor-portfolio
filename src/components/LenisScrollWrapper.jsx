@@ -11,17 +11,19 @@ const LenisScrollWrapper = ({ children }) => {
   const rafRef = useRef(null);
 
   useEffect(() => {
-    // Initialize Lenis
+    // Initialize Lenis with enhanced smoothness
     lenisRef.current = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 2.5,
+      easing: (t) => 1 - Math.pow(1 - t, 4), // Smoother easing curve
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
+      mouseMultiplier: 0.8, // Reduced for smoother mouse wheel
+      smoothTouch: true, // Enable smooth touch for mobile
+      touchMultiplier: 1.5, // Reduced for smoother touch
       infinite: false,
+      syncTouch: true, // Better touch synchronization
+      touchInertiaMultiplier: 35, // Increased inertia for smoother deceleration
     });
 
     // Connect Lenis scroll events to GSAP ScrollTrigger

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import drimg from "../../assets/imgDr.png";
+import drimg from "../../assets/imgDr.webp";
 import Navbar from "../common/Navbar";
 
 const HeroSection = React.memo(() => {
