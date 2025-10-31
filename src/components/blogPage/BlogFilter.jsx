@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import { theme } from "../../theme/colors";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const BlogFilter = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const filterRef = useRef(null);
+  const postsRef = useRef(null);
+  const sidebarRef = useRef(null);
 
   const categories = ["All", "Wellness", "Treatment", "Nutrition", "Mental Health", "Prevention"];
 
@@ -60,10 +67,95 @@ const BlogFilter = () => {
       ? posts
       : posts.filter((post) => post.category === selectedCategory);
 
+  useEffect(() => {
+    const filter = filterRef.current;
+    const posts = postsRef.current;
+    const sidebar = sidebarRef.current;
+
+    if (!filter || !posts || !sidebar) return;
+
+    // Filter buttons animation
+    const filterButtons = filter.querySelectorAll('button');
+    gsap.fromTo(filterButtons, 
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: filter,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // Blog posts animation
+    const postCards = posts.querySelectorAll('.blog-post-card');
+    gsap.fromTo(postCards, 
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: posts,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // Sidebar animation
+    const sidebarItems = sidebar.querySelectorAll('.sidebar-item');
+    gsap.fromTo(sidebarItems, 
+      { opacity: 0, x: 30 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sidebar,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
+  // Re-animate posts when category changes
+  useEffect(() => {
+    const posts = postsRef.current;
+    if (!posts) return;
+
+    const postCards = posts.querySelectorAll('.blog-post-card');
+    gsap.fromTo(postCards, 
+      { opacity: 0, scale: 0.95 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "back.out(1.7)"
+      }
+    );
+  }, [selectedCategory]);
+
   return (
     <div className="bg-gray-50 py-8 sm:py-10 px-4 sm:px-6 md:px-10 lg:px-20">
       {/* Category Filter */}
-      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
+      <div ref={filterRef} className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
         {categories.map((cat) => (
           <button
             key={cat}
@@ -95,11 +187,12 @@ const BlogFilter = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         {/* Blog Posts Section */}
-        <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+        <div ref={postsRef} className="lg:col-span-2 space-y-4 sm:space-y-6">
           {filteredPosts.map((post) => (
             <div
               key={post.id}
-              className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col sm:flex-row"
+              className="blog-post-card bg-white rounded-xl shadow-md overflow-hidden flex flex-col sm:flex-row hover:shadow-lg transition-shadow duration-300"
+              style={{ willChange: 'transform' }}
             >
               <img
                 src={post.img}
@@ -149,9 +242,9 @@ const BlogFilter = () => {
         </div>
 
         {/* Sidebar */}
-        <aside className="space-y-4 sm:space-y-6">
+        <aside ref={sidebarRef} className="space-y-4 sm:space-y-6">
           {/* Popular Posts */}
-          <div className="bg-white shadow-md rounded-xl p-4 sm:p-5">
+          <div className="sidebar-item bg-white shadow-md rounded-xl p-4 sm:p-5" style={{ willChange: 'transform' }}>
             <h4 className="font-semibold text-gray-900 mb-3 sm:mb-4 text-sm sm:text-base">Popular Posts</h4>
             {posts.slice(0, 3).map((p) => (
               <div key={p.id} className="flex items-center gap-3 mb-3 last:mb-0">
@@ -171,7 +264,7 @@ const BlogFilter = () => {
           </div>
 
           {/* Categories */}
-          <div className="bg-[#35AB9A] text-white rounded-xl p-4 sm:p-5">
+          <div className="sidebar-item bg-[#35AB9A] text-white rounded-xl p-4 sm:p-5" style={{ willChange: 'transform' }}>
             <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Categories</h4>
             <ul className="space-y-2">
               {categories.slice(1).map((c) => (
@@ -187,7 +280,7 @@ const BlogFilter = () => {
           </div>
 
           {/* Stay Updated */}
-          <div className="bg-white shadow-md rounded-xl p-4 sm:p-5">
+          <div className="sidebar-item bg-white shadow-md rounded-xl p-4 sm:p-5" style={{ willChange: 'transform' }}>
             <h4 className="font-semibold text-gray-900 mb-3 text-sm sm:text-base">Stay Updated</h4>
             <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
               Subscribe to our newsletter for the latest health insights and wellness tips.

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import useScrollToTop from '../../hooks/useScrollToTop';
 
 const PageTransition = ({ children, isTransitioning, onTransitionComplete }) => {
   const [showLoader, setShowLoader] = useState(false);
   const [showContent, setShowContent] = useState(true);
+  const scrollToTop = useScrollToTop(true); // Use immediate scroll
 
   useEffect(() => {
     if (isTransitioning) {
@@ -13,12 +15,18 @@ const PageTransition = ({ children, isTransitioning, onTransitionComplete }) => 
       const timer = setTimeout(() => {
         setShowLoader(false);
         setShowContent(true);
+        
+        // Ensure scroll position is at top when new content shows
+        setTimeout(() => {
+          scrollToTop();
+        }, 100);
+        
         onTransitionComplete?.();
       }, 1500);
 
       return () => clearTimeout(timer);
     }
-  }, [isTransitioning, onTransitionComplete]);
+  }, [isTransitioning, onTransitionComplete, scrollToTop]);
 
   const loaderVariants = {
     hidden: { y: "100%", opacity: 0 },

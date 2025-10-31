@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Calendar, User } from "lucide-react";
 import { theme } from "../../theme/colors";
 import StoryModal from "./StoryModal";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const stories = [
   {
@@ -115,6 +119,9 @@ const SuccessStories = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const [selectedStory, setSelectedStory] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const sectionRef = useRef(null);
+  const filtersRef = useRef(null);
+  const gridRef = useRef(null);
 
   const openModal = (story) => {
     setSelectedStory(story);
@@ -131,10 +138,78 @@ const SuccessStories = () => {
       ? stories
       : stories.filter((story) => story.category === activeFilter);
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    const filters = filtersRef.current;
+    const grid = gridRef.current;
+
+    if (!section || !filters || !grid) return;
+
+    // Filter buttons animation
+    const filterButtons = filters.querySelectorAll('button');
+    gsap.fromTo(filterButtons, 
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: filters,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // Story cards animation
+    const storyCards = grid.querySelectorAll('.story-card');
+    gsap.fromTo(storyCards, 
+      { opacity: 0, y: 50, scale: 0.9 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: grid,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
+  // Re-animate cards when filter changes
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+
+    const storyCards = grid.querySelectorAll('.story-card');
+    gsap.fromTo(storyCards, 
+      { opacity: 0, scale: 0.95 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "back.out(1.7)"
+      }
+    );
+  }, [activeFilter]);
+
   return (
-    <section className="bg-gray-50 py-12 sm:py-16 px-4 sm:px-6">
+    <section ref={sectionRef} className="bg-gray-50 py-12 sm:py-16 px-4 sm:px-6">
       {/* Filter Buttons */}
-      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
+      <div ref={filtersRef} className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
         {filters.map((filter) => (
           <button
             key={filter}
@@ -161,11 +236,12 @@ const SuccessStories = () => {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+      <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
         {filteredStories.map((story) => (
           <div
             key={story.id}
-            className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition"
+            className="story-card bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105"
+            style={{ willChange: 'transform' }}
           >
             {/* Before/After Images */}
             <div className="relative flex">

@@ -1,18 +1,116 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { theme } from "../../theme/colors";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const ContactInfo = () => {
+  const sectionRef = useRef(null);
+  const formRef = useRef(null);
+  const contactCardRef = useRef(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const form = formRef.current;
+    const contactCard = contactCardRef.current;
+
+    if (!section) return;
+
+    // Form animation
+    if (form) {
+      gsap.fromTo(form, 
+        { opacity: 0, x: -50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: form,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Form fields animation
+      const formFields = form.querySelectorAll('input, select, textarea, button');
+      gsap.fromTo(formFields, 
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: form,
+            start: "top 75%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+
+    // Contact card animation
+    if (contactCard) {
+      gsap.fromTo(contactCard, 
+        { opacity: 0, x: 50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: contactCard,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Contact items animation
+      const contactItems = contactCard.querySelectorAll('.contact-item');
+      gsap.fromTo(contactItems, 
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: contactCard,
+            start: "top 75%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6"
       style={{ backgroundColor: theme.background.secondary }}
     >
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
         {/* ----------------- Appointment Form ----------------- */}
         <div
+          ref={formRef}
           className="rounded-2xl shadow-lg p-6 sm:p-8"
-          style={{ backgroundColor: theme.background.primary }}
+          style={{ 
+            backgroundColor: theme.background.primary,
+            willChange: 'transform'
+          }}
         >
           <h2
             className="heading-font text-xl sm:text-2xl lg:text-3xl font-semibold mb-6 sm:mb-8"
@@ -166,10 +264,12 @@ const ContactInfo = () => {
 
         {/* ----------------- Contact Info ----------------- */}
         <div
+          ref={contactCardRef}
           className="rounded-2xl shadow-lg p-6 sm:p-8"
           style={{
             background: `linear-gradient(to bottom right, ${theme.primary[500]}, ${theme.primary[400]})`,
             color: theme.text.white,
+            willChange: 'transform'
           }}
         >
           <h2 className="heading-font text-2xl lg:text-3xl font-semibold mb-6">
@@ -203,7 +303,7 @@ const ContactInfo = () => {
                 lines: ["Mon-Fri: 9:00 AM - 7:00 PM", "Sat: 10:00 AM - 4:00 PM"],
               },
             ].map((item, idx) => (
-              <div key={idx} className="flex items-start gap-4">
+              <div key={idx} className="contact-item flex items-start gap-4" style={{ willChange: 'transform' }}>
                 <div
                   className="p-3 rounded-lg"
                   style={{

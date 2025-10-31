@@ -5,6 +5,7 @@ import Layout from './Layout';
 import LenisScrollWrapper from '../LenisScrollWrapper';
 import LandingPage from '../landingPage/LandingPage';
 import ScrollDemo from '../ScrollDemo';
+import useScrollToTop from '../../hooks/useScrollToTop';
 
 // Lazy load non-critical components
 const AboutPage = lazy(() => import('../aboutPage/AboutPage'));
@@ -19,6 +20,19 @@ const PageLoader = () => (
   </div>
 );
 
+// Component to handle scroll restoration on route changes
+const ScrollToTopOnMount = () => {
+  const location = useLocation();
+  const scrollToTop = useScrollToTop(true);
+
+  useEffect(() => {
+    // Scroll to top on every route change
+    scrollToTop();
+  }, [location.pathname, scrollToTop]);
+
+  return null;
+};
+
 // Create a wrapper component to handle transitions
 const TransitionWrapper = ({ children }) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -26,6 +40,7 @@ const TransitionWrapper = ({ children }) => {
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
+  const scrollToTop = useScrollToTop(true); // Use immediate scroll
 
   useEffect(() => {
     // Skip transition on first load
@@ -36,9 +51,10 @@ const TransitionWrapper = ({ children }) => {
     
     // Start transition when location changes (but not on first load)
     setIsTransitioning(true);
-    // Scroll to top when navigating to a new page
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }, [location.pathname]);
+    
+    // Scroll to top instantly when navigating to a new page
+    scrollToTop();
+  }, [location.pathname, scrollToTop]);
 
   const handleTransitionComplete = () => {
     setIsTransitioning(false);
@@ -108,6 +124,7 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <LenisScrollWrapper>
+        <ScrollToTopOnMount />
         <Layout>
           <Routes>
             <Route path="/" element={
