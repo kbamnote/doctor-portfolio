@@ -193,66 +193,68 @@ const HeroSection = React.memo(() => {
 
       {/* Step 3: Typing (character-by-character) */}
   {/* Step 3: Typing (character-by-character, fixed word wrapping) */}
+{/* Step 3: Final Heading */}
+{/* Step 3: Final Heading (Full-width bold style) */}
+{/* Step 3: Final Heading — edge-to-edge, ultra-bold, left aligned */}
 <AnimatePresence>
   {step === 3 && (
     <motion.div
-      key="heroHeadings"
-      className="absolute bottom-28 left-6 md:left-12 lg:left-16 flex flex-col gap-6 z-10 max-w-6xl"
+      key="finalHeading"
+      initial={{ opacity: 0, x: -40 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.9, ease: "easeOut" }}
+      className="absolute z-10 top-[50%] lg:top-[25%]"
+      style={{
+        left: 0,
+        transform: "translateY(-50%)",
+        width: "100%",
+        pointerEvents: "none",
+        fontFamily: "'Neue Montreal', sans-serif",
+      }}
     >
-      {headings.map((line, lineIndex) => {
-        const startDelay = lineStartDelays[lineIndex];
-        const words = line.split(" ");
-
-        return (
-          <motion.div
-            key={lineIndex}
-            className="flex flex-wrap text-left overflow-hidden"
+      <div
+        style={{
+          paddingLeft: "4vw",
+          paddingRight: "4vw",
+          maxWidth: "92vw",
+        }}
+      >
+        <h1
+          className="font-extrabold uppercase"
+          style={{
+            margin: 0,
+            fontSize: "clamp(2rem, 13vw, 12rem)",
+            lineHeight: "clamp(0.9, 0.95, 1)",
+            letterSpacing: "-0.03em",
+            fontWeight: 850,
+            color: "#fff",
+            textAlign: "left",
+            textShadow: "0 10px 20px rgba(0,0,0,0.45)",
+            display: "block",
+            whiteSpace: "pre-wrap",
+            pointerEvents: "auto",
+          }}
+        >
+          <span style={{ display: "block" }}>HOMEOPATHY</span>
+          <span style={{ display: "block" }}>DOCTOR AND</span>
+          {/* Center the last word only */}
+          <span
             style={{
-              fontFamily: "'Neue Montreal', sans-serif",
-              lineHeight: 1.1,
+              display: "block",
+              textAlign: "center",
+              width: "100%",
             }}
           >
-            {words.map((word, wordIndex) => {
-              const wordStartDelay =
-                startDelay +
-                words
-                  .slice(0, wordIndex)
-                  .join(" ")
-                  .length *
-                  animationConfig.charDelay;
-
-              return (
-                <motion.span
-                  key={wordIndex}
-                  className="flex whitespace-nowrap mr-4"
-                >
-                  {Array.from(word).map((char, charIndex) => {
-                    const delay = wordStartDelay + charIndex * animationConfig.charDelay;
-                    return (
-                      <motion.span
-                        key={charIndex}
-                        custom={delay}
-                        variants={letterVariant}
-                        initial="hidden"
-                        animate="visible"
-                        className="inline-block text-white text-2xl md:text-5xl lg:text-6xl font-extrabold"
-                        style={{
-                          whiteSpace: "pre",
-                        }}
-                      >
-                        {char}
-                      </motion.span>
-                    );
-                  })}
-                </motion.span>
-              );
-            })}
-          </motion.div>
-        );
-      })}
+            ATHLETE
+          </span>
+        </h1>
+      </div>
     </motion.div>
   )}
 </AnimatePresence>
+
+
+
 
 
       {/* Navbar shows after step 3 */}

@@ -11,19 +11,23 @@ const LenisScrollWrapper = ({ children }) => {
   const rafRef = useRef(null);
 
   useEffect(() => {
-    // Initialize Lenis with enhanced smoothness
+    // Detect if device is mobile/tablet
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                     window.innerWidth <= 768;
+
+    // Initialize Lenis with device-specific settings
     lenisRef.current = new Lenis({
-      duration: 2.5,
-      easing: (t) => 1 - Math.pow(1 - t, 4), // Smoother easing curve
+      duration: isMobile ? 1.2 : 2.5, // Reduced duration for mobile
+      easing: isMobile ? (t) => t : (t) => 1 - Math.pow(1 - t, 4), // Simpler easing for mobile
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
-      mouseMultiplier: 0.8, // Reduced for smoother mouse wheel
-      smoothTouch: true, // Enable smooth touch for mobile
-      touchMultiplier: 1.5, // Reduced for smoother touch
+      mouseMultiplier: 0.8, // For desktop mouse wheel
+      smoothTouch: isMobile ? false : true, // Disable smooth touch on mobile to reduce lag
+      touchMultiplier: isMobile ? 0.8 : 1.5, // Reduced touch sensitivity for mobile
       infinite: false,
-      syncTouch: true, // Better touch synchronization
-      touchInertiaMultiplier: 35, // Increased inertia for smoother deceleration
+      syncTouch: isMobile ? false : true, // Disable sync touch on mobile
+      touchInertiaMultiplier: isMobile ? 15 : 35, // Reduced inertia for mobile
     });
 
     // Connect Lenis scroll events to GSAP ScrollTrigger
@@ -75,7 +79,7 @@ const LenisScrollWrapper = ({ children }) => {
   }, []);
 
   return (
-    <div className="h-full overflow-hidden">
+    <div className="h-full">
       {children}
     </div>
   );

@@ -7,12 +7,10 @@ const Footer = () => {
   const ref = useRef(null);
   const contentRef = useRef(null);
   const bottomRef = useRef(null);
-  const socialRef = useRef(null);
   
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
   const contentInView = useInView(contentRef, { once: true, threshold: 0.3 });
   const bottomInView = useInView(bottomRef, { once: true, threshold: 0.8 });
-  const socialInView = useInView(socialRef, { once: true, threshold: 0.6 });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -45,21 +43,6 @@ const Footer = () => {
         type: "spring",
         stiffness: 100,
         damping: 15
-      }
-    }
-  };
-
-  const socialIconVariants = {
-    hidden: { scale: 0, rotate: -180, opacity: 0 },
-    visible: {
-      scale: 1,
-      rotate: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.7,
-        ease: "backOut",
-        type: "spring",
-        stiffness: 200
       }
     }
   };
@@ -145,50 +128,24 @@ const Footer = () => {
             >
               Natural healing through the power of homeopathy. Your journey to wellness begins here.
             </motion.p>
-            <motion.div 
-              ref={socialRef}
-              className="flex gap-4"
-              variants={containerVariants}
-              initial="hidden"
-              animate={socialInView ? "visible" : "hidden"}
-            >
+            <div className="flex gap-4">
               {[
                 { icon: Facebook, label: "Facebook" },
                 { icon: Instagram, label: "Instagram" },
                 { icon: Twitter, label: "Twitter" },
                 { icon: Linkedin, label: "LinkedIn" }
-              ].map(({ icon: Icon, label }, index) => (
-                <motion.a
+              ].map(({ icon: Icon, label }) => (
+                <a
                   key={label}
                   href="#"
-                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg"
                   style={{ backgroundColor: theme.primary[700] }}
-                  variants={socialIconVariants}
-                  whileHover={{ 
-                    
-                    scale: 1.3,
-                    rotate: 10,
-                    y: -5,
-                    boxShadow: `0 8px 25px ${theme.accent.primary}50`,
-                    transition: { duration: 0.4, type: "spring", stiffness: 300 }
-                  }}
-                  whileTap={{ scale: 0.85 }}
                   aria-label={label}
-                  animate={{
-                    y: [0, -3, 0],
-                    rotate: [0, 5, -5, 0]
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: index * 0.5
-                  }}
                 >
                   <Icon className="w-5 h-5" style={{ color: theme.text.white }} />
-                </motion.a>
+                </a>
               ))}
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Quick Links */}

@@ -289,42 +289,57 @@ const HealingSection = () => {
       {/* Right Side */}
       <div 
         ref={rightContentRef}
-        className="relative flex-1 mt-10 lg:mt-0"
+        className="relative flex-1 mt-10 lg:mt-0 flex justify-center lg:justify-end"
         style={{ willChange: 'transform' }}
       >
-        <div className="relative">
+        <div className="relative inline-block">
           <img
             ref={imageRef}
             src={about}
             alt="Doctor"
-            className="w-full max-w-md lg:max-w-lg mx-auto rounded-3xl shadow-xl"
-            style={{ willChange: 'transform' }}
+            className="w-full max-w-md lg:max-w-lg rounded-3xl shadow-xl"
+            style={{ willChange: 'transform', display: 'block' }}
           />
 
           {/* Badge */}
-          <div
-            ref={badgeRef}
-            className="absolute bottom-4 left-4 shadow-xl rounded-2xl px-5 py-3 flex items-center gap-3"
-            style={{ backgroundColor: theme.background.primary, willChange: 'transform' }}
-          >
-            <div>
-              <Leaf style={{ color: theme.primary[600] }} className="w-6 h-6" />
-            </div>
-            <div>
-              <p 
-                className="font-bold text-lg" 
-                style={{ color: theme.primary[600] }}
-              >
-                15+ Years
-              </p>
-              <p 
-                className="text-sm" 
-                style={{ color: theme.text.light }}
-              >
-                Healing Excellence
-              </p>
-            </div>
-          </div>
+   <div
+  ref={badgeRef}
+  className="
+    absolute shadow-xl rounded-2xl flex items-center gap-3
+    px-5 py-3 bottom-[-2rem] left-[-5rem]
+    sm:px-4 sm:py-2 sm:bottom-[-1.5rem] sm:left-[-2rem]
+    max-[480px]:px-3 max-[480px]:py-1.5 max-[480px]:left-[-1rem] max-[480px]:bottom-[-0.5rem]
+    max-[480px]:scale-90
+  "
+  style={{
+    backgroundColor: theme.background.primary,
+    willChange: "transform",
+  }}
+>
+  <div>
+    <Leaf
+      style={{ color: theme.primary[600] }}
+      className="w-6 h-6 sm:w-5 sm:h-5 max-[480px]:w-4 max-[480px]:h-4"
+    />
+  </div>
+
+  <div>
+    <p
+      className="font-bold text-lg sm:text-base max-[480px]:text-sm"
+      style={{ color: theme.primary[600] }}
+    >
+      15+ Years
+    </p>
+    <p
+      className="text-sm sm:text-xs max-[480px]:text-[10px]"
+      style={{ color: theme.text.light }}
+    >
+      Healing Excellence
+    </p>
+  </div>
+</div>
+
+
         </div>
       </div>
     </section>

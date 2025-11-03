@@ -28,7 +28,13 @@ html.lenis {
   overscroll-behavior: contain;
 }
 
-.lenis.lenis-stopped {
+/* Temporarily disable this rule to fix scrolling issue */
+/* .lenis.lenis-stopped {
+  overflow: hidden;
+} */
+
+/* Modal open state - prevent background scrolling without affecting layout */
+body.modal-open {
   overflow: hidden;
 }
 
