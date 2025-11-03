@@ -1,26 +1,106 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { X, Calendar, User, CheckCircle } from "lucide-react";
 import { theme } from "../../theme/colors";
 
 const StoryModal = ({ story, isOpen, onClose, lenis }) => {
-  if (!isOpen || !story) return null;
-
-  // ✅ Simple and reliable modal scroll control - CSS only approach
+  const scrollPositionRef = useRef(0);
+  
+  // ✅ Safari mobile compatible modal scroll control
   useEffect(() => {
-    if (isOpen) {
-      // Add CSS class to prevent scrolling - let Lenis continue running
-      document.body.classList.add('modal-open');
+    // Only run if modal is supposed to be open and story exists
+    if (!isOpen || !story) return;
+    
+    // Detect Safari mobile
+    const isSafariMobile = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+    // Store current scroll position for Safari mobile
+    if (isSafariMobile && window.lenis) {
+      scrollPositionRef.current = window.lenis.scroll;
     } else {
-      // Remove CSS class to restore scrolling
-      document.body.classList.remove('modal-open');
+      scrollPositionRef.current = window.pageYOffset || document.documentElement.scrollTop;
+    }
+    
+    // Add CSS class to prevent scrolling
+    document.body.classList.add('modal-open');
+    
+    // For Safari mobile, also set fixed positioning to prevent scroll issues
+    if (isSafariMobile) {
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollPositionRef.current}px`;
+      document.body.style.width = '100%';
     }
 
-    // Cleanup function - always remove the class
+    // Cleanup function - always remove the class and restore styles
     return () => {
       document.body.classList.remove('modal-open');
+      if (isSafariMobile) {
+        // Remove fixed positioning
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        
+        // Restore scroll position with multiple strategies
+        setTimeout(() => {
+          // Strategy 1: Use Lenis if available
+          if (window.lenis) {
+            window.lenis.scrollTo(scrollPositionRef.current, { immediate: true });
+            // Force a tiny scroll to reactivate Safari touch scrolling
+            setTimeout(() => {
+              window.lenis.scrollTo(scrollPositionRef.current + 1, { immediate: true });
+              window.lenis.scrollTo(scrollPositionRef.current, { immediate: true });
+            }, 50);
+          } else {
+            // Strategy 2: Native scroll restoration
+            window.scrollTo(0, scrollPositionRef.current);
+            // Force reflow to ensure Safari recognizes the scroll change
+            document.body.offsetHeight;
+            window.scrollTo(0, scrollPositionRef.current);
+          }
+        }, 100);
+      }
     };
+  }, [isOpen, story]);
+
+  // Handle modal close when not open
+  useEffect(() => {
+    if (!isOpen) {
+      // Detect Safari mobile
+      const isSafariMobile = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      
+      // Remove CSS class to restore scrolling
+      document.body.classList.remove('modal-open');
+      
+      // Safari mobile specific restoration
+      if (isSafariMobile) {
+        // Remove fixed positioning
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        
+        // Restore scroll position with multiple strategies
+        setTimeout(() => {
+          // Strategy 1: Use Lenis if available
+          if (window.lenis) {
+            window.lenis.scrollTo(scrollPositionRef.current, { immediate: true });
+            // Force a tiny scroll to reactivate Safari touch scrolling
+            setTimeout(() => {
+              window.lenis.scrollTo(scrollPositionRef.current + 1, { immediate: true });
+              window.lenis.scrollTo(scrollPositionRef.current, { immediate: true });
+            }, 50);
+          } else {
+            // Strategy 2: Native scroll restoration
+            window.scrollTo(0, scrollPositionRef.current);
+            // Force reflow to ensure Safari recognizes the scroll change
+            document.body.offsetHeight;
+            window.scrollTo(0, scrollPositionRef.current);
+          }
+        }, 100);
+      }
+    }
   }, [isOpen]);
+  
+  if (!isOpen || !story) return null;
 
   // ✅ Close modal when clicking outside content
   const handleOverlayClick = (e) => {
