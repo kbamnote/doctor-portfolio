@@ -6,10 +6,10 @@ import { theme } from "../../theme/colors";
 const StoryModal = ({ story, isOpen, onClose, lenis }) => {
   if (!isOpen || !story) return null;
 
-  // ✅ Safe modal approach - Use CSS classes instead of direct body manipulation
+  // ✅ Simple and reliable modal scroll control - CSS only approach
   useEffect(() => {
     if (isOpen) {
-      // Add CSS class to prevent scrolling
+      // Add CSS class to prevent scrolling - let Lenis continue running
       document.body.classList.add('modal-open');
     } else {
       // Remove CSS class to restore scrolling

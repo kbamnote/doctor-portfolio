@@ -7,13 +7,16 @@ html {
 }
 
 * {
-  font-family: 'Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
 }
 
 /* Heading font styles using Helvetica Now */
 h1, h2, h3, h4, h5, h6,
 .heading-font {
-  font-family: 'Helvetica Now', 'Helvetica Neue', 'Helvetica', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Helvetica Now', 'Helvetica Neue', 'Helvetica', -apple-system,
+    BlinkMacSystemFont, sans-serif;
 }
 
 html.lenis {
@@ -28,13 +31,18 @@ html.lenis {
   overscroll-behavior: contain;
 }
 
-/* Temporarily disable this rule to fix scrolling issue */
-/* .lenis.lenis-stopped {
-  overflow: hidden;
-} */
-
-/* Modal open state - prevent background scrolling without affecting layout */
-body.modal-open {
-  overflow: hidden;
+/* ✅ Re-enabled Lenis stop class for background lock */
+.lenis.lenis-stopped {
+  overflow: hidden !important;
+  height: 100vh;
+  touch-action: none;
+  overscroll-behavior: none;
 }
+
+/* ✅ Modal open state - prevent background scrolling without breaking layout */
+body.modal-open {
+  overflow: hidden !important;
+}
+
+
 
