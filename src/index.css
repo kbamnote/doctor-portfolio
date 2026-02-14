@@ -4,6 +4,7 @@
 /* Smooth scrolling for the entire website */
 html {
   scroll-behavior: smooth;
+
 }
 
 * {
@@ -13,7 +14,12 @@ html {
 }
 
 /* Heading font styles using Helvetica Now */
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 .heading-font {
   font-family: 'Helvetica Now', 'Helvetica Neue', 'Helvetica', -apple-system,
     BlinkMacSystemFont, sans-serif;
@@ -43,6 +49,3 @@ html.lenis {
 body.modal-open {
   overflow: hidden !important;
 }
-
-
-
