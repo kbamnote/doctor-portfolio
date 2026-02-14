@@ -141,7 +141,7 @@ const Navbar = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="fixed top-0 left-0 w-full h-screen bg-black/95 z-20 lg:hidden"
+              className="fixed top-0 left-0 w-full h-screen bg-black/95 z-50 lg:hidden"
               style={{ fontFamily: "'Neue Montreal', sans-serif" }}
             >
               {/* Close Button */}

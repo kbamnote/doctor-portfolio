@@ -201,7 +201,7 @@ const SuccessStories = () => {
   }, [activeFilter]);
 
   return (
-    <section ref={sectionRef} className="bg-gray-50 py-12 sm:py-16 px-4 sm:px-6">
+    <section ref={sectionRef} className="bg-gray-50 py-12 sm:py-16 px-4 sm:px-6 md:px-10 lg:px-20">
       {/* Explanatory Text */}
       <div className="max-w-4xl mx-auto mb-12 text-center">
         <h2 className="text-2xl font-semibold mb-4 text-gray-800">Why We Show Before & After Results</h2>

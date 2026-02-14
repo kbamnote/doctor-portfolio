@@ -203,7 +203,7 @@ const HealingSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="min-h-screen flex flex-col lg:flex-row items-center justify-between px-6 md:px-16 py-10 overflow-hidden"
+      className="min-h-screen flex flex-col lg:flex-row items-center justify-between px-6 md:px-12 lg:px-20 py-16 overflow-hidden"
       style={{ backgroundColor: theme.background.secondary }}
     >
       {/* Left Side */}
@@ -217,9 +217,9 @@ const HealingSection = () => {
           className="heading-font text-4xl md:text-6xl font-extrabold leading-tight"
           style={{ color: theme.text.primary, willChange: 'transform' }}
         >
-          HEALING BEGINS <br />
+          ADVANCE GERMAN <br />
           <span style={{ color: theme.primary[600] }}>
-            WITHIN
+            HOMEOPATHY METHODS
           </span>
         </h1>
 

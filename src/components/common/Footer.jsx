@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Facebook, Instagram, Twitter, Linkedin, MapPin, Phone, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 import { theme, animationVariants } from "../../theme/colors";
 
 const Footer = () => {
@@ -148,13 +149,14 @@ const Footer = () => {
             </div>
           </motion.div>
 
+
+
           {/* Quick Links */}
           <motion.div variants={itemVariants}>
             <motion.h4 
               className="text-xl font-semibold mb-6"
               style={{ color: theme.text.white }}
               whileHover={{ 
-                
                 scale: 1.05,
                 transition: { duration: 0.3 }
               }}
@@ -167,9 +169,14 @@ const Footer = () => {
               initial="hidden"
               animate={contentInView ? "visible" : "hidden"}
             >
-              {["Home", "About Us", "Cured Cases", "Blog"].map((link, index) => (
+              {[
+                { name: "Home", path: "/" },
+                { name: "About Us", path: "/about" },
+                { name: "Cured Cases", path: "/cured-cases" },
+                { name: "Blog", path: "/blogs" }
+              ].map((link, index) => (
                 <motion.li
-                  key={link}
+                  key={link.name}
                   variants={linkVariants}
                   whileHover={{ 
                     x: 8,
@@ -177,23 +184,21 @@ const Footer = () => {
                     transition: { duration: 0.3, type: "spring" }
                   }}
                 >
-                  <motion.a 
-                    href="#" 
+                  <Link 
+                    to={link.path} 
                     className="transition-colors duration-200 relative"
                     style={{ color: theme.primary[200] }}
-                    whileHover={{ 
-                      color: theme.text.white,
-                      transition: { duration: 0.2 }
-                    }}
+                    onMouseEnter={(e) => e.target.style.color = theme.text.white}
+                    onMouseLeave={(e) => e.target.style.color = theme.primary[200]}
                   >
-                    {link}
+                    {link.name}
                     <motion.div
                       className="absolute bottom-0 left-0 h-0.5 bg-current"
                       initial={{ width: 0 }}
                       whileHover={{ width: "100%" }}
                       transition={{ duration: 0.3 }}
                     />
-                  </motion.a>
+                  </Link>
                 </motion.li>
               ))}
             </motion.ul>

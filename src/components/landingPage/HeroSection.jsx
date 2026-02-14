@@ -237,16 +237,7 @@ const HeroSection = React.memo(() => {
         >
           <span style={{ display: "block" }}>MEET THE BEST</span>
           <span style={{ display: "block" }}>HOMEOPATHIC</span>
-          <span style={{ display: "block" }}>DOCTOR IN</span>
-          <span
-            style={{
-              display: "block",
-              textAlign: "center",
-              width: "100%",
-            }}
-          >
-            DELHI
-          </span>
+          <span style={{ display: "block" }}>DOCTOR IN DELHI</span>
         </h1>
       </div>
     </motion.div>

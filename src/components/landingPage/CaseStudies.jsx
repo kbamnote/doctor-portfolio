@@ -4,24 +4,26 @@ import { ArrowRight } from "lucide-react";
 import { theme } from "../../theme/colors";
 import { Link } from "react-router-dom";
 
+// Importing Images
+import acneAfter from '../../assets/acne-after.jpg';
+import pcodAfter from '../../assets/Pcod-after.jpg';
+import sebAfter from '../../assets/Seborrheic dermatitis after.jpg';
+
 const caseStudies = [
   {
-    title: "Chronic Eczema",
-    image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
-    link: "#",
+    title: "Severe Acne Treatment",
+    image: acneAfter,
+    link: "/cured-cases",
   },
   {
-    title: "Migraine Relief",
-    image:
-      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=80",
-    link: "#",
+    title: "PCOD & Hormonal Balance",
+    image: pcodAfter,
+    link: "/cured-cases",
   },
   {
-    title: "Digestive Healing",
-    image:
-      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80",
-    link: "#",
+    title: "Seborrheic Dermatitis",
+    image: sebAfter,
+    link: "/cured-cases",
   },
 ];
 
