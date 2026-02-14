@@ -10,6 +10,7 @@ import useScrollToTop from '../../hooks/useScrollToTop';
 // Lazy load non-critical components
 const AboutPage = lazy(() => import('../aboutPage/AboutPage'));
 const BlogPage = lazy(() => import('../blogPage/BlogPage'));
+const BlogPost = lazy(() => import('../blogPage/BlogPost'));
 const ContactPage = lazy(() => import('../contact/ContactPage'));
 const CuredCases = lazy(() => import('../curedCases/CuredCases'));
 
@@ -155,6 +156,13 @@ const AppRouter = () => {
               <TransitionWrapper>
                 <Suspense fallback={<PageLoader />}>
                   <BlogPage />
+                </Suspense>
+              </TransitionWrapper>
+            } />
+            <Route path="/blogs/:slug" element={
+              <TransitionWrapper>
+                <Suspense fallback={<PageLoader />}>
+                  <BlogPost />
                 </Suspense>
               </TransitionWrapper>
             } />

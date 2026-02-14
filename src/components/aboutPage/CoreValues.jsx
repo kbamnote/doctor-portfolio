@@ -7,21 +7,21 @@ const CoreValues = () => {
   const values = [
     {
       icon: <Heart className="w-6 h-6 text-white" />,
-      title: "Empathy",
+      title: "Holistic Treatment",
       description:
-        "We listen deeply and understand your unique health story with compassion.",
+        "Our patients often experience better energy in the body, improvement in sleep, balance in emotions, and relief from long-standing chronic disease discomfort because the healing happens from the inside out.",
     },
     {
       icon: <Target className="w-6 h-6 text-white" />,
-      title: "Personalized Care",
+      title: "Personalized Treatment",
       description:
-        "Every treatment plan is tailored specifically to your individual needs.",
+        "A fully customized healing plan. This includes proper case taking, medical history, emotional history, and psychological practices that help in finding the root cause of your chronic disease.",
     },
     {
       icon: <Shield className="w-6 h-6 text-white" />,
-      title: "Holistic Healing",
+      title: "Treat the Person, Not the Symptoms",
       description:
-        "Treating the whole person—mind, body, and spirit—not just symptoms.",
+        "By understanding all these layers, we form a complete picture of your health, enabling a long-term and natural healing experience.",
     },
   ];
 

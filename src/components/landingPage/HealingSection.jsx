@@ -228,8 +228,9 @@ const HealingSection = () => {
           className="mt-6 text-lg leading-relaxed"
           style={{ color: theme.text.secondary, willChange: 'transform' }}
         >
-          Experience the transformative power of nature. Personalized
-          homeopathic care that treats the root cause, not just symptoms.
+          Advance German Homeopathy Methods. Experience the transformative power of nature. Personalized homeopathic care that treats the root cause, not just symptoms.
+          <br/><br/>
+          With 15 years of experience and case taking expertise, Dr. Guneet follows the German Method of Homeopathy, a scientific structured process that focuses on identifying the root cause of diseases instead of only treating symptoms.
         </p>
 
         <div 

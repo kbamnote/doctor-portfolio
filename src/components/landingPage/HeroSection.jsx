@@ -219,11 +219,11 @@ const HeroSection = React.memo(() => {
           maxWidth: "92vw",
         }}
       >
-        <h1
+          <h1
           className="font-extrabold uppercase"
           style={{
             margin: 0,
-            fontSize: "clamp(2rem, 13vw, 12rem)",
+            fontSize: "clamp(2rem, 8vw, 8rem)",
             lineHeight: "clamp(0.9, 0.95, 1)",
             letterSpacing: "-0.03em",
             fontWeight: 850,
@@ -235,9 +235,9 @@ const HeroSection = React.memo(() => {
             pointerEvents: "auto",
           }}
         >
-          <span style={{ display: "block" }}>HOMEOPATHY</span>
-          <span style={{ display: "block" }}>DOCTOR AND</span>
-          {/* Center the last word only */}
+          <span style={{ display: "block" }}>MEET THE BEST</span>
+          <span style={{ display: "block" }}>HOMEOPATHIC</span>
+          <span style={{ display: "block" }}>DOCTOR IN</span>
           <span
             style={{
               display: "block",
@@ -245,7 +245,7 @@ const HeroSection = React.memo(() => {
               width: "100%",
             }}
           >
-            ATHLETE
+            DELHI
           </span>
         </h1>
       </div>

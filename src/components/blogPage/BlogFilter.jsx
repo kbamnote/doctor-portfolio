@@ -2,9 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Calendar, User, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { theme } from "../../theme/colors";
 
 gsap.registerPlugin(ScrollTrigger);
+
+import { blogPosts } from './blogData';
 
 const BlogFilter = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -12,55 +15,9 @@ const BlogFilter = () => {
   const postsRef = useRef(null);
   const sidebarRef = useRef(null);
 
-  const categories = ["All", "Wellness", "Treatment", "Nutrition", "Mental Health", "Prevention"];
+  const categories = ["All", "Wellness", "Treatment", "Nutrition", "Mental Health", "Prevention", "Education"];
 
-  const posts = [
-    {
-      id: 1,
-      title: "Understanding Homeopathic Remedies: How They Work",
-      category: "Treatment",
-      author: "Dr. Arpita Mehta",
-      date: "October 18, 2025",
-      img: "https://images.unsplash.com/photo-1606166187734-a4cb74079037?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
-      excerpt: "Discover the science behind homeopathy and how minute doses can trigger profound healing responses.",
-    },
-    {
-      id: 2,
-      title: "Natural Ways to Boost Your Immune System",
-      category: "Prevention",
-      author: "Dr. Rajesh Kumar",
-      date: "October 10, 2025",
-      img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80",
-      excerpt: "Learn effective homeopathic approaches to strengthen your immunity and protect against seasonal illnesses.",
-    },
-    {
-      id: 3,
-      title: "Managing Chronic Pain with Homeopathy",
-      category: "Treatment",
-      author: "Dr. Sarah Williams",
-      date: "October 5, 2025",
-      img: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?auto=format&fit=crop&w=900&q=80",
-      excerpt: "Explore gentle yet effective homeopathic solutions for chronic pain without dependency or side effects.",
-    },
-    {
-      id: 4,
-      title: "The Mind–Body Connection in Homeopathic Healing",
-      category: "Mental Health",
-      author: "Dr. Arpita Mehta",
-      date: "September 29, 2025",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=80",
-      excerpt: "Understanding how homeopathy treats the whole person, addressing mental and emotional health together.",
-    },
-    {
-      id: 5,
-      title: "Nutrition and Homeopathy: A Synergistic Approach",
-      category: "Nutrition",
-      author: "Dr. Neha Kapoor",
-      date: "September 18, 2025",
-      img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80",
-      excerpt: "How dietary choices complement homeopathic treatments to create lasting wellness.",
-    },
-  ];
+  const posts = blogPosts;
 
   const filteredPosts =
     selectedCategory === "All"
@@ -224,8 +181,8 @@ const BlogFilter = () => {
                       <span className="sm:hidden">{post.date.split(' ').slice(0, 2).join(' ')}</span>
                     </div>
                   </div>
-                  <a 
-                    href="#" 
+                  <Link 
+                    to={`/blogs/${post.slug}`} 
                     className="flex items-center font-medium transition-colors self-start sm:self-auto"
                     style={{ color: theme.primary[600] }}
                     onMouseEnter={(e) => e.target.style.color = theme.primary[700]}
@@ -234,7 +191,7 @@ const BlogFilter = () => {
                     <span className="hidden sm:inline">Read more</span>
                     <span className="sm:hidden">Read</span>
                     <ArrowRight size={12} className="ml-1" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

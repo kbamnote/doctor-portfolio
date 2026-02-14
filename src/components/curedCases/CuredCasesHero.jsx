@@ -80,9 +80,9 @@ const CuredCasesHero = () => {
           className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 sm:mb-6"
           style={{ willChange: 'transform' }}
         >
-          Real Stories of{' '}
+          Before & After Success Stories of{' '}
           <span style={{ color: theme.primary[600] }}>
-            Transformation
+            Homeopathy Treatment
           </span>
         </h1>
         <p 
@@ -90,7 +90,7 @@ const CuredCasesHero = () => {
           className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
           style={{ willChange: 'transform' }}
         >
-          Discover how our patients have overcome their health challenges and transformed their lives through our personalized treatment approaches.
+          At our homeopathic clinic, we believe that real results speak louder than promises. This page showcases genuine before and after transformations from patients who trusted our homeopathy treatment for long-standing, chronic, and lifestyle diseases.
         </p>
       </div>
     </section>

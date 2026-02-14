@@ -1,9 +1,23 @@
 import React, { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Calendar, User } from "lucide-react";
+import { Calendar, User, ArrowRight } from "lucide-react";
 import { theme } from "../../theme/colors";
 import StoryModal from "./StoryModal";
+
+// Importing Images
+import acneBefore from '../../assets/acne-before.jpg';
+import acneAfter from '../../assets/acne-after.jpg';
+import pcodBefore from '../../assets/Pcod-before.jpg';
+import pcodAfter from '../../assets/Pcod-after.jpg';
+import sebBefore from '../../assets/Seborrheic dermatitis before.jpg';
+import sebAfter from '../../assets/Seborrheic dermatitis after.jpg';
+import diabetesBefore from '../../assets/diabetes-before.jpg';
+import diabetesAfter from '../../assets/diabetes-after.jpg';
+import herpesBefore from '../../assets/herpes simplex before.jpg';
+import herpesAfter from '../../assets/herpes simplex after.jpg';
+import woundBefore from '../../assets/non-healing-wound-before.jpg';
+import woundAfter from '../../assets/non-healing-wound-after.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,108 +25,88 @@ const stories = [
   {
     id: 1,
     category: "Skin",
-    title: "Chronic Eczema",
-    duration: "6 Months",
-    age: "32 Years",
-    description:
-      "Patient suffered from severe eczema for 8 years with constant itching and irritation.",
-    imgBefore:
-      "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170",
-    imgAfter:
-      "https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1228",
-    patientJourney: "Chronic eczema affecting daily life for 8 years. After homeopathic treatment, skin condition improved dramatically with reduced inflammation and itching.",
-    initialSymptoms: ["Severe itching", "Red inflamed patches", "Dry cracked skin", "Sleep disturbance"],
-    afterTreatment: ["Clear smooth skin", "No itching", "Improved sleep quality", "Restored confidence"]
+    title: "Severe Acne Treatment",
+    duration: "4 Months",
+    age: "24 Years",
+    description: "Severe cystic acne treated effectively without harsh chemicals or suppression.",
+    imgBefore: acneBefore,
+    imgAfter: acneAfter,
+    patientJourney: "Patient suffered from painful cystic acne for 3 years, trying various antibiotics and creams with no lasting results. Homeopathy addressed the hormonal imbalance and skin sensitivity.",
+    initialSymptoms: ["Painful cysts", "Redness", "Scarring", "Low confidence"],
+    afterTreatment: ["Clear skin", "No new breakouts", "Faded scars", "Restored confidence"]
   },
   {
     id: 2,
-    category: "Chronic Issues",
-    title: "Migraine Relief",
+    category: "Women's Health",
+    title: "PCOD & Hormonal Balance",
     duration: "8 Months",
     age: "28 Years",
-    description:
-      "Debilitating migraines 3–4 times per week for years. After treatment, symptoms disappeared.",
-    imgBefore:
-      "https://images.unsplash.com/photo-1633219664572-473fd988a44f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1172",
-    imgAfter:
-      "https://media.istockphoto.com/id/1394763799/photo/doctor-with-nurse-examining-patient-lying-on-hospital-bed.jpg?s=2048x2048&w=is&k=20&c=GyvsZSqh6cNjy52iQqS3ICqC6713sEI6HxmylQGza6w=",
-    patientJourney: "Debilitating migraines 3-4 times per week for 5 years. After homeopathic treatment, migraines reduced to occasional mild headaches, and quality of life dramatically improved.",
-    initialSymptoms: ["Severe headaches", "Nausea", "Light sensitivity", "Work absenteeism"],
-    afterTreatment: ["Nausea", "Occasional mild headaches", "Normal work routine", "Improved quality of life"]
+    description: "Successful management of PCOD symptoms and restoration of natural hormonal balace.",
+    imgBefore: pcodBefore,
+    imgAfter: pcodAfter,
+    patientJourney: "Struggled with irregular cycles, weight gain, and acne due to PCOD. Constitutional homeopathy treatment successfully regulated the menstrual cycle and improved overall metabolism.",
+    initialSymptoms: ["Irregular periods", "Weight gain", "Hormonal acne", "Mood swings"],
+    afterTreatment: ["Regular cycles", "Weight loss", "Clear skin", "Emotional balance"]
   },
   {
     id: 3,
-    category: "Chronic Issues",
-    title: "Digestive Healing",
-    duration: "5 Months",
-    age: "45 Years",
-    description:
-      "Years of IBS symptoms with bloating and irregular bowel movements improved drastically.",
-    imgBefore:
-      "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80",
-    imgAfter:
-      "https://media.istockphoto.com/id/1169596698/photo/asian-woman-professional-doctor-with-notepad-smiling-visiting-talking-and-diagnosing-the-old.jpg?s=2048x2048&w=is&k=20&c=m_-CvPHj6Thf4EKM6xrl8A9MN3Zq9uvXD4CiGSs_WHA=",
-    patientJourney: "Chronic IBS symptoms for 7 years affecting work and social life. After homeopathic treatment, digestive health normalized with regular bowel movements and no bloating.",
-    initialSymptoms: ["Chronic bloating", "Irregular bowel movements", "Abdominal pain", "Food sensitivities"],
-    afterTreatment: ["Normal digestion", "Regular bowel movements", "No bloating", "Improved energy levels"]
+    category: "Skin",
+    title: "Seborrheic Dermatitis",
+    duration: "6 Months",
+    age: "35 Years",
+    description: "Chronic scalp and skin inflammation resolved naturally.",
+    imgBefore: sebBefore,
+    imgAfter: sebAfter,
+    patientJourney: "Patient had severe flaking, itching, and redness on the scalp and face. Homeopathy treated the underlying immune response, clearing the skin completely.",
+    initialSymptoms: ["Severe flaking", "Intense itching", "Red patches", "Social anxiety"],
+    afterTreatment: ["Clear scalp", "No itching", "Healthy skin", "Improved quality of life"]
   },
   {
     id: 4,
-    category: "Hair",
-    title: "Hair Loss Recovery",
-    duration: "10 Months",
-    age: "35 Years",
-    description:
-      "Progressive hair thinning stopped and new hair growth observed after 10 months.",
-    imgBefore:
-      "https://media.istockphoto.com/id/1394762060/photo/doctor-consoling-disabled-man-on-wheelchair-with-daughter-by-his-side-at-the-hospital.webp?a=1&b=1&s=612x612&w=0&k=20&c=gAue6TiKWKV3vPKQ9uo-8sfgR1NzruZOV0n6odIqRvA=",
-    imgAfter:
-      "https://media.istockphoto.com/id/1418999467/photo/doctors-comforting-disabled-elderly-patient.webp?a=1&b=1&s=612x612&w=0&k=20&c=GCZTGW7y3_zsw1rL9III676QppSAv-9BQwtxuHg522c=",
-    patientJourney: "Progressive hair thinning for 3 years causing emotional distress. After homeopathic treatment, hair loss stopped and new growth appeared with improved hair density.",
-    initialSymptoms: ["Excessive hair fall", "Thinning crown", "Receding hairline", "Low confidence"],
-    afterTreatment: ["Reduced hair fall", "New hair growth", "Thicker hair", "Restored confidence"]
+    category: "Chronic Issues",
+    title: "Diabetes Management",
+    duration: "1 Year",
+    age: "52 Years",
+    description: "Non-healing diabetic ulcers healed and blood sugar levels stabilized.",
+    imgBefore: diabetesBefore,
+    imgAfter: diabetesAfter,
+    patientJourney: "Patient with uncontrolled diabetes developed non-healing ulcers. Homeopathic treatment aided wound healing and helped stabilize blood sugar levels alongside lifestyle changes.",
+    initialSymptoms: ["Non-healing wound", "High blood sugar", "Fatigue", "Risk of infection"],
+    afterTreatment: ["Complete wound healing", "Stable sugar levels", "Better energy", "Reduced infection risk"]
   },
   {
     id: 5,
-    category: "Mental Health",
-    title: "Anxiety & Panic Attacks",
-    duration: "7 Months",
-    age: "29 Years",
-    description:
-      "Severe anxiety with frequent panic attacks affecting daily life improved remarkably.",
-    imgBefore:
-      "https://images.unsplash.com/photo-1550831106-f8d5b6f1abe9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fGhvc3BpdGFsfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
-    imgAfter:
-      "https://plus.unsplash.com/premium_photo-1681995301746-49a915e4d325?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTd8fGhvc3BpdGFsfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
-    patientJourney: "Severe anxiety and panic attacks for 4 years affecting work and relationships. After homeopathic treatment, anxiety levels reduced significantly with rare panic episodes.",
-    initialSymptoms: ["Daily anxiety", "Panic attacks", "Sleep issues", "Social withdrawal"],
-    afterTreatment: ["Calm mindset", "Rare anxiety episodes", "Better sleep", "Social confidence"]
+    category: "Skin",
+    title: "Herpes Simplex Recovery",
+    duration: "3 Months",
+    age: "30 Years",
+    description: "Recurrent painful outbreaks managed and frequency reduced significantly.",
+    imgBefore: herpesBefore,
+    imgAfter: herpesAfter,
+    patientJourney: "Patient experienced frequent, painful herpes outbreaks. Homeopathy strengthened the immune system, reducing the severity and frequency of recurrence.",
+    initialSymptoms: ["Painful blisters", "Burning sensation", "Frequent recurrence", "Stress"],
+    afterTreatment: ["Healed skin", "Reduced recurrence", "Pain relief", "Stronger immunity"]
   },
   {
     id: 6,
-    category: "Allergies",
-    title: "Seasonal Allergies",
-    duration: "4 Months",
-    age: "40 Years",
-    description:
-      "Chronic spring allergies resolved with natural remedies, no longer needs medication.",
-    imgBefore:
-      "https://images.unsplash.com/photo-1517120026326-d87759a7b63b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGhvc3BpdGFsfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
-    imgAfter:
-      "https://plus.unsplash.com/premium_photo-1681995206380-babb9b6debc6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDV8fGhvc3BpdGFsfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
-    patientJourney: "Chronic seasonal allergies for 10 years requiring daily medication. After homeopathic treatment, allergy symptoms disappeared and no longer needs any medication.",
-    initialSymptoms: ["Sneezing fits", "Watery eyes", "Nasal congestion", "Daily medication"],
-    afterTreatment: ["No sneezing", "Clear eyes", "Normal breathing", "Medication-free"]
+    category: "Chronic Issues",
+    title: "Non-Healing Wound",
+    duration: "5 Months",
+    age: "45 Years",
+    description: "Chronic non-healing wound fully closed and healed.",
+    imgBefore: woundBefore,
+    imgAfter: woundAfter,
+    patientJourney: "A chronic wound that refused to heal for months despite conventional care. Homeopathy stimulated the body's natural healing mechanism to close the wound.",
+    initialSymptoms: ["Open wound", "Pain", "Discharge", "Immobility"],
+    afterTreatment: ["Fully closed wound", "No pain", "Scar formation", "Full mobility"]
   },
 ];
 
 const filters = [
   "All",
   "Skin",
-  "Hair",
-  "Allergies",
+  "Women's Health",
   "Chronic Issues",
-  "Mental Health",
 ];
 
 const SuccessStories = () => {
@@ -208,6 +202,24 @@ const SuccessStories = () => {
 
   return (
     <section ref={sectionRef} className="bg-gray-50 py-12 sm:py-16 px-4 sm:px-6">
+      {/* Explanatory Text */}
+      <div className="max-w-4xl mx-auto mb-12 text-center">
+        <h2 className="text-2xl font-semibold mb-4 text-gray-800">Why We Show Before & After Results</h2>
+        <p className="text-gray-600 mb-6">
+          Many patients come to us feeling confused, anxious, and unsure because they have tried multiple treatments without lasting relief. 
+          Showing real cured cases helps you understand:
+        </p>
+        <ul className="text-left max-w-2xl mx-auto space-y-2 text-gray-700 list-disc pl-5">
+           <li>How homeopathy treatment works</li>
+           <li>What type of diseases improve naturally</li>
+           <li>How long chronic conditions take to show visible improvement</li>
+           <li>Our clinic’s expertise in complex cases</li>
+        </ul>
+        <p className="text-gray-600 mt-6">
+          These transformations are proof that accurate homeopathy can lead to meaningful change—inside and out.
+        </p>
+      </div>
+
       {/* Filter Buttons */}
       <div ref={filtersRef} className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
         {filters.map((filter) => (

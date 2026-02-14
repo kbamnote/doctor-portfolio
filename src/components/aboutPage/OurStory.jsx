@@ -6,6 +6,8 @@ import { theme } from "../../theme/colors";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import aboutDr from '../../assets/aboutDr.png';
+
 const OurStory = () => {
   const sectionRef = useRef(null);
   const imageRef = useRef(null);
@@ -99,8 +101,8 @@ const OurStory = () => {
           <div className="w-full md:w-1/2">
             <img
               ref={imageRef}
-              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-              alt="Dr. Sarah Johnson"
+              src={aboutDr}
+              alt="Dr. Guneet Singh"
               className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-2xl shadow-lg"
               style={{ willChange: 'transform' }}
             />
@@ -117,14 +119,17 @@ const OurStory = () => {
             </h2>
             <div ref={paragraphsRef} className="space-y-3 sm:space-y-4 text-gray-600">
               <p className="text-sm sm:text-base md:text-lg leading-relaxed" style={{ willChange: 'transform' }}>
-                Dr. Sarah Johnson's journey into homeopathy began over 15 years ago when she witnessed the profound healing power of natural medicine in her own family.
+                Millions struggle with chronic disease conditions that drain the body's energy, reduce productivity, disturb daily life, and affect emotional regulation. At our clinic, we focus on healing rather than managing symptoms, as temporary relief does not mean your disease has been cured. Holistic treatment became more meaningful when it comes to chronic diseases. where our treatment don't suppress symptom. its boost your healing mechanism.
               </p>
               <p className="text-sm sm:text-base md:text-lg leading-relaxed" style={{ willChange: 'transform' }}>
-                After completing her medical degree and specializing in homeopathic medicine, she founded this practice with a simple mission: to provide personalized, natural healthcare that treats the whole person, not just the symptoms.
+                That is why we follow a holistic treatment approach designed to nurture your mind, body, and internal healing system as one powerful unit.
               </p>
-              <p className="text-sm sm:text-base md:text-lg leading-relaxed" style={{ willChange: 'transform' }}>
-                Today, our clinic has helped over 2,000 patients achieve lasting health and wellness through individualized treatment plans and compassionate care.
-              </p>
+              <div className="mt-4 p-4 bg-gray-50 rounded-lg border-l-4 border-[#35AB9A]">
+                <h3 className="font-semibold text-lg mb-2">Our Philosophy</h3>
+                <p className="text-sm sm:text-base leading-relaxed italic">
+                  Every person is unique, so every treatment must be personalized according to our individual needs.
+                </p>
+              </div>
             </div>
           </div>
         </div>

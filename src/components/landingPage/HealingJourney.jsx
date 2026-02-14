@@ -5,43 +5,35 @@ import { theme } from "../../theme/colors";
 const steps = [
   {
     number: "01",
-    title: "Personalized Diagnosis",
+    title: "Detailed Consultation",
     description:
-      "Every healing journey starts with understanding your unique body and root causes.",
+      "15–45 minutes of in-depth case-taking to understand your unique condition.",
     image:
       "https://media.istockphoto.com/id/2184218200/photo/male-doctor-reads-patients-wristband.jpg?s=612x612&w=0&k=20&c=oRXw8EuRYMeC46w_ihcA-y6DheKpQRnVt8qa_tYxdj4=",
   },
   {
     number: "02",
-    title: "Customized Remedies",
+    title: "Root Cause Analysis",
     description:
-      "Get tailor-made homeopathic solutions that match your symptoms and energy.",
+      "Identifying psychological, emotional, dietary, and biological triggers.",
     image:
       "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80",
   },
   {
     number: "03",
-    title: "Holistic Lifestyle Guidance",
+    title: "Personalized Medicine Plan",
     description:
-      "We guide you with natural routines, diet, and practices for sustained wellness.",
+      "Medicine chosen according to classical German homeopathic principles.",
     image:
       "https://media.istockphoto.com/id/127545508/photo/doctor-and-nurse-with-hospital-patient.jpg?s=612x612&w=0&k=20&c=j1xeARnRVf0rRqhMf2aWwwFI0GsPxeO_S2dL7ca6HnI=",
   },
   {
     number: "04",
-    title: "Progress Monitoring",
+    title: "Follow-Up & Monitoring",
     description:
-      "Regular check-ins ensure your healing stays on track and adapts with you.",
+      "Progress is tracked, and medicines are adjusted if needed.",
     image:
       "https://media.istockphoto.com/id/492441569/photo/blood-presure-check.jpg?s=612x612&w=0&k=20&c=mUvR5yrFz8Rf2RLnALpL9_IOgUimZ4_bnjeREJRlaFA=",
-  },
-  {
-    number: "05",
-    title: "Empowered Wellness",
-    description:
-      "By the end, you'll not just heal but learn how to maintain balance for life.",
-    image:
-      "https://media.istockphoto.com/id/954707968/photo/nurse-taking-notes-while-hospitalized-patient-and-doctor-talk.jpg?s=612x612&w=0&k=20&c=ZbIwJbzSfJi-uPT59EZ_HpGiqDTJH64fspcisHv8AG0=",
   },
 ];
 

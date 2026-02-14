@@ -92,23 +92,23 @@ const AboutHero = () => {
       data-scroll-section
     >
       {/* Title Section */}
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <h2
           ref={titleRef}
           className="heading-font text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 sm:mb-6"
           style={{ color: theme.text.primary, willChange: 'transform' }}
         >
-          Our Mission: Healing Through{" "}
-          <span style={{ color: theme.primary[600] }}>Trust and Nature</span>
+          A Holistic Treatment Healing System for All Your <br/>
+          <span style={{ color: theme.primary[600] }}>Chronic Diseases</span>
         </h2>
         <p
           ref={descriptionRef}
           className="text-sm sm:text-base md:text-lg leading-relaxed"
           style={{ color: theme.text.secondary, willChange: 'transform' }}
         >
-          Founded on the principle that true healing comes from within, we
-          combine centuries-old homeopathic wisdom with modern understanding to
-          provide compassionate, personalized care.
+          Founded on the principle that true healing comes from within, we combine centuries-old homeopathic wisdom with modern understanding to provide compassionate, personalized care.
+          <br/><br/>
+          We follow German methods of holistic treatment approaches to heal the body, mind, and emotions, and our treatment stimulates the internal healing system as one powerful unit, to cure your all chronic diseases.
         </p>
       </div>
 

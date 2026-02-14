@@ -9,21 +9,21 @@ gsap.registerPlugin(ScrollTrigger);
 const features = [
   {
     icon: <Shield className="w-7 h-7 text-white" />,
-    title: "Safe",
+    title: "Root Cause Analysis",
     description:
-      "Non-toxic, natural remedies with no side effects. Safe for all ages, from infants to elderly.",
+      "Most treatments work on symptoms. But Dr. Guneet always aim to discover why the disease started, how it progressed, and what is worse in your body.",
   },
   {
     icon: <Heart className="w-7 h-7 text-white" />,
-    title: "Gentle",
+    title: "Safe & Side-Effect Free",
     description:
-      "Works with your body's natural healing mechanisms. Gentle yet profoundly effective.",
+      "Homeopathy is always known for being safe and gentle but only when the medicines are chosen correctly.",
   },
   {
     icon: <TrendingUp className="w-7 h-7 text-white" />,
-    title: "Long-Lasting",
+    title: "Chronic & Incurable Diseases",
     description:
-      "Addresses root causes for permanent relief. Sustainable health, not temporary fixes.",
+      "Whether you are struggling with a new disease or a incurable condition that has lasted for years, personalized homeopathy helps you to regain your health.",
   },
 ];
 
