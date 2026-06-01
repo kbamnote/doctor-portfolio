@@ -5,15 +5,15 @@ import { theme } from "../../theme/colors";
 const steps = [
   {
     number: "01",
-    title: "Detailed Consultation",
+    title: "Step 1: Detailed Consultation",
     description:
-      "15–45 minutes of in-depth case-taking to understand your unique condition.",
+      "15–45 minutes of in-depth case-taking.",
     image:
       "https://media.istockphoto.com/id/2184218200/photo/male-doctor-reads-patients-wristband.jpg?s=612x612&w=0&k=20&c=oRXw8EuRYMeC46w_ihcA-y6DheKpQRnVt8qa_tYxdj4=",
   },
   {
     number: "02",
-    title: "Root Cause Analysis",
+    title: "Step 2: Root Cause Analysis",
     description:
       "Identifying psychological, emotional, dietary, and biological triggers.",
     image:
@@ -21,7 +21,7 @@ const steps = [
   },
   {
     number: "03",
-    title: "Personalized Medicine Plan",
+    title: "Step 3: Personalized Medicine Plan",
     description:
       "Medicine chosen according to classical German homeopathic principles.",
     image:
@@ -29,7 +29,7 @@ const steps = [
   },
   {
     number: "04",
-    title: "Follow-Up & Monitoring",
+    title: "Step 4: Follow-Up & Monitoring",
     description:
       "Progress is tracked, and medicines are adjusted if needed.",
     image:
@@ -84,7 +84,7 @@ const HealingJourney = () => {
           animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          Your Healing Journey
+          How our Treatment Process Works
         </motion.h2>
         <motion.p
           className="text-lg max-w-2xl mx-auto"
@@ -93,8 +93,7 @@ const HealingJourney = () => {
           animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          A step-by-step process designed to bring balance, relief, and lasting
-          transformation.
+          This step-by-step structured approach is the reason why patients call Dr. Guneet the best homeopathic doctor in Delhi for chronic and incurable diseases.
         </motion.p>
       </motion.div>
 

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Facebook, Instagram, Twitter, Linkedin, MapPin, Phone, Mail } from "lucide-react";
+import { Facebook, Instagram, Twitter, Linkedin, MapPin, Phone, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { theme, animationVariants } from "../../theme/colors";
 
@@ -116,7 +116,7 @@ const Footer = () => {
                 transition: { duration: 0.3, type: "spring" }
               }}
             >
-              HomeoHeal
+              Dr. Guneet the best homeopathy dr in Delhi
             </motion.h3>
             <motion.p 
               className="leading-relaxed mb-6"
@@ -127,7 +127,7 @@ const Footer = () => {
                 transition: { duration: 0.3 }
               }}
             >
-              Natural healing through the power of homeopathy. Your journey to wellness begins here.
+              cure diseases not symptoms
             </motion.p>
             <div className="flex gap-4">
               {[
@@ -312,8 +312,7 @@ const Footer = () => {
                     transition: { duration: 0.3 }
                   }}
                 >
-                  123 Wellness Avenue<br />
-                  Green Valley, CA 94000
+                  Safdarjung Enclave, near green park, B-7/Extension, Block B 7, Arjun Nagar, Safdarjung Enclave, New Delhi, Delhi 110029
                 </motion.span>
               </motion.li>
               <motion.li 
@@ -342,7 +341,7 @@ const Footer = () => {
                   /> 
                 </motion.div>
                 <motion.a 
-                  href="tel:+15551234567" 
+                  href="tel:9354985058" 
                   className="transition-colors duration-200"
                   style={{ color: theme.primary[200] }}
                   whileHover={{ 
@@ -350,7 +349,7 @@ const Footer = () => {
                     transition: { duration: 0.2 }
                   }}
                 >
-                  +1 (555) 123-4567
+                  9354985058
                 </motion.a>
               </motion.li>
               <motion.li 
@@ -373,13 +372,15 @@ const Footer = () => {
                     ease: "easeInOut"
                   }}
                 >
-                  <Mail 
+                  <MessageCircle 
                     className="w-5 h-5 flex-shrink-0" 
                     style={{ color:theme.text.white }}
                   />
                 </motion.div>
                 <motion.a 
-                  href="mailto:info@homeoheal.com" 
+                  href="https://wa.me/919354985058?text=Hello!%20I%20want%20homeopathy%20treatment.%E2%80%8E"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="transition-colors duration-200"
                   style={{ color: theme.primary[200] }}
                   whileHover={{ 
@@ -387,7 +388,7 @@ const Footer = () => {
                     transition: { duration: 0.2 }
                   }}
                 >
-                  info@homeoheal.com
+                  Message on WhatsApp
                 </motion.a>
               </motion.li>
             </motion.ul>

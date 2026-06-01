@@ -50,11 +50,11 @@ const CaseStudies = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
-          Success Stories
+          Why thousands of Patients always Trust Dr. Guneet
         </motion.h2>
 
         <motion.p
-          className="text-center max-w-2xl mx-auto text-lg mb-12"
+          className="text-center max-w-2xl mx-auto text-lg mb-8"
           style={{ color: theme.text.secondary }}
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -63,6 +63,38 @@ const CaseStudies = () => {
           Real transformations from our patients who found lasting relief through
           homeopathy.
         </motion.p>
+
+        {/* Personalized Treatment Block */}
+        <motion.div
+          className="max-w-3xl mx-auto mb-12 rounded-2xl overflow-hidden shadow-md"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          style={{ border: `1.5px solid`, borderColor: theme.primary[100] }}
+        >
+          <div
+            className="px-6 py-4"
+            style={{ backgroundColor: theme.primary[600] }}
+          >
+            <h3 className="text-xl md:text-2xl font-bold text-white text-center">
+              Personalized Treatment for Every Patient
+            </h3>
+          </div>
+          <div
+            className="px-6 py-5 flex flex-col sm:flex-row items-start sm:items-center gap-4"
+            style={{ backgroundColor: theme.background.primary }}
+          >
+            <div className="text-4xl flex-shrink-0">🌿</div>
+            <div>
+              <p className="text-base font-semibold mb-1" style={{ color: theme.text.primary }}>
+                No two bodies are the same — so no two medicines are the same.
+              </p>
+              <p className="text-sm leading-relaxed" style={{ color: theme.text.secondary }}>
+                Every treatment plan is carefully matched to your personality, lifestyle, and emotional patterns.
+              </p>
+            </div>
+          </div>
+        </motion.div>
       </motion.div>
 
       <motion.div 

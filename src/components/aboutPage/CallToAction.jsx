@@ -52,15 +52,16 @@ const CallToAction = () => {
           className="heading-font text-4xl md:text-5xl font-semibold mb-6"
           style={{ color: theme.text.white }}
         >
-          Ready to Start Your Treatment?
+          Start Your Holistic Treatment Healing Journey for All Chronic Diseases
         </h2>
 
         <p
           className="text-lg md:text-xl mb-10 leading-relaxed"
           style={{ color: theme.text.white, opacity: 0.9 }}
         >
-          Join thousands who have discovered the power of natural healing.
-          Let us guide you to wellness.
+          If you’re looking for holistic treatment that genuinely understands your body and offers long-term solutions for chronic diseases, you are in the right place.
+          <br /><br />
+          Healing begins when treatment becomes personal. Start your healing journey today.
         </p>
 <Link to='/contact'>
         <motion.div

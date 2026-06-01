@@ -15,7 +15,7 @@ const CoreValues = () => {
       icon: <Target className="w-6 h-6 text-white" />,
       title: "Personalized Treatment",
       description:
-        "A fully customized healing plan. This includes proper case taking, medical history, emotional history, and psychological practices that help in finding the root cause of your chronic disease.",
+        "A fully customized healing plan. This includes proper case taking, medical history, emotional history, and psychological practices that help in finding the root cause of your chronic disease and what your body needs.",
     },
     {
       icon: <Shield className="w-6 h-6 text-white" />,

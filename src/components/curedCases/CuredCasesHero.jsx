@@ -80,7 +80,7 @@ const CuredCasesHero = () => {
           className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 sm:mb-6"
           style={{ willChange: 'transform' }}
         >
-          Before & After Success Stories of{' '}
+          Before &amp; After Success Stories of{' '}
           <span style={{ color: theme.primary[600] }}>
             Homeopathy Treatment
           </span>
@@ -92,6 +92,42 @@ const CuredCasesHero = () => {
         >
           At our homeopathic clinic, we believe that real results speak louder than promises. This page showcases genuine before and after transformations from patients who trusted our homeopathy treatment for long-standing, chronic, and lifestyle diseases.
         </p>
+
+        {/* Informational block */}
+        <div className="mt-10 sm:mt-14 text-left max-w-3xl mx-auto">
+          {/* Intro */}
+          <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed mb-8 text-center italic border-l-4 pl-4 sm:pl-6" style={{ borderColor: theme.primary[400] }}>
+            Many patients come to us feeling <span className="font-semibold text-gray-800">confused, anxious, and unsure</span> — because they have tried multiple treatments without lasting relief. Showing real cured cases helps you understand:
+          </p>
+
+          {/* Bullet points */}
+          <ul className="space-y-4 mb-8">
+            {[
+              { icon: "💡", text: "How homeopathy treatment works" },
+              { icon: "🌿", text: "What type of diseases improve naturally" },
+              { icon: "⏳", text: "How long chronic conditions take to show visible improvement" },
+              { icon: "🏥", text: "Our clinic's expertise in complex cases" },
+            ].map((item, idx) => (
+              <li
+                key={idx}
+                className="flex items-start gap-3 sm:gap-4 bg-white rounded-xl px-4 sm:px-6 py-3 sm:py-4 shadow-sm border"
+                style={{ borderColor: theme.primary[100] }}
+              >
+                <span className="text-xl sm:text-2xl mt-0.5 flex-shrink-0">{item.icon}</span>
+                <span className="text-sm sm:text-base text-gray-700 font-medium leading-snug">{item.text}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Closing statement */}
+          <p
+            className="text-sm sm:text-base md:text-lg font-semibold text-center py-4 px-6 rounded-2xl"
+            style={{ backgroundColor: theme.primary[600], color: '#fff' }}
+          >
+            These transformations are proof that accurate homeopathy can lead to{' '}
+            <span className="underline underline-offset-2">meaningful change</span> — inside and out.
+          </p>
+        </div>
       </div>
     </section>
   );

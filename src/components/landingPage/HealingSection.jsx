@@ -217,10 +217,7 @@ const HealingSection = () => {
           className="heading-font text-4xl md:text-6xl font-extrabold leading-tight"
           style={{ color: theme.text.primary, willChange: 'transform' }}
         >
-          ADVANCE GERMAN <br />
-          <span style={{ color: theme.primary[600] }}>
-            HOMEOPATHY METHODS
-          </span>
+          HEALING BEGINS WITHIN
         </h1>
 
         <p
@@ -228,9 +225,9 @@ const HealingSection = () => {
           className="mt-6 text-lg leading-relaxed"
           style={{ color: theme.text.secondary, willChange: 'transform' }}
         >
-          Advance German Homeopathy Methods. Experience the transformative power of nature. Personalized homeopathic care that treats the root cause, not just symptoms.
-          <br/><br/>
-          With 15 years of experience and case taking expertise, Dr. Guneet follows the German Method of Homeopathy, a scientific structured process that focuses on identifying the root cause of diseases instead of only treating symptoms.
+          Experience the transformative power of nature. Personalized homeopathic care that treats the root cause, not just symptoms.
+          <br /><br />
+          With 15 years of experience and case taking expertise, Dr. Guneet follows the German Method of Homeopathy, a scientific structured process that focuses on identifying the root cause of diseases instead of only treating symptoms. This approach has helped thousands of patients to achieve natural, safe, and long-term recovery.
         </p>
 
         <div 

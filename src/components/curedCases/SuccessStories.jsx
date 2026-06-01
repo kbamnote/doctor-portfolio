@@ -202,24 +202,6 @@ const SuccessStories = () => {
 
   return (
     <section ref={sectionRef} className="bg-gray-50 py-12 sm:py-16 px-4 sm:px-6 md:px-10 lg:px-20">
-      {/* Explanatory Text */}
-      <div className="max-w-4xl mx-auto mb-12 text-center">
-        <h2 className="text-2xl font-semibold mb-4 text-gray-800">Why We Show Before & After Results</h2>
-        <p className="text-gray-600 mb-6">
-          Many patients come to us feeling confused, anxious, and unsure because they have tried multiple treatments without lasting relief. 
-          Showing real cured cases helps you understand:
-        </p>
-        <ul className="text-left max-w-2xl mx-auto space-y-2 text-gray-700 list-disc pl-5">
-           <li>How homeopathy treatment works</li>
-           <li>What type of diseases improve naturally</li>
-           <li>How long chronic conditions take to show visible improvement</li>
-           <li>Our clinic’s expertise in complex cases</li>
-        </ul>
-        <p className="text-gray-600 mt-6">
-          These transformations are proof that accurate homeopathy can lead to meaningful change—inside and out.
-        </p>
-      </div>
-
       {/* Filter Buttons */}
       <div ref={filtersRef} className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
         {filters.map((filter) => (

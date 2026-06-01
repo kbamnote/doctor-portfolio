@@ -9,21 +9,21 @@ gsap.registerPlugin(ScrollTrigger);
 const features = [
   {
     icon: <Shield className="w-7 h-7 text-white" />,
-    title: "Root Cause Analysis",
+    title: "Our Treatment Focus on finding the Root Cause",
     description:
-      "Most treatments work on symptoms. But Dr. Guneet always aim to discover why the disease started, how it progressed, and what is worse in your body.",
+      "Most treatments work on symptoms. But Dr. Guneet always aims to discover why the disease started at first, how it progressed in your body, and what is worse in your body.",
   },
   {
     icon: <Heart className="w-7 h-7 text-white" />,
-    title: "Safe & Side-Effect Free",
+    title: "Safe & Side-Effect Free Healing",
     description:
       "Homeopathy is always known for being safe and gentle but only when the medicines are chosen correctly.",
   },
   {
     icon: <TrendingUp className="w-7 h-7 text-white" />,
-    title: "Chronic & Incurable Diseases",
+    title: "Special Treatment for Chronic & Incurable Diseases",
     description:
-      "Whether you are struggling with a new disease or a incurable condition that has lasted for years, personalized homeopathy helps you to regain your health.",
+      "Whether you are struggling with a new disease or an incurable condition that has lasted for years in your body, personalized homeopathy helps you to regain your health and stimulates your healing.",
   },
 ];
 
@@ -133,7 +133,7 @@ const WhyHomeopathy = () => {
           className="heading-font text-3xl md:text-4xl font-semibold mb-4"
           style={{ color: theme.text.primary, willChange: 'transform' }}
         >
-          Why Homeopathy?
+          Why Dr. Guneet is the Best Homeopathic Doctor in Delhi?
         </h2>
 
         <p
@@ -141,8 +141,7 @@ const WhyHomeopathy = () => {
           className="max-w-2xl mx-auto text-lg mb-12"
           style={{ color: theme.text.secondary, willChange: 'transform' }}
         >
-          A holistic approach to health that treats the whole person, not just the
-          disease.
+          Finding the best homeopathic doctor in Delhi can feel confusing when every clinic claims that they are the best. What truly stands is a doctor who understands you, your body, your lifestyle, your emotional patterns, and the deep-root causes behind your disease. That is exactly what Dr. Guneet specializes in.
         </p>
       </div>
 

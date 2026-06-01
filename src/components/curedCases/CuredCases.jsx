@@ -9,7 +9,7 @@ const CuredCases = () => {
   return (
   <>
   <SEO 
-    title="Real Before & After Results of Homeopathy Treatment | Dr. Guneet"
+    title="Real Before & After Results of Homeopathy Treatment at Our Homeopathic Clinic"
     description="See real before & after results of homeopathy treatment at our homeopathic clinic. Proven improvements in skin, hair, thyroid, allergies, PCOS, and chronic diseases."
    />
   <CuredCasesHero/>

@@ -10,7 +10,7 @@ const AboutPage = () => {
   return (
    <>
    <SEO 
-    title="Holistic Treatment For Chronic Diseases | Dr. Guneet"
+    title="Holistic Treatment For Chronic Diseases"
     description="A holistic treatment approach for all chronic diseases, where conventional treatment only focus on managing symptoms."
    />
    <AboutHero/>

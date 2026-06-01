@@ -236,21 +236,7 @@ const BlogFilter = () => {
             </ul>
           </div>
 
-          {/* Stay Updated */}
-          <div className="sidebar-item bg-white shadow-md rounded-xl p-4 sm:p-5" style={{ willChange: 'transform' }}>
-            <h4 className="font-semibold text-gray-900 mb-3 text-sm sm:text-base">Stay Updated</h4>
-            <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
-              Subscribe to our newsletter for the latest health insights and wellness tips.
-            </p>
-            <input
-              type="email"
-              placeholder="Your email"
-              className="w-full border rounded-md px-3 py-2 mb-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-green-400"
-            />
-            <button className="w-full bg-[#35AB9A] text-white py-2 rounded-md hover:bg-green-600 transition text-xs sm:text-sm">
-              Subscribe
-            </button>
-          </div>
+
         </aside>
       </div>
     </div>

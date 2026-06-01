@@ -203,7 +203,7 @@ const HeroSection = React.memo(() => {
       initial={{ opacity: 0, x: -40 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.9, ease: "easeOut" }}
-      className="absolute z-10 top-[50%] lg:top-[25%]"
+      className="absolute z-10 top-[68%] lg:top-[45%]"
       style={{
         left: 0,
         transform: "translateY(-50%)",
