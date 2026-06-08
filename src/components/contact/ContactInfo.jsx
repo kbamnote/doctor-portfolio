@@ -1,15 +1,79 @@
-import React, { useRef, useEffect } from "react";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import React, { useRef, useEffect, useState } from "react";
+import { MapPin, Phone, MessageCircle, Clock, Send } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import emailjs from "@emailjs/browser";
 import { theme } from "../../theme/colors";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+const initialForm = {
+  name: "",
+  email: "",
+  phone: "",
+  condition: "",
+  symptoms: "",
+};
 
 const ContactInfo = () => {
   const sectionRef = useRef(null);
   const formRef = useRef(null);
   const contactCardRef = useRef(null);
+
+  const [form, setForm] = useState(initialForm);
+  const [status, setStatus] = useState({ state: "idle", message: "" });
+  const isSending = status.state === "sending";
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      setStatus({
+        state: "error",
+        message:
+          "Email service is not configured yet. Please try again later or contact us on WhatsApp.",
+      });
+      return;
+    }
+
+    setStatus({ state: "sending", message: "" });
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          phone: form.phone,
+          condition: form.condition,
+          symptoms: form.symptoms,
+          to_email: "homeopathyindia@gmail.com",
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      );
+      setStatus({
+        state: "success",
+        message: "Thank you! Your appointment request has been sent.",
+      });
+      setForm(initialForm);
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setStatus({
+        state: "error",
+        message: "Something went wrong. Please try again or reach us on WhatsApp.",
+      });
+    }
+  };
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -119,7 +183,7 @@ const ContactInfo = () => {
             Schedule Your Appointment
           </h2>
 
-          <form className="space-y-4 sm:space-y-5">
+          <form className="space-y-4 sm:space-y-5" onSubmit={handleSubmit}>
             {/* Full Name */}
             <div>
               <label
@@ -130,6 +194,10 @@ const ContactInfo = () => {
               </label>
               <input
                 type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                required
                 placeholder="John Doe"
                 className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2"
                 style={{
@@ -154,6 +222,10 @@ const ContactInfo = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
                   placeholder="john@example.com"
                   className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2"
                   style={{
@@ -176,7 +248,11 @@ const ContactInfo = () => {
                 </label>
                 <input
                   type="tel"
-                  placeholder="+1 (555) 123-4567"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  required
+                  placeholder="+91 98765 43210"
                   className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2"
                   style={{
                     borderColor: theme.neutral[300],
@@ -199,6 +275,10 @@ const ContactInfo = () => {
                 Health Condition *
               </label>
               <select
+                name="condition"
+                value={form.condition}
+                onChange={handleChange}
+                required
                 className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2"
                 style={{
                   borderColor: theme.neutral[300],
@@ -209,7 +289,7 @@ const ContactInfo = () => {
                 }
                 onBlur={(e) => (e.target.style.boxShadow = "none")}
               >
-                <option>Select a condition</option>
+                <option value="">Select a condition</option>
                 <option>Allergies</option>
                 <option>Digestive Issues</option>
                 <option>Stress & Anxiety</option>
@@ -228,6 +308,9 @@ const ContactInfo = () => {
               </label>
               <textarea
                 rows="4"
+                name="symptoms"
+                value={form.symptoms}
+                onChange={handleChange}
                 placeholder="Please describe your symptoms and health concerns..."
                 className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2"
                 style={{
@@ -244,21 +327,40 @@ const ContactInfo = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full font-medium py-3 sm:py-4 rounded-lg flex items-center justify-center gap-2 transition-all text-sm sm:text-base"
+              disabled={isSending}
+              className="w-full font-medium py-3 sm:py-4 rounded-lg flex items-center justify-center gap-2 transition-all text-sm sm:text-base disabled:opacity-70 disabled:cursor-not-allowed"
               style={{
                 backgroundColor: theme.primary[600],
                 color: theme.text.white,
               }}
               onMouseEnter={(e) =>
-                (e.target.style.backgroundColor = theme.primary[700])
+                !isSending &&
+                (e.currentTarget.style.backgroundColor = theme.primary[700])
               }
               onMouseLeave={(e) =>
-                (e.target.style.backgroundColor = theme.primary[600])
+                (e.currentTarget.style.backgroundColor = theme.primary[600])
               }
             >
               <Send size={18} />
-              <span>Submit Appointment Request</span>
+              <span>
+                {isSending ? "Sending..." : "Submit Appointment Request"}
+              </span>
             </button>
+
+            {status.message && (
+              <p
+                role="status"
+                className="text-sm text-center mt-1"
+                style={{
+                  color:
+                    status.state === "success"
+                      ? theme.primary[700]
+                      : "#dc2626",
+                }}
+              >
+                {status.message}
+              </p>
+            )}
           </form>
         </div>
 
@@ -285,17 +387,26 @@ const ContactInfo = () => {
               {
                 icon: <MapPin />,
                 title: "Visit Us",
-                lines: ["123 Wellness Avenue", "Green Valley, CA 94000"],
+                lines: [
+                  "Safdarjung Enclave, near green park, B-7/Extension,",
+                  "Block B 7, Arjun Nagar, Safdarjung Enclave,",
+                  "New Delhi, Delhi 110029",
+                ],
               },
               {
                 icon: <Phone />,
                 title: "Call Us",
-                lines: ["+1 (555) 123-4567", "+1 (555) 987-6543"],
+                lines: [{ text: "9354985058", href: "tel:9354985058" }],
               },
               {
-                icon: <Mail />,
-                title: "Email Us",
-                lines: ["info@homeoheal.com", "appointments@homeoheal.com"],
+                icon: <MessageCircle />,
+                title: "WhatsApp",
+                lines: [
+                  {
+                    text: "Message on WhatsApp",
+                    href: "https://wa.me/919354985058?text=Hello!%20I%20want%20homeopathy%20treatment.%E2%80%8E",
+                  },
+                ],
               },
               {
                 icon: <Clock />,
@@ -315,11 +426,25 @@ const ContactInfo = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold">{item.title}</h4>
-                  {item.lines.map((line, i) => (
-                    <p key={i} style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-                      {line}
-                    </p>
-                  ))}
+                  {item.lines.map((line, i) =>
+                    typeof line === "string" ? (
+                      <p key={i} style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+                        {line}
+                      </p>
+                    ) : (
+                      <p key={i}>
+                        <a
+                          href={line.href}
+                          target={line.href.startsWith("http") ? "_blank" : undefined}
+                          rel={line.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="transition-colors duration-200 hover:underline"
+                          style={{ color: 'rgba(255, 255, 255, 0.9)' }}
+                        >
+                          {line.text}
+                        </a>
+                      </p>
+                    )
+                  )}
                 </div>
               </div>
             ))}
