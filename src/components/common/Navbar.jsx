@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { X } from 'lucide-react';
 import logo from '../../assets/logo.png';
-import logoLandingPage from '../../assets/logoLandingPage.png';
 import { theme } from '../../theme/colors';
 
 const Navbar = () => {
@@ -36,15 +35,15 @@ const Navbar = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
-          className="absolute top-0 left-0 w-full flex justify-between items-center p-4 sm:p-6 text-white z-10 bg-black/20"
-          style={{ fontFamily: "'Neue Montreal', sans-serif" }}
+          className="absolute top-0 left-0 w-full flex justify-between items-center p-4 sm:p-6 z-20"
+          style={{ fontFamily: "'Neue Montreal', sans-serif", color: theme.text.primary }}
         >
           {/* Left Logo */}
-           <div 
+           <div
              className="cursor-pointer flex-shrink-0"
              onClick={() => handleNavigation('/')}
            >
-             <img src={logoLandingPage} alt="Logo" className="h-10 sm:h-12 w-auto" />
+             <img src={logo} alt="Logo" className="h-10 sm:h-12 w-auto" />
            </div>
 
           {/* Center Links - Desktop */}
@@ -58,7 +57,8 @@ const Navbar = () => {
               About
               {isActiveRoute('/about') && (
                 <motion.div
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-white"
+                  className="absolute -bottom-1 left-0 right-0 h-0.5"
+                  style={{ backgroundColor: theme.primary[600] }}
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.3 }}
@@ -74,7 +74,8 @@ const Navbar = () => {
               Cured Cases
               {isActiveRoute('/cured-cases') && (
                 <motion.div
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-white"
+                  className="absolute -bottom-1 left-0 right-0 h-0.5"
+                  style={{ backgroundColor: theme.primary[600] }}
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.3 }}
@@ -90,7 +91,8 @@ const Navbar = () => {
               Blogs
               {isActiveRoute('/blogs') && (
                 <motion.div
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-white"
+                  className="absolute -bottom-1 left-0 right-0 h-0.5"
+                  style={{ backgroundColor: theme.primary[600] }}
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.3 }}
@@ -116,17 +118,17 @@ const Navbar = () => {
             aria-label="Toggle mobile menu"
           >
             <motion.span
-              className="w-6 h-0.5 bg-white block"
+              className="w-6 h-0.5 bg-gray-700 block"
               animate={isMobileMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.3 }}
             />
             <motion.span
-              className="w-6 h-0.5 bg-white block"
+              className="w-6 h-0.5 bg-gray-700 block"
               animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
               transition={{ duration: 0.3 }}
             />
             <motion.span
-              className="w-6 h-0.5 bg-white block"
+              className="w-6 h-0.5 bg-gray-700 block"
               animate={isMobileMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.3 }}
             />
