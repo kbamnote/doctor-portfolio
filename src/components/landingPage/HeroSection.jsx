@@ -1,202 +1,259 @@
-import React, { useMemo, useCallback } from "react";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import { CheckCircle2, Calendar, Play } from "lucide-react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import drimg from "../../assets/imgDr.webp";
 import Navbar from "../common/Navbar";
-import { theme, animationVariants } from "../../theme/colors";
 
 const HeroSection = React.memo(() => {
-  const navigate = useNavigate();
+  const [step, setStep] = useState(0);
+  const [isFirstVisit, setIsFirstVisit] = useState(true);
 
-  const highlights = useMemo(
-    () => [
-      "15+ Years Experience",
-      "Thousands of Consultations",
-      "Online & In-Person Consultations",
-      "Personalized Case Analysis",
-    ],
-    []
-  );
+  useEffect(() => {
+    const navigationEntries = performance.getEntriesByType("navigation");
+    const isFromNavigation =
+      navigationEntries.length > 0 &&
+      navigationEntries[0].type === "navigate" &&
+      document.referrer &&
+      document.referrer.includes(window.location.origin);
 
-  const goToContact = useCallback(() => navigate("/contact"), [navigate]);
-  const goToStories = useCallback(() => navigate("/cured-cases"), [navigate]);
+    if (isFromNavigation) {
+      setIsFirstVisit(false);
+      setStep(3);
+    } else {
+      setIsFirstVisit(true);
+      const timer1 = setTimeout(() => setStep(1), 2000);
+      const timer2 = setTimeout(() => setStep(2), 5000);
+      const timer3 = setTimeout(() => setStep(3), 7500);
+
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        clearTimeout(timer3);
+      };
+    }
+  }, []);
+
+  // Prevent scrolling during intro animation
+  useEffect(() => {
+    if (isFirstVisit && step < 3) {
+      const preventScroll = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      };
+      const preventArrowKeys = (e) => {
+        if ([32, 33, 34, 35, 36, 37, 38, 39, 40].includes(e.keyCode)) {
+          e.preventDefault();
+        }
+      };
+      document.addEventListener("wheel", preventScroll, { passive: false });
+      document.addEventListener("touchmove", preventScroll, { passive: false });
+      document.addEventListener("keydown", preventArrowKeys);
+
+      return () => {
+        document.removeEventListener("wheel", preventScroll);
+        document.removeEventListener("touchmove", preventScroll);
+        document.removeEventListener("keydown", preventArrowKeys);
+      };
+    }
+  }, [step, isFirstVisit]);
+
+  // Memoized headings and animation calculations
+  const headings = useMemo(() => [
+    "UNIQUE METHODS FOR GERMAN HOMEOPATHY",
+    "CURE DISEASES NOT SYMPTOMS",
+    "PERSONALIZED HOMEOPATHY TREATMENT",
+  ], []);
+
+  // Memoized typing timings
+  const animationConfig = useMemo(() => ({
+    charDelay: 0.04, // seconds per character
+    lineGap: 0.35, // extra gap between lines after line finishes
+  }), []);
+
+  // Memoized line start delays calculation
+  const lineStartDelays = useMemo(() => {
+    return headings.map((_, idx) => {
+      if (idx === 0) return 0;
+      let acc = 0;
+      for (let i = 0; i < idx; i++) {
+        acc += headings[i].length * animationConfig.charDelay + animationConfig.lineGap;
+      }
+      return acc;
+    });
+  }, [headings, animationConfig]);
+
+  // Memoized animation variants
+  const letterVariant = useMemo(() => ({
+    hidden: { opacity: 0, y: "0.25em" },
+    visible: (delay) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay,
+        duration: 0.18,
+        ease: "easeOut",
+      },
+    }),
+  }), []);
 
   return (
-    <section
-      id="hero"
-      className="relative w-full overflow-hidden"
+    <section className="relative h-screen w-full bg-white overflow-hidden flex flex-col items-center justify-center text-center">
+      {/* Top Text */}
+      <motion.div
+        initial={isFirstVisit ? { opacity: 0 } : { opacity: 1, y: -150 }}
+        animate={{
+          opacity: 1,
+          y: step >= 1 ? -150 : 0,
+        }}
+        transition={isFirstVisit ? { duration: 1, ease: "easeInOut" } : { duration: 0 }}
+        className="absolute flex flex-col items-start text-left"
+        style={{
+          top: "25%",
+          transform: "translateY(-100%)",
+          fontFamily: "'Neue Montreal', sans-serif",
+        }}
+      >
+        <motion.p
+          initial={isFirstVisit ? { opacity: 0 } : { opacity: 1 }}
+          animate={{ opacity: 1 }}
+          transition={isFirstVisit ? { duration: 0.8 } : { duration: 0 }}
+          className="text-4xl md:text-4xl font-semibold leading-none mb-1"
+        >
+          Dr.
+        </motion.p>
+
+        <motion.h1
+          initial={isFirstVisit ? { opacity: 0 } : { opacity: 1 }}
+          animate={{ opacity: 1 }}
+          transition={isFirstVisit ? { duration: 1, delay: 0.2 } : { duration: 0 }}
+          className="heading-font text-5xl md:text-7xl font-extrabold leading-tight tracking-tight"
+          style={{ lineHeight: "1" }}
+        >
+          GUNEET
+        </motion.h1>
+
+        <motion.h1
+          initial={isFirstVisit ? { opacity: 0 } : { opacity: 1 }}
+          animate={{ opacity: 1 }}
+          transition={isFirstVisit ? { duration: 1, delay: 0.4 } : { duration: 0 }}
+          className="heading-font text-5xl md:text-7xl font-black leading-tight tracking-tight text-center self-center"
+          style={{ lineHeight: "1", width: "100%" }}
+        >
+          SINGH
+        </motion.h1>
+      </motion.div>
+
+      {/* Bottom Text */}
+      <motion.p
+        initial={isFirstVisit ? { opacity: 0 } : { opacity: 1, y: 150 }}
+        animate={{
+          opacity: 1,
+          y: step >= 1 ? 150 : 0,
+        }}
+        transition={isFirstVisit ? { duration: 1, ease: "easeInOut", delay: 0.2 } : { duration: 0 }}
+        className="text-2xl md:text-8xl font-extrabold absolute"
+        style={{
+          top: "55%",
+          fontFamily: "'Neue Montreal', sans-serif",
+        }}
+      >
+        ©2025
+      </motion.p>
+
+      {/* Center Image */}
+      <AnimatePresence>
+        {(step === 1 || step === 2 || step === 3) && (
+          <motion.div
+            key="centerImage"
+            initial={isFirstVisit ? { opacity: 0, scale: 0.5 } : { opacity: 1 }}
+            animate={
+              step >= 2
+                ? {
+                    opacity: 1,
+                    scale: 1,
+                    width: "100vw",
+                    height: "100vh",
+                    borderRadius: 0,
+                  }
+                : {
+                    opacity: 1,
+                    scale: 1,
+                    width: "30vw",
+                    height: "40vh",
+                    borderRadius: 0,
+                  }
+            }
+            transition={isFirstVisit ? { duration: 1, ease: "easeInOut" } : { duration: 0 }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden z-0"
+          >
+            <motion.img src={drimg} alt="Dr. Guneet Singh" className="w-full h-full object-cover" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Step 3: Typing (character-by-character) */}
+  {/* Step 3: Typing (character-by-character, fixed word wrapping) */}
+{/* Step 3: Final Heading */}
+{/* Step 3: Final Heading (Full-width bold style) */}
+{/* Step 3: Final Heading — edge-to-edge, ultra-bold, left aligned */}
+<AnimatePresence>
+  {step === 3 && (
+    <motion.div
+      key="finalHeading"
+      initial={{ opacity: 0, x: -40 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.9, ease: "easeOut" }}
+      className="absolute z-10 top-[68%] lg:top-[45%]"
       style={{
-        background: `linear-gradient(180deg, ${theme.background.secondary} 0%, ${theme.background.primary} 55%, ${theme.background.primary} 100%)`,
+        left: 0,
+        transform: "translateY(-50%)",
+        width: "100%",
+        pointerEvents: "none",
+        fontFamily: "'Neue Montreal', sans-serif",
       }}
     >
-      <Navbar />
-
-      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 lg:pb-24">
-        <motion.div
-          variants={animationVariants.staggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 xl:gap-20 items-center"
+      <div
+        style={{
+          paddingLeft: "4vw",
+          paddingRight: "4vw",
+          maxWidth: "92vw",
+        }}
+      >
+          <h1
+          className="font-extrabold uppercase"
+          style={{
+            margin: 0,
+            fontSize: "clamp(2rem, 8vw, 8rem)",
+            lineHeight: "clamp(0.9, 0.95, 1)",
+            letterSpacing: "-0.03em",
+            fontWeight: 850,
+            color: "#fff",
+            textAlign: "left",
+            textShadow: "0 10px 20px rgba(0,0,0,0.45)",
+            display: "block",
+            whiteSpace: "pre-wrap",
+            pointerEvents: "auto",
+          }}
         >
-          {/* Left column */}
-          <div className="order-2 lg:order-1">
-            <motion.h1
-              variants={animationVariants.fadeInUp}
-              transition={{ duration: 0.7, ease: theme.easing.easeOut }}
-              className="font-extrabold tracking-tight"
-              style={{
-                color: theme.text.primary,
-                fontSize: "clamp(2.25rem, 4.6vw, 4.25rem)",
-                lineHeight: 1.08,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Finally Find The Root Cause Of Your Chronic Health Problems — Not
-              Just Temporary Relief
-            </motion.h1>
-
-            <motion.p
-              variants={animationVariants.fadeInUp}
-              transition={{ duration: 0.7, delay: 0.1, ease: theme.easing.easeOut }}
-              className="mt-6 sm:mt-7 max-w-xl text-base sm:text-lg leading-relaxed"
-              style={{ color: theme.text.secondary }}
-            >
-              Personalized Homeopathic Treatment By Dr. Guneet Singh Gaba
-              Helping Patients Find Long-Term Relief From Chronic &amp;
-              Difficult-To-Treat Conditions Through Individualized Care.
-            </motion.p>
-
-            <motion.ul
-              variants={animationVariants.fadeInUp}
-              transition={{ duration: 0.7, delay: 0.2, ease: theme.easing.easeOut }}
-              className="mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4"
-            >
-              {highlights.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <CheckCircle2
-                    size={20}
-                    strokeWidth={2}
-                    className="mt-0.5 flex-shrink-0"
-                    style={{ color: theme.primary[500] }}
-                    aria-hidden="true"
-                  />
-                  <span
-                    className="text-sm sm:text-base"
-                    style={{ color: theme.text.secondary }}
-                  >
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </motion.ul>
-
-            <motion.div
-              variants={animationVariants.fadeInUp}
-              transition={{ duration: 0.7, delay: 0.3, ease: theme.easing.easeOut }}
-              className="mt-10 sm:mt-12 flex flex-col sm:flex-row gap-4"
-            >
-              <motion.button
-                type="button"
-                onClick={goToContact}
-                whileHover={animationVariants.hover}
-                whileTap={animationVariants.tap}
-                className="flex items-center justify-center gap-3 rounded-xl px-7 py-4 text-base font-semibold text-white cursor-pointer shadow-lg"
-                style={{
-                  backgroundColor: theme.primary[600],
-                  boxShadow: "0 12px 28px -12px rgba(54, 150, 172, 0.65)",
-                }}
-              >
-                <Calendar size={20} strokeWidth={2} aria-hidden="true" />
-                Book Your Consultation
-              </motion.button>
-
-              <motion.button
-                type="button"
-                onClick={goToStories}
-                whileHover={animationVariants.hover}
-                whileTap={animationVariants.tap}
-                className="flex items-center justify-center gap-3 rounded-xl border px-7 py-4 text-base font-semibold cursor-pointer bg-white"
-                style={{
-                  borderColor: theme.neutral[200],
-                  color: theme.text.primary,
-                }}
-              >
-                <Play
-                  size={20}
-                  strokeWidth={2}
-                  style={{ color: theme.primary[600] }}
-                  aria-hidden="true"
-                />
-                Watch Patient Success Stories
-              </motion.button>
-            </motion.div>
-          </div>
-
-          {/* Right column - video card */}
-          <motion.div
-            variants={animationVariants.scaleIn}
-            transition={{ duration: 0.8, delay: 0.15, ease: theme.easing.easeOut }}
-            className="order-1 lg:order-2"
-          >
-            <button
-              type="button"
-              onClick={goToStories}
-              aria-label="Watch: How We Help Patients Find Lasting Relief"
-              className="group relative block w-full overflow-hidden rounded-2xl cursor-pointer"
-              style={{
-                boxShadow: "0 30px 60px -25px rgba(17, 24, 39, 0.45)",
-              }}
-            >
-              <div className="relative w-full aspect-[4/3] sm:aspect-[16/11]">
-                <img
-                  src={drimg}
-                  alt="Dr. Guneet Singh Gaba"
-                  loading="eager"
-                  className="absolute inset-0 h-full w-full object-cover object-top"
-                />
-
-                {/* Bottom caption gradient */}
-                <div
-                  className="absolute inset-x-0 bottom-0 h-1/3"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, rgba(17,24,39,0) 0%, rgba(17,24,39,0.75) 100%)",
-                  }}
-                />
-
-                {/* Play button */}
-                <span className="absolute inset-0 flex items-center justify-center">
-                  <span
-                    className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full bg-white transition-transform duration-300 group-hover:scale-110"
-                    style={{ boxShadow: "0 10px 30px -8px rgba(17,24,39,0.5)" }}
-                  >
-                    <Play
-                      size={28}
-                      strokeWidth={0}
-                      fill={theme.primary[600]}
-                      className="ml-1"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </span>
-
-                {/* Caption */}
-                <span
-                  className="absolute bottom-5 left-5 right-5 text-left text-sm sm:text-base font-semibold"
-                  style={{ color: theme.text.white }}
-                >
-                  Watch: How We Help Patients Find Lasting Relief
-                </span>
-              </div>
-            </button>
-          </motion.div>
-        </motion.div>
+          <span style={{ display: "block" }}>MEET THE BEST</span>
+          <span style={{ display: "block" }}>HOMEOPATHIC</span>
+          <span style={{ display: "block" }}>DOCTOR IN DELHI</span>
+        </h1>
       </div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
+
+
+
+
+      {/* Navbar shows after step 3 */}
+      <AnimatePresence>{step === 3 && <Navbar key="navbar" />}</AnimatePresence>
     </section>
   );
 });
 
-HeroSection.displayName = "HeroSection";
+HeroSection.displayName = 'HeroSection';
 
 export default HeroSection;

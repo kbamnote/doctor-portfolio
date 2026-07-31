@@ -13,6 +13,7 @@ const BlogPage = lazy(() => import('../blogPage/BlogPage'));
 const BlogPost = lazy(() => import('../blogPage/BlogPost'));
 const ContactPage = lazy(() => import('../contact/ContactPage'));
 const CuredCases = lazy(() => import('../curedCases/CuredCases'));
+const GoogleLandingPage = lazy(() => import('../googleLanding/GoogleLandingPage'));
 
 // Loading component for lazy-loaded routes
 const PageLoader = () => (
@@ -131,6 +132,13 @@ const AppRouter = () => {
             <Route path="/" element={
               <TransitionWrapper>
                 <LandingPage />
+              </TransitionWrapper>
+            } />
+            <Route path="/google-landing" element={
+              <TransitionWrapper>
+                <Suspense fallback={<PageLoader />}>
+                  <GoogleLandingPage />
+                </Suspense>
               </TransitionWrapper>
             } />
             <Route path="/about" element={

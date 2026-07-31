@@ -6,10 +6,13 @@ import WhatsAppButton from './WhatsAppButton';
 const Layout = ({ children }) => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  // The Google landing page ships its own FloatingCta, so the plain
+  // WhatsApp bubble is suppressed there to avoid two overlapping widgets.
+  const isGoogleLanding = location.pathname === '/google-landing';
 
   return (
     <div className="min-h-screen">
-      {/* Show navbar on all pages except home page (where it's part of the hero) */}
+      {/* Show navbar on all pages except home page (where it's part of the hero animation) */}
       {!isHomePage && <Navbar />}
 
       {/* Add padding top for non-home pages to account for fixed navbar */}
@@ -17,8 +20,7 @@ const Layout = ({ children }) => {
         {children}
       </div>
 
-      {/* Home page uses the richer FloatingCta instead of the plain WhatsApp bubble */}
-      {!isHomePage && <WhatsAppButton />}
+      {!isGoogleLanding && <WhatsAppButton />}
     </div>
   );
 };

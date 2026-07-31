@@ -1,39 +1,29 @@
 import React from 'react'
 import HeroSection from './HeroSection'
-import TreatmentVideo from './TreatmentVideo'
-import PainPoints from './PainPoints'
+import HealingSection from './HealingSection'
+import WhyHomeopathy from './WhyHomeopathy'
 import CaseStudies from './CaseStudies'
-import PatientVideos from './PatientVideos'
-import MeetDoctor from './MeetDoctor'
-import WhyChooseUs from './WhyChooseUs'
-import HowItWorks from './HowItWorks'
-import GoogleReviews from './GoogleReviews'
-import Faq from './Faq'
-import FinalCta from './FinalCta'
-// import Footer from '../common/Footer'
-import FloatingCta from '../common/FloatingCta'
+import HealingJourney from './HealingJourney'
+import Testimonials from './Testimonials'
+import HealingJourneyCTA from './HealingJourneyCta'
+import Footer from '../common/Footer'
 import SEO from '../common/SEO'
 
 const LandingPage = () => {
   return (
    <>
-   <SEO
+   <SEO 
     title="Best Homeopathic Doctor in Delhi for incurable disease | Dr. Guneet"
     description="are you Looking for the best homeopathic doctor in Delhi ? Dr. Guneet uses advance German Homeopathy Method to identify the real root cause of every disease."
    />
    <HeroSection/>
-   <TreatmentVideo/>
-   <PainPoints/>
+   <HealingSection/>
+   <WhyHomeopathy/>
    <CaseStudies/>
-   <PatientVideos/>
-   <MeetDoctor/>
-   <WhyChooseUs/>
-   <HowItWorks/>
-   <GoogleReviews/>
-   <Faq/>
-   <FinalCta/>
-   {/* <Footer/> */}
-   <FloatingCta/>
+   <HealingJourney/>
+   <Testimonials/>
+   <HealingJourneyCTA/>
+   <Footer/>
    </>
   )
 }
