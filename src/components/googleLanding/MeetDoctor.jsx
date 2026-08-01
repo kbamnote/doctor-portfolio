@@ -1,12 +1,11 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import { Star, Users, Award, Calendar } from "lucide-react";
 import doctorImg from "../../assets/dr.guneet 1.png";
 import { theme, animationVariants } from "../../theme/colors";
+import { openWhatsApp } from "./whatsapp";
 
 const MeetDoctor = React.memo(() => {
-  const navigate = useNavigate();
 
   const qualifications = useMemo(
     () => [
@@ -27,7 +26,6 @@ const MeetDoctor = React.memo(() => {
     []
   );
 
-  const goToContact = useCallback(() => navigate("/contact"), [navigate]);
 
   return (
     <section
@@ -238,7 +236,7 @@ const MeetDoctor = React.memo(() => {
 
           <motion.button
             type="button"
-            onClick={goToContact}
+            onClick={openWhatsApp}
             whileHover={animationVariants.hover}
             whileTap={animationVariants.tap}
             className="mt-5 rounded-xl px-8 py-4 text-base font-semibold text-white cursor-pointer"

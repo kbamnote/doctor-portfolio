@@ -27,7 +27,9 @@ const caseStudies = [
   },
 ];
 
-const CaseStudies = () => {
+// `hideLinks` is used by the standalone Google landing page, which must not
+// link out to the rest of the site. Defaults to false so the main site is unchanged.
+const CaseStudies = ({ hideLinks = false }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.2 });
 
@@ -155,9 +157,10 @@ const CaseStudies = () => {
               >
                 {study.title}
               </motion.h3>
+              {!hideLinks && (
               <Link to='/cured-cases'>
               <motion.div
-                
+
                 className="inline-flex items-center gap-2 font-medium transition-colors duration-300 hover:underline"
                 style={{ color: theme.primary[600] }}
                 initial={{ opacity: 0, x: -20 }}
@@ -173,12 +176,14 @@ const CaseStudies = () => {
                 <ArrowRight className="w-4 h-4" />
               </motion.div>
               </Link>
+              )}
             </motion.div>
           </motion.div>
         ))}
       </motion.div>
 
-      <motion.div 
+      {!hideLinks && (
+      <motion.div
         className="text-center"
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -207,6 +212,7 @@ const CaseStudies = () => {
         </motion.button>
         </Link>
       </motion.div>
+      )}
     </section>
   );
 };

@@ -1,13 +1,11 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import { CheckCircle2, Calendar, Play } from "lucide-react";
+import { CheckCircle2, Calendar } from "lucide-react";
 import drimg from "../../assets/imgDr.webp";
 import { theme, animationVariants } from "../../theme/colors";
+import { openWhatsApp } from "./whatsapp";
 
 const GoogleHero = React.memo(() => {
-  const navigate = useNavigate();
-
   const highlights = useMemo(
     () => [
       "15+ Years Experience",
@@ -17,9 +15,6 @@ const GoogleHero = React.memo(() => {
     ],
     []
   );
-
-  const goToContact = useCallback(() => navigate("/contact"), [navigate]);
-  const goToStories = useCallback(() => navigate("/cured-cases"), [navigate]);
 
   return (
     <section
@@ -95,7 +90,7 @@ const GoogleHero = React.memo(() => {
             >
               <motion.button
                 type="button"
-                onClick={goToContact}
+                onClick={openWhatsApp}
                 whileHover={animationVariants.hover}
                 whileTap={animationVariants.tap}
                 className="flex items-center justify-center gap-3 rounded-xl px-7 py-4 text-base font-semibold text-white cursor-pointer shadow-lg"
@@ -107,40 +102,17 @@ const GoogleHero = React.memo(() => {
                 <Calendar size={20} strokeWidth={2} aria-hidden="true" />
                 Book Your Consultation
               </motion.button>
-
-              <motion.button
-                type="button"
-                onClick={goToStories}
-                whileHover={animationVariants.hover}
-                whileTap={animationVariants.tap}
-                className="flex items-center justify-center gap-3 rounded-xl border px-7 py-4 text-base font-semibold cursor-pointer bg-white"
-                style={{
-                  borderColor: theme.neutral[200],
-                  color: theme.text.primary,
-                }}
-              >
-                <Play
-                  size={20}
-                  strokeWidth={2}
-                  style={{ color: theme.primary[600] }}
-                  aria-hidden="true"
-                />
-                Watch Patient Success Stories
-              </motion.button>
             </motion.div>
           </div>
 
-          {/* Right column - video card */}
+          {/* Right column - portrait */}
           <motion.div
             variants={animationVariants.scaleIn}
             transition={{ duration: 0.8, delay: 0.15, ease: theme.easing.easeOut }}
             className="order-1 lg:order-2"
           >
-            <button
-              type="button"
-              onClick={goToStories}
-              aria-label="Watch: How We Help Patients Find Lasting Relief"
-              className="group relative block w-full overflow-hidden rounded-2xl cursor-pointer"
+            <div
+              className="relative w-full overflow-hidden rounded-2xl"
               style={{
                 boxShadow: "0 30px 60px -25px rgba(17, 24, 39, 0.45)",
               }}
@@ -162,31 +134,16 @@ const GoogleHero = React.memo(() => {
                   }}
                 />
 
-                {/* Play button */}
-                <span className="absolute inset-0 flex items-center justify-center">
-                  <span
-                    className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full bg-white transition-transform duration-300 group-hover:scale-110"
-                    style={{ boxShadow: "0 10px 30px -8px rgba(17,24,39,0.5)" }}
-                  >
-                    <Play
-                      size={28}
-                      strokeWidth={0}
-                      fill={theme.primary[600]}
-                      className="ml-1"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </span>
-
                 {/* Caption */}
                 <span
                   className="absolute bottom-5 left-5 right-5 text-left text-sm sm:text-base font-semibold"
                   style={{ color: theme.text.white }}
                 >
-                  Watch: How We Help Patients Find Lasting Relief
+                  Dr. Guneet Singh Gaba &mdash; Helping Patients Find Lasting
+                  Relief
                 </span>
               </div>
-            </button>
+            </div>
           </motion.div>
         </motion.div>
       </div>

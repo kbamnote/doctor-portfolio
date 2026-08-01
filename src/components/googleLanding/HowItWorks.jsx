@@ -1,6 +1,5 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import {
   Calendar,
   ClipboardList,
@@ -10,9 +9,9 @@ import {
   ArrowDown,
 } from "lucide-react";
 import { theme, animationVariants } from "../../theme/colors";
+import { openWhatsApp } from "./whatsapp";
 
 const HowItWorks = React.memo(() => {
-  const navigate = useNavigate();
 
   const steps = useMemo(
     () => [
@@ -50,7 +49,6 @@ const HowItWorks = React.memo(() => {
     []
   );
 
-  const goToContact = useCallback(() => navigate("/contact"), [navigate]);
 
   return (
     <section
@@ -179,7 +177,7 @@ const HowItWorks = React.memo(() => {
 
           <motion.button
             type="button"
-            onClick={goToContact}
+            onClick={openWhatsApp}
             whileHover={animationVariants.hover}
             whileTap={animationVariants.tap}
             className="mt-6 rounded-xl bg-white px-7 py-3.5 text-base font-semibold cursor-pointer"

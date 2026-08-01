@@ -1,11 +1,8 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import { Clock, Calendar, MessageCircle, CheckCircle2 } from "lucide-react";
 import { theme, animationVariants } from "../../theme/colors";
-
-const WHATSAPP_URL =
-  "https://wa.me/919354985058?text=Hello!%20I%20want%20homeopathy%20treatment.%E2%80%8E";
+import { WHATSAPP_URL, openWhatsApp } from "./whatsapp";
 
 // Subtle plus-sign lattice layered over the gradient
 const PLUS_PATTERN = `url("data:image/svg+xml,${encodeURIComponent(
@@ -13,8 +10,6 @@ const PLUS_PATTERN = `url("data:image/svg+xml,${encodeURIComponent(
 )}")`;
 
 const FinalCta = React.memo(() => {
-  const navigate = useNavigate();
-
   const assurances = useMemo(
     () => [
       "Same-day appointments available",
@@ -23,8 +18,6 @@ const FinalCta = React.memo(() => {
     ],
     []
   );
-
-  const goToContact = useCallback(() => navigate("/contact"), [navigate]);
 
   return (
     <section
@@ -96,7 +89,7 @@ const FinalCta = React.memo(() => {
         >
           <motion.button
             type="button"
-            onClick={goToContact}
+            onClick={openWhatsApp}
             whileHover={animationVariants.hover}
             whileTap={animationVariants.tap}
             className="flex items-center justify-center gap-3 rounded-xl bg-white px-7 py-4 text-base font-semibold cursor-pointer"

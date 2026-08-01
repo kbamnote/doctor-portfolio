@@ -1,14 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import { Calendar } from "lucide-react";
 import { theme } from "../../theme/colors";
-
-const WHATSAPP_URL =
-  "https://wa.me/919354985058?text=Hello!%20I%20want%20homeopathy%20treatment.%E2%80%8E";
+import { WHATSAPP_URL, openWhatsApp } from "./whatsapp";
 
 const FloatingCta = () => {
-  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -36,8 +32,6 @@ const FloatingCta = () => {
     };
   }, []);
 
-  const goToContact = useCallback(() => navigate("/contact"), [navigate]);
-
   return (
     <AnimatePresence>
       {isVisible && (
@@ -62,7 +56,7 @@ const FloatingCta = () => {
 
           <motion.button
             type="button"
-            onClick={goToContact}
+            onClick={openWhatsApp}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-semibold cursor-pointer"

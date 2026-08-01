@@ -1,11 +1,10 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { theme, animationVariants } from "../../theme/colors";
+import { openWhatsApp } from "./whatsapp";
 
 const Faq = React.memo(() => {
-  const navigate = useNavigate();
   const [openIndex, setOpenIndex] = useState(0);
 
   const faqs = useMemo(
@@ -49,7 +48,6 @@ const Faq = React.memo(() => {
     []
   );
 
-  const goToContact = useCallback(() => navigate("/contact"), [navigate]);
 
   return (
     <section
@@ -186,7 +184,7 @@ const Faq = React.memo(() => {
 
           <motion.button
             type="button"
-            onClick={goToContact}
+            onClick={openWhatsApp}
             whileHover={animationVariants.hover}
             whileTap={animationVariants.tap}
             className="mt-6 rounded-xl px-8 py-3.5 text-base font-semibold text-white cursor-pointer"

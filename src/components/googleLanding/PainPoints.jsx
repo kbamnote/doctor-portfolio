@@ -1,11 +1,10 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 import { theme, animationVariants } from "../../theme/colors";
+import { openWhatsApp } from "./whatsapp";
 
 const PainPoints = React.memo(() => {
-  const navigate = useNavigate();
 
   const painPoints = useMemo(
     () => [
@@ -18,7 +17,6 @@ const PainPoints = React.memo(() => {
     []
   );
 
-  const goToContact = useCallback(() => navigate("/contact"), [navigate]);
 
   return (
     <section
@@ -90,7 +88,7 @@ const PainPoints = React.memo(() => {
 
           <motion.button
             type="button"
-            onClick={goToContact}
+            onClick={openWhatsApp}
             whileHover={animationVariants.hover}
             whileTap={animationVariants.tap}
             className="mt-6 rounded-xl bg-white px-8 py-4 text-base font-semibold cursor-pointer"

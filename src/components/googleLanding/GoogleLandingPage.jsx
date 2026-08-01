@@ -3,7 +3,7 @@ import GoogleHero from './GoogleHero'
 import TreatmentVideo from './TreatmentVideo'
 import PainPoints from './PainPoints'
 import CaseStudies from '../landingPage/CaseStudies'
-import PatientVideos from './PatientVideos'
+// import PatientVideos from './PatientVideos'
 import MeetDoctor from './MeetDoctor'
 import WhyChooseUs from './WhyChooseUs'
 import HowItWorks from './HowItWorks'
@@ -11,7 +11,7 @@ import GoogleReviews from './GoogleReviews'
 import Faq from './Faq'
 import FinalCta from './FinalCta'
 // import Footer from '../common/Footer'
-import FloatingCta from '../common/FloatingCta'
+import FloatingCta from './FloatingCta'
 import SEO from '../common/SEO'
 
 const GoogleLandingPage = () => {
@@ -24,8 +24,8 @@ const GoogleLandingPage = () => {
    <GoogleHero/>
    <TreatmentVideo/>
    <PainPoints/>
-   <CaseStudies/>
-   <PatientVideos/>
+   <CaseStudies hideLinks/>
+   {/* <PatientVideos/> */}
    <MeetDoctor/>
    <WhyChooseUs/>
    <HowItWorks/>
