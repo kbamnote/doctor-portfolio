@@ -13,8 +13,10 @@ const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 const EMAILJS_TEMPLATE_ID =
   import.meta.env.VITE_EMAILJS_BOOKING_TEMPLATE_ID ||
   import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+// Only used if the EmailJS template's "To Email" is set to {{to_email}}.
+// If that field holds a literal address, the template wins and this is ignored.
 const LEAD_EMAIL =
-  import.meta.env.VITE_BOOKING_LEAD_EMAIL || "homeopathyindia@gmail.com";
+  import.meta.env.VITE_BOOKING_LEAD_EMAIL || "righthomeopathyindia@gmail.com";
 
 const LEAD_SOURCE = "Google Landing Page";
 
