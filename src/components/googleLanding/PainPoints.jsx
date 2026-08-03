@@ -2,9 +2,10 @@ import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import { theme, animationVariants } from "../../theme/colors";
-import { openWhatsApp } from "./whatsapp";
+import { useBooking } from "./bookingContext";
 
 const PainPoints = React.memo(() => {
+  const { openBooking } = useBooking();
 
   const painPoints = useMemo(
     () => [
@@ -88,7 +89,7 @@ const PainPoints = React.memo(() => {
 
           <motion.button
             type="button"
-            onClick={openWhatsApp}
+            onClick={openBooking}
             whileHover={animationVariants.hover}
             whileTap={animationVariants.tap}
             className="mt-6 rounded-xl bg-white px-8 py-4 text-base font-semibold cursor-pointer"

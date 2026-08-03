@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 import { Star, Users, Award, Calendar } from "lucide-react";
 import doctorImg from "../../assets/dr.guneet 1.png";
 import { theme, animationVariants } from "../../theme/colors";
-import { openWhatsApp } from "./whatsapp";
+import { useBooking } from "./bookingContext";
 
 const MeetDoctor = React.memo(() => {
+  const { openBooking } = useBooking();
 
   const qualifications = useMemo(
     () => [
@@ -236,7 +237,7 @@ const MeetDoctor = React.memo(() => {
 
           <motion.button
             type="button"
-            onClick={openWhatsApp}
+            onClick={openBooking}
             whileHover={animationVariants.hover}
             whileTap={animationVariants.tap}
             className="mt-5 rounded-xl px-8 py-4 text-base font-semibold text-white cursor-pointer"

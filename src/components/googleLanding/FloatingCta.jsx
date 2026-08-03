@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar } from "lucide-react";
 import { theme } from "../../theme/colors";
-import { WHATSAPP_URL, openWhatsApp } from "./whatsapp";
+import { WHATSAPP_URL } from "./whatsapp";
+import { useBooking } from "./bookingContext";
 
 const FloatingCta = () => {
+  const { openBooking } = useBooking();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -56,7 +58,7 @@ const FloatingCta = () => {
 
           <motion.button
             type="button"
-            onClick={openWhatsApp}
+            onClick={openBooking}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-semibold cursor-pointer"

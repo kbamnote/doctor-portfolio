@@ -2,9 +2,10 @@ import React, { useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { theme, animationVariants } from "../../theme/colors";
-import { openWhatsApp } from "./whatsapp";
+import { useBooking } from "./bookingContext";
 
 const Faq = React.memo(() => {
+  const { openBooking } = useBooking();
   const [openIndex, setOpenIndex] = useState(0);
 
   const faqs = useMemo(
@@ -184,7 +185,7 @@ const Faq = React.memo(() => {
 
           <motion.button
             type="button"
-            onClick={openWhatsApp}
+            onClick={openBooking}
             whileHover={animationVariants.hover}
             whileTap={animationVariants.tap}
             className="mt-6 rounded-xl px-8 py-3.5 text-base font-semibold text-white cursor-pointer"

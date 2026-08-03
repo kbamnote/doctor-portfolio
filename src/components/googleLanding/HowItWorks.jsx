@@ -9,9 +9,10 @@ import {
   ArrowDown,
 } from "lucide-react";
 import { theme, animationVariants } from "../../theme/colors";
-import { openWhatsApp } from "./whatsapp";
+import { useBooking } from "./bookingContext";
 
 const HowItWorks = React.memo(() => {
+  const { openBooking } = useBooking();
 
   const steps = useMemo(
     () => [
@@ -177,7 +178,7 @@ const HowItWorks = React.memo(() => {
 
           <motion.button
             type="button"
-            onClick={openWhatsApp}
+            onClick={openBooking}
             whileHover={animationVariants.hover}
             whileTap={animationVariants.tap}
             className="mt-6 rounded-xl bg-white px-7 py-3.5 text-base font-semibold cursor-pointer"

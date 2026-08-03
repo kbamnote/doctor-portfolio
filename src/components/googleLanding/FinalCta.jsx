@@ -2,7 +2,8 @@ import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Clock, Calendar, MessageCircle, CheckCircle2 } from "lucide-react";
 import { theme, animationVariants } from "../../theme/colors";
-import { WHATSAPP_URL, openWhatsApp } from "./whatsapp";
+import { WHATSAPP_URL } from "./whatsapp";
+import { useBooking } from "./bookingContext";
 
 // Subtle plus-sign lattice layered over the gradient
 const PLUS_PATTERN = `url("data:image/svg+xml,${encodeURIComponent(
@@ -10,6 +11,7 @@ const PLUS_PATTERN = `url("data:image/svg+xml,${encodeURIComponent(
 )}")`;
 
 const FinalCta = React.memo(() => {
+  const { openBooking } = useBooking();
   const assurances = useMemo(
     () => [
       "Same-day appointments available",
@@ -89,7 +91,7 @@ const FinalCta = React.memo(() => {
         >
           <motion.button
             type="button"
-            onClick={openWhatsApp}
+            onClick={openBooking}
             whileHover={animationVariants.hover}
             whileTap={animationVariants.tap}
             className="flex items-center justify-center gap-3 rounded-xl bg-white px-7 py-4 text-base font-semibold cursor-pointer"

@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 import { CheckCircle2, Calendar } from "lucide-react";
 import drimg from "../../assets/imgDr.webp";
 import { theme, animationVariants } from "../../theme/colors";
-import { openWhatsApp } from "./whatsapp";
+import { useBooking } from "./bookingContext";
 
 const GoogleHero = React.memo(() => {
+  const { openBooking } = useBooking();
   const highlights = useMemo(
     () => [
       "15+ Years Experience",
@@ -90,7 +91,7 @@ const GoogleHero = React.memo(() => {
             >
               <motion.button
                 type="button"
-                onClick={openWhatsApp}
+                onClick={openBooking}
                 whileHover={animationVariants.hover}
                 whileTap={animationVariants.tap}
                 className="flex items-center justify-center gap-3 rounded-xl px-7 py-4 text-base font-semibold text-white cursor-pointer shadow-lg"

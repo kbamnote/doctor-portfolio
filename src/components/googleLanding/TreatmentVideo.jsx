@@ -2,13 +2,14 @@ import React, { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import { theme, animationVariants } from "../../theme/colors";
-import { openWhatsApp } from "./whatsapp";
+import { useBooking } from "./bookingContext";
 
 const YOUTUBE_ID = "ZKw4YcAVBZk";
 const POSTER_URL = `https://img.youtube.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`;
 const POSTER_FALLBACK = `https://img.youtube.com/vi/${YOUTUBE_ID}/hqdefault.jpg`;
 
 const TreatmentVideo = React.memo(() => {
+  const { openBooking } = useBooking();
   const [isPlaying, setIsPlaying] = useState(false);
 
   const play = useCallback(() => setIsPlaying(true), []);
@@ -121,7 +122,7 @@ const TreatmentVideo = React.memo(() => {
 
           <motion.button
             type="button"
-            onClick={openWhatsApp}
+            onClick={openBooking}
             whileHover={animationVariants.hover}
             whileTap={animationVariants.tap}
             className="mt-5 rounded-xl px-8 py-4 text-base font-semibold text-white cursor-pointer"
