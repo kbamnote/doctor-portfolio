@@ -153,8 +153,18 @@ const BookingModal = ({ isOpen, onClose }) => {
             exit={{ opacity: 0, y: 24, scale: 0.97 }}
             transition={{ duration: 0.28, ease: theme.easing.easeOut }}
             onClick={(e) => e.stopPropagation()}
+            // Lenis hijacks wheel/touch globally; data-lenis-prevent makes it
+            // ignore events inside this panel so it can scroll natively.
+            data-lenis-prevent
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
             className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl bg-white"
-            style={{ boxShadow: "0 40px 80px -30px rgba(17, 24, 39, 0.7)" }}
+            style={{
+              boxShadow: "0 40px 80px -30px rgba(17, 24, 39, 0.7)",
+              WebkitOverflowScrolling: "touch",
+              touchAction: "pan-y",
+              overscrollBehavior: "contain",
+            }}
           >
             <button
               type="button"
