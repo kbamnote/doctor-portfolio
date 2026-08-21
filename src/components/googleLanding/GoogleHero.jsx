@@ -34,29 +34,29 @@ const GoogleHero = React.memo(() => {
         >
           {/* Left column */}
           <div className="order-2 lg:order-1">
-            <motion.h1
+            <motion.h2
               variants={animationVariants.fadeInUp}
               transition={{ duration: 0.7, ease: theme.easing.easeOut }}
               className="font-extrabold tracking-tight"
               style={{
                 color: theme.text.primary,
-                fontSize: "clamp(2.25rem, 4.6vw, 4.25rem)",
-                lineHeight: 1.08,
+                fontSize: "clamp(1.75rem, 3vw, 2.75rem)",
+                lineHeight: 1.15,
                 letterSpacing: "-0.02em",
               }}
             >
-              Finally Find The Root Cause Of Your Chronic Health Problems — Not
-              Just Temporary Relief
-            </motion.h1>
+              Find The Root Cause Of Your Chronic Health Problems Not Just
+              Temporary Relief
+            </motion.h2>
 
             <motion.p
               variants={animationVariants.fadeInUp}
               transition={{ duration: 0.7, delay: 0.1, ease: theme.easing.easeOut }}
-              className="mt-6 sm:mt-7 max-w-xl text-base sm:text-lg leading-relaxed"
+              className="mt-5 sm:mt-6 max-w-xl text-base sm:text-lg leading-relaxed"
               style={{ color: theme.text.secondary }}
             >
-              Personalized Homeopathic Treatment By Dr. Guneet Singh Gaba
-              Helping Patients Find Long-Term Relief From Chronic &amp;
+              Personalized Homeopathy Treatment In Delhi By Dr. Guneet Singh
+              Gaba Helping Patients Find Long-Term Relief From Chronic &amp;
               Difficult-To-Treat Conditions Through Individualized Care.
             </motion.p>
 
@@ -112,6 +112,18 @@ const GoogleHero = React.memo(() => {
             transition={{ duration: 0.8, delay: 0.15, ease: theme.easing.easeOut }}
             className="order-1 lg:order-2"
           >
+            {/* Page H1 — carries the target keyword for this URL */}
+            <h1
+              className="mb-4 font-bold tracking-tight"
+              style={{
+                color: theme.primary[600],
+                fontSize: "clamp(1.125rem, 1.6vw, 1.5rem)",
+                lineHeight: 1.3,
+              }}
+            >
+              Homeopathy Treatment in Delhi
+            </h1>
+
             <div
               className="relative w-full overflow-hidden rounded-2xl"
               style={{
@@ -140,8 +152,7 @@ const GoogleHero = React.memo(() => {
                   className="absolute bottom-5 left-5 right-5 text-left text-sm sm:text-base font-semibold"
                   style={{ color: theme.text.white }}
                 >
-                  Dr. Guneet Singh Gaba &mdash; Helping Patients Find Lasting
-                  Relief
+                  Online &amp; In-Person Consultation
                 </span>
               </div>
             </div>

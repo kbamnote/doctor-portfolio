@@ -1,6 +1,6 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { Clock, Calendar, MessageCircle, CheckCircle2 } from "lucide-react";
+import { Clock, Calendar, MessageCircle } from "lucide-react";
 import { theme, animationVariants } from "../../theme/colors";
 import { WHATSAPP_URL } from "./whatsapp";
 import { useBooking } from "./bookingContext";
@@ -12,17 +12,10 @@ const PLUS_PATTERN = `url("data:image/svg+xml,${encodeURIComponent(
 
 const FinalCta = React.memo(() => {
   const { openBooking } = useBooking();
-  const assurances = useMemo(
-    () => [
-      "Same-day appointments available",
-      "Free initial consultation",
-      "100% confidential",
-    ],
-    []
-  );
 
   return (
     <section
+      id="final-cta"
       className="relative w-full overflow-hidden py-20 sm:py-24 lg:py-28"
       style={{
         backgroundColor: theme.primary[900],
@@ -121,28 +114,15 @@ const FinalCta = React.memo(() => {
           </motion.a>
         </motion.div>
 
-        <motion.ul
+        <motion.p
           variants={animationVariants.fadeInUp}
           transition={{ duration: 0.7, delay: 0.25, ease: theme.easing.easeOut }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
+          className="mt-12 text-sm"
+          style={{ color: "rgba(255,255,255,0.6)" }}
         >
-          {assurances.map((item) => (
-            <li key={item} className="flex items-center gap-2">
-              <CheckCircle2
-                size={18}
-                strokeWidth={2.5}
-                style={{ color: theme.primary[300] }}
-                aria-hidden="true"
-              />
-              <span
-                className="text-sm"
-                style={{ color: "rgba(255,255,255,0.85)" }}
-              >
-                {item}
-              </span>
-            </li>
-          ))}
-        </motion.ul>
+          &copy; {new Date().getFullYear()} Dr. Guneet Singh Gaba. All rights
+          reserved.
+        </motion.p>
       </motion.div>
     </section>
   );

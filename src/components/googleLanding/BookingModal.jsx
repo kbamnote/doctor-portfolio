@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Send, CheckCircle2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { X, Send } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { theme } from "../../theme/colors";
 import { WHATSAPP_URL } from "./whatsapp";
+import { THANK_YOU_PATH } from "./routes";
 
 // Campaign leads are kept separate from the main site's contact form: they use
 // their own EmailJS template and recipient when configured, and always carry a
@@ -39,10 +41,10 @@ const initialForm = {
 };
 
 const BookingModal = ({ isOpen, onClose }) => {
+  const navigate = useNavigate();
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState({ state: "idle", message: "" });
   const isSending = status.state === "sending";
-  const isSent = status.state === "success";
 
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
@@ -90,10 +92,12 @@ const BookingModal = ({ isOpen, onClose }) => {
           { publicKey: EMAILJS_PUBLIC_KEY }
         );
 
-        setStatus({
-          state: "success",
-          message: "Thank you! We will contact you shortly to confirm.",
-        });
+        // Send the visitor to a dedicated thank-you page. This doubles as the
+        // conversion URL for Google Ads goal tracking.
+        setForm(initialForm);
+        setStatus({ state: "idle", message: "" });
+        onClose();
+        navigate(THANK_YOU_PATH);
       } catch (err) {
         console.error("EmailJS error:", err);
         setStatus({
@@ -103,7 +107,7 @@ const BookingModal = ({ isOpen, onClose }) => {
         });
       }
     },
-    [form]
+    [form, onClose, navigate]
   );
 
   // Close on Escape, and lock background scrolling while open.
@@ -197,36 +201,7 @@ const BookingModal = ({ isOpen, onClose }) => {
               </p>
             </div>
 
-            {isSent ? (
-              <div className="px-6 py-12 sm:px-8 text-center">
-                <CheckCircle2
-                  size={52}
-                  strokeWidth={2}
-                  className="mx-auto"
-                  style={{ color: theme.primary[500] }}
-                  aria-hidden="true"
-                />
-                <p
-                  className="mt-5 text-lg font-semibold"
-                  style={{ color: theme.text.primary }}
-                >
-                  Request sent
-                </p>
-                <p className="mt-2" style={{ color: theme.text.secondary }}>
-                  {status.message}
-                </p>
-
-                <button
-                  type="button"
-                  onClick={handleClose}
-                  className="mt-7 rounded-xl px-7 py-3 text-base font-semibold text-white cursor-pointer"
-                  style={{ backgroundColor: theme.primary[600] }}
-                >
-                  Done
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="px-6 py-6 sm:px-8">
+            <form onSubmit={handleSubmit} className="px-6 py-6 sm:px-8">
                 <div className="space-y-4">
                   <div>
                     <label
@@ -375,8 +350,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                     Message us on WhatsApp
                   </a>
                 </p>
-              </form>
-            )}
+            </form>
           </motion.div>
         </motion.div>
       )}

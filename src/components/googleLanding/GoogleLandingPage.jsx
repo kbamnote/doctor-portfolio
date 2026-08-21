@@ -19,8 +19,8 @@ const GoogleLandingPage = () => {
   return (
    <BookingProvider>
    <SEO
-    title="Best Homeopathic Doctor in Delhi for incurable disease | Dr. Guneet"
-    description="are you Looking for the best homeopathic doctor in Delhi ? Dr. Guneet uses advance German Homeopathy Method to identify the real root cause of every disease."
+    title="Homeopathy Treatment in Delhi | Dr. Guneet Singh Gaba"
+    description="Personalized homeopathy treatment in Delhi by Dr. Guneet Singh Gaba. Root-cause treatment for chronic and difficult-to-treat conditions, online and in-person."
    />
    <GoogleHero/>
    <TreatmentVideo/>

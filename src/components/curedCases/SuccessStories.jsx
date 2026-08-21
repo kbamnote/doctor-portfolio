@@ -79,7 +79,7 @@ const stories = [
     category: "Skin",
     title: "Herpes Simplex Recovery",
     duration: "3 Months",
-    age: "30 Years",
+    age: "64 Years",
     description: "Recurrent painful outbreaks managed and frequency reduced significantly.",
     imgBefore: herpesBefore,
     imgAfter: herpesAfter,

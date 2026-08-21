@@ -1,5 +1,11 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import {
+  LANDING_PATH,
+  THANK_YOU_PATH,
+  LEGACY_LANDING_PATH,
+  LEGACY_THANK_YOU_PATH,
+} from '../googleLanding/routes';
 import PageTransition from './PageTransition';
 import Layout from './Layout';
 import LenisScrollWrapper from '../LenisScrollWrapper';
@@ -14,6 +20,7 @@ const BlogPost = lazy(() => import('../blogPage/BlogPost'));
 const ContactPage = lazy(() => import('../contact/ContactPage'));
 const CuredCases = lazy(() => import('../curedCases/CuredCases'));
 const GoogleLandingPage = lazy(() => import('../googleLanding/GoogleLandingPage'));
+const GoogleLandingThankYou = lazy(() => import('../googleLanding/ThankYou'));
 
 // Loading component for lazy-loaded routes
 const PageLoader = () => (
@@ -134,13 +141,23 @@ const AppRouter = () => {
                 <LandingPage />
               </TransitionWrapper>
             } />
-            <Route path="/google-landing" element={
+            <Route path={LANDING_PATH} element={
               <TransitionWrapper>
                 <Suspense fallback={<PageLoader />}>
                   <GoogleLandingPage />
                 </Suspense>
               </TransitionWrapper>
             } />
+            <Route path={THANK_YOU_PATH} element={
+              <TransitionWrapper>
+                <Suspense fallback={<PageLoader />}>
+                  <GoogleLandingThankYou />
+                </Suspense>
+              </TransitionWrapper>
+            } />
+            {/* Old slug — redirect so existing ad links keep working */}
+            <Route path={LEGACY_LANDING_PATH} element={<Navigate to={LANDING_PATH} replace />} />
+            <Route path={LEGACY_THANK_YOU_PATH} element={<Navigate to={THANK_YOU_PATH} replace />} />
             <Route path="/about" element={
               <TransitionWrapper>
                 <Suspense fallback={<PageLoader />}>

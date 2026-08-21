@@ -33,20 +33,20 @@ const TreatmentVideo = React.memo(() => {
         viewport={{ once: true, amount: 0.2 }}
         className="mx-auto w-full max-w-5xl px-5 sm:px-8"
       >
-        <motion.h2
+        <motion.h3
           variants={animationVariants.fadeInUp}
           transition={{ duration: 0.7, ease: theme.easing.easeOut }}
           className="mx-auto max-w-3xl text-center font-extrabold tracking-tight"
           style={{
             color: theme.text.primary,
-            fontSize: "clamp(1.75rem, 3.2vw, 2.75rem)",
-            lineHeight: 1.15,
+            fontSize: "clamp(1.5rem, 2.6vw, 2.25rem)",
+            lineHeight: 1.2,
             letterSpacing: "-0.02em",
           }}
         >
-          Watch How Our Treatment Approach Has Helped Patients Regain Their
-          Health
-        </motion.h2>
+          Watch Why Our Treatment Is Different From Other Conventional
+          Homeopathy Treatment In Delhi
+        </motion.h3>
 
         <motion.div
           variants={animationVariants.scaleIn}

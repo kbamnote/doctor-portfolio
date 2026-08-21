@@ -7,7 +7,8 @@ import { useBooking } from "./bookingContext";
 
 const FloatingCta = () => {
   const { openBooking } = useBooking();
-  const [isVisible, setIsVisible] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
+  const [atFinalCta, setAtFinalCta] = useState(false);
 
   useEffect(() => {
     // Reveal only once the hero has scrolled past.
@@ -18,7 +19,7 @@ const FloatingCta = () => {
 
     let threshold = getThreshold();
 
-    const onScroll = () => setIsVisible(window.scrollY > threshold);
+    const onScroll = () => setPastHero(window.scrollY > threshold);
     const onResize = () => {
       threshold = getThreshold();
       onScroll();
@@ -33,6 +34,22 @@ const FloatingCta = () => {
       window.removeEventListener("resize", onResize);
     };
   }, []);
+
+  useEffect(() => {
+    // Hide again over the closing CTA, which already offers both buttons.
+    const finalCta = document.getElementById("final-cta");
+    if (!finalCta || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setAtFinalCta(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+
+    observer.observe(finalCta);
+    return () => observer.disconnect();
+  }, []);
+
+  const isVisible = pastHero && !atFinalCta;
 
   return (
     <AnimatePresence>
