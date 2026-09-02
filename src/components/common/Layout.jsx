@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import WhatsAppButton from './WhatsAppButton';
 import { LANDING_PATH } from '../googleLanding/routes';
+import GoogleAdsTag from '../googleLanding/GoogleAdsTag';
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -24,6 +25,9 @@ const Layout = ({ children }) => {
       </div>
 
       {!isGoogleLanding && <WhatsAppButton />}
+
+      {/* Google Ads tag runs on the campaign pages only */}
+      {isGoogleLanding && <GoogleAdsTag />}
     </div>
   );
 };

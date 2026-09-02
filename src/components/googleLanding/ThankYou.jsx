@@ -1,11 +1,18 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, Phone, CalendarCheck, MessageCircle } from "lucide-react";
 import { theme, animationVariants } from "../../theme/colors";
 import { WHATSAPP_URL } from "./whatsapp";
+import { trackConversion } from "./googleTag";
 import SEO from "../common/SEO";
 
 const ThankYou = () => {
+  // Reached only after a successful booking submission, so this is the
+  // conversion point for Google Ads.
+  useEffect(() => {
+    trackConversion();
+  }, []);
+
   const steps = useMemo(
     () => [
       {
