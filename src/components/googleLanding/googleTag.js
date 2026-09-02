@@ -6,9 +6,15 @@
 
 export const GOOGLE_ADS_ID = "AW-16477406746";
 
-// Conversion label from the "Booking Form Submit" conversion action.
-// Fired on the thank-you page, which is only reachable after a successful send.
+// "Booking Form Submit" conversion action — fired on the thank-you page,
+// which is only reachable after a successful send.
 export const CONVERSION_LABEL = "EHE6CPyyuewcEJqMhbE9";
+
+// "Landing Page View" conversion action — fired when the landing page opens,
+// so Google Ads reports arrivals alongside form fills.
+// Must be set as a SECONDARY action in Google Ads, or bidding will optimise
+// for page views instead of bookings.
+export const PAGE_VIEW_CONVERSION_LABEL = "h5PMCIL9tOwcEJqMhbE9";
 
 let isLoaded = false;
 
@@ -40,6 +46,21 @@ export const trackPageView = () => {
     page_location: window.location.href,
     page_path: window.location.pathname,
     page_title: document.title,
+  });
+};
+
+export const trackPageViewConversion = () => {
+  if (typeof window === "undefined" || !window.gtag) return;
+
+  if (!PAGE_VIEW_CONVERSION_LABEL) {
+    console.warn(
+      "[GoogleAds] PAGE_VIEW_CONVERSION_LABEL is not set — page-view conversion was not sent."
+    );
+    return;
+  }
+
+  window.gtag("event", "conversion", {
+    send_to: `${GOOGLE_ADS_ID}/${PAGE_VIEW_CONVERSION_LABEL}`,
   });
 };
 

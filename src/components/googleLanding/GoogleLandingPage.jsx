@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import GoogleHero from './GoogleHero'
 import TreatmentVideo from './TreatmentVideo'
 import PainPoints from './PainPoints'
@@ -13,9 +13,16 @@ import FinalCta from './FinalCta'
 // import Footer from '../common/Footer'
 import FloatingCta from './FloatingCta'
 import BookingProvider from './BookingProvider'
+import { trackPageViewConversion } from './googleTag'
 import SEO from '../common/SEO'
 
 const GoogleLandingPage = () => {
+  // Counts arrivals on the landing page, so Google Ads can show
+  // visits alongside form submissions.
+  useEffect(() => {
+    trackPageViewConversion()
+  }, [])
+
   return (
    <BookingProvider>
    <SEO
