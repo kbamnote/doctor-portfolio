@@ -6,10 +6,9 @@
 
 export const GOOGLE_ADS_ID = "AW-16477406746";
 
-// Conversion label from the "Booking Form Submit" conversion action:
-// gtag('event', 'conversion', { send_to: 'AW-16477406746/<LABEL>' })
-// Until this is filled in, trackConversion() is a no-op.
-export const CONVERSION_LABEL = "";
+// Conversion label from the "Booking Form Submit" conversion action.
+// Fired on the thank-you page, which is only reachable after a successful send.
+export const CONVERSION_LABEL = "EHE6CPyyuewcEJqMhbE9";
 
 let isLoaded = false;
 
