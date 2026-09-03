@@ -1,20 +1,18 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { loadGoogleTag, trackPageView } from "./googleTag";
+import { trackPageView } from "./googleTag";
 
-// Mounted once for the whole campaign section (from Layout), so it survives
-// navigation between the landing page and the thank-you page.
+// The base tag lives in index.html, so nothing is loaded here. This only
+// reports client-side route changes, which gtag cannot detect on its own —
+// without it, moving from the landing page to the thank-you page would be
+// invisible to Google.
 const GoogleAdsTag = () => {
   const { pathname } = useLocation();
   const isFirstRoute = useRef(true);
 
   useEffect(() => {
-    loadGoogleTag();
-  }, []);
-
-  useEffect(() => {
-    // The initial gtag('config', ...) call already sends a page view,
-    // so only fire for subsequent client-side route changes.
+    // The gtag('config', ...) call in index.html already sent the first
+    // page view, so only report subsequent navigations.
     if (isFirstRoute.current) {
       isFirstRoute.current = false;
       return;

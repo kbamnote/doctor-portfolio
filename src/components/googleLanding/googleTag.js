@@ -1,43 +1,21 @@
-// Google Ads tag for the campaign pages.
+// Google Ads conversion events.
 //
-// Google's pasted snippet assumes a full page load per page. This is a React
-// SPA, so the tag is loaded once and page views / conversions are fired
-// explicitly on route changes instead.
+// The base Google tag (gtag.js) is installed directly in index.html, exactly
+// as Google's "Install manually" instructions specify.
+//
+// The event snippets cannot be pasted into HTML: this is a React SPA with a
+// single index.html, so anything placed there would fire on every page of the
+// site. They are dispatched from the relevant component instead, which fires
+// them only on the page they belong to.
 
 export const GOOGLE_ADS_ID = "AW-16477406746";
 
-// "Booking Form Submit" conversion action — fired on the thank-you page,
-// which is only reachable after a successful send.
+// "Booking Form Submit" — fired on the thank-you page, which is only
+// reachable after a successful form submission.
 export const CONVERSION_LABEL = "EHE6CPyyuewcEJqMhbE9";
 
-// "Landing Page View" conversion action — fired when the landing page opens,
-// so Google Ads reports arrivals alongside form fills.
-// Must be set as a SECONDARY action in Google Ads, or bidding will optimise
-// for page views instead of bookings.
-export const PAGE_VIEW_CONVERSION_LABEL = "h5PMCIL9tOwcEJqMhbE9";
-
-let isLoaded = false;
-
-export const loadGoogleTag = () => {
-  if (typeof window === "undefined" || isLoaded) return;
-  isLoaded = true;
-
-  window.dataLayer = window.dataLayer || [];
-  if (!window.gtag) {
-    window.gtag = function gtag() {
-      window.dataLayer.push(arguments);
-    };
-  }
-
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`;
-  document.head.appendChild(script);
-
-  window.gtag("js", new Date());
-  // Sends the initial page view for this session.
-  window.gtag("config", GOOGLE_ADS_ID);
-};
+// "Page view" — fired when the landing page opens.
+export const PAGE_VIEW_CONVERSION_LABEL = "uRLaCMSSs-0cEJqMhbE9";
 
 export const trackPageView = () => {
   if (typeof window === "undefined" || !window.gtag) return;
@@ -61,6 +39,8 @@ export const trackPageViewConversion = () => {
 
   window.gtag("event", "conversion", {
     send_to: `${GOOGLE_ADS_ID}/${PAGE_VIEW_CONVERSION_LABEL}`,
+    value: 1.0,
+    currency: "INR",
   });
 };
 
