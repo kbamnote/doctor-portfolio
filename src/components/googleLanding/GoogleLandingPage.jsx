@@ -17,8 +17,7 @@ import { trackPageViewConversion } from './googleTag'
 import SEO from '../common/SEO'
 
 const GoogleLandingPage = () => {
-  // Counts arrivals on the landing page, so Google Ads can show
-  // visits alongside form submissions.
+  // Counts arrivals on the landing page, reported alongside form submissions.
   useEffect(() => {
     trackPageViewConversion()
   }, [])

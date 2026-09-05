@@ -1,21 +1,23 @@
-// Google Ads conversion events.
+// Google Ads conversion tracking.
 //
-// The base Google tag (gtag.js) is installed directly in index.html, exactly
-// as Google's "Install manually" instructions specify.
+// The base Google tag (gtag.js) is installed once in index.html, exactly as
+// Google's "Install manually" instructions specify. There is no second tag.
 //
-// The event snippets cannot be pasted into HTML: this is a React SPA with a
+// The event snippet cannot be pasted into HTML: this is a React SPA with a
 // single index.html, so anything placed there would fire on every page of the
-// site. They are dispatched from the relevant component instead, which fires
-// them only on the page they belong to.
+// site. It is dispatched from the Thank You component instead, which fires it
+// only when that page is actually shown.
 
 export const GOOGLE_ADS_ID = "AW-16477406746";
 
-// "Booking Form Submit" — fired on the thank-you page, which is only
-// reachable after a successful form submission.
-export const CONVERSION_LABEL = "EHE6CPyyuewcEJqMhbE9";
+// "Booking Form Submit (1)" conversion action. Fired on the Thank You page,
+// which is only reachable after a successful form submission.
+export const CONVERSION_LABEL = "4-RrCOH46e4cEJqMhbE9";
 
-// "Page view" — fired when the landing page opens.
-export const PAGE_VIEW_CONVERSION_LABEL = "uRLaCMSSs-0cEJqMhbE9";
+// "Landing Page View (1)" conversion action — counts arrivals on the landing page.
+// Must be SECONDARY in Google Ads: every ad click produces a page view, so as a
+// primary action it would push bidding toward traffic instead of bookings.
+export const PAGE_VIEW_CONVERSION_LABEL = "5In1CPDM6u4cEJqMhbE9";
 
 export const trackPageView = () => {
   if (typeof window === "undefined" || !window.gtag) return;
@@ -39,8 +41,6 @@ export const trackPageViewConversion = () => {
 
   window.gtag("event", "conversion", {
     send_to: `${GOOGLE_ADS_ID}/${PAGE_VIEW_CONVERSION_LABEL}`,
-    value: 1.0,
-    currency: "INR",
   });
 };
 
