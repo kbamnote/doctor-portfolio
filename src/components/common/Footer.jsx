@@ -422,7 +422,7 @@ const Footer = () => {
                 transition: { duration: 0.3 }
               }}
             >
-              © 2025 HomeoHeal. All rights reserved.
+              © 2025 Dr Guneet Singh Gaba. All rights reserved.
             </motion.p>
             <motion.div 
               className="flex flex-wrap gap-6 text-sm"
