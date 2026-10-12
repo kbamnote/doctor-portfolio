@@ -78,7 +78,7 @@ const HeroSection = React.memo(() => {
             style={{
               margin: 0,
               maxWidth: "92vw",
-              fontSize: "clamp(2rem, 8vw, 8rem)",
+              fontSize: "clamp(1.75rem, 6.6vw, 6.5rem)",
               lineHeight: 0.95,
               letterSpacing: "-0.03em",
               fontWeight: 850,
@@ -92,6 +92,24 @@ const HeroSection = React.memo(() => {
             <span style={{ display: "block" }}>HOMEOPATHIC</span>
             <span style={{ display: "block" }}>DOCTOR IN DELHI</span>
           </h1>
+
+          <p
+            style={{
+              margin: 0,
+              marginTop: "clamp(0.9rem, 2vw, 1.75rem)",
+              maxWidth: "min(24ch, 92vw)",
+              fontSize: "clamp(1.5rem, 3.6vw, 3.25rem)",
+              fontWeight: 700,
+              lineHeight: 1.25,
+              letterSpacing: "-0.01em",
+              color: "#fff",
+              textAlign: "left",
+              textShadow: "0 6px 16px rgba(0,0,0,0.55)",
+              pointerEvents: "auto",
+            }}
+          >
+            Find the root cause of your chronic and incurable disease.
+          </p>
         </div>
 
         <Navbar />

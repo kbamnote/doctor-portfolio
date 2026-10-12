@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { theme } from "../../theme/colors";
-import step1Img from "../../assets/Copy of cured cases for insta and website (1).png";
-import step2Img from "../../assets/Copy of cured cases for insta and website (2).png";
-import step3Img from "../../assets/Copy of cured cases for insta and website (3).png";
-import step4Img from "../../assets/Copy of cured cases for insta and website.png";
+// Named after the files themselves, so the order they appear in below can be
+// rearranged without the names going stale.
+import imgOne from "../../assets/Copy of cured cases for insta and website (1).png";
+import imgTwo from "../../assets/Copy of cured cases for insta and website (2).png";
+import imgThree from "../../assets/Copy of cured cases for insta and website (3).png";
+import imgFour from "../../assets/Copy of cured cases for insta and website.png";
 
 const steps = [
   {
@@ -12,28 +14,28 @@ const steps = [
     title: "Step 1: Detailed Consultation",
     description:
       "15–45 minutes of in-depth case-taking.",
-    image: step1Img,
+    image: imgThree,
   },
   {
     number: "02",
     title: "Step 2: Root Cause Analysis",
     description:
       "Identifying psychological, emotional, dietary, and biological triggers.",
-    image: step2Img,
+    image: imgTwo,
   },
   {
     number: "03",
     title: "Step 3: Personalized Medicine Plan",
     description:
       "Medicine chosen according to classical German homeopathic principles.",
-    image: step3Img,
+    image: imgFour,
   },
   {
     number: "04",
     title: "Step 4: Follow-Up & Monitoring",
     description:
       "Progress is tracked, and medicines are adjusted if needed.",
-    image: step4Img,
+    image: imgOne,
   },
 ];
 
